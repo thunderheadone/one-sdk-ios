@@ -30,15 +30,15 @@ $ pod install
 
 ### Manual Installation
 
-1. [Download Thunderhead ONE for iOS](https://github.com/thunderheadone/one-sdk-ios/archive/master.zip) and extract the zip.
+1. [Download the latest ONE SDK for iOS](https://github.com/thunderheadone/one-sdk-ios/releases) and extract the zip.
 2. Open your existing iOS application Xcode project.
 3. Import the Thunderhead.embeddedframework into your project.
-4. Confirm the ONE SDK files have been added to your project, as follows:
+4. Confirm the SDK files have been added to your project, as follows:
 	+ Navigate to your project build settings by selecting your project's Project File in the Project Navigator.
 	+ Select the main build target for your app.
 	+ Select the **Build Phases** tab.
 	+ Confirm **_Thunderhead.framework_** is located in the **Link Binary With Libraries** section.
-	+ Confirm **_Thunderhead.bundle_** is located in the **Copy Bundle Resources** section.
+	+ Confirm **_ThunderheadBundle.bundle_** is located in the **Copy Bundle Resources** section.
 5. Ensure your project enables modules by going to **Build Settings** tab and setting the flag for **Enable Modules (C and Objective-C)** to **Yes**. Check out **_Adding the SDK dependencies for manual installation_** if you need modules to be disabled.
 
 **Note:** If your project’s deployment target is less than iOS 8, the **_WebKit.framework_** has to be added manually. Check out **_Adding the SDK dependencies  for manual installation_**.

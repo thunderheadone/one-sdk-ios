@@ -1,0 +1,20 @@
+framework module Thunderhead {
+  umbrella header "One.h"
+  
+  export *
+  module * { export * }
+  
+  link framework "Accelerate"
+  link framework "CoreLocation"
+  link framework "Foundation"
+  link framework "LocalAuthentication"
+  link framework "CoreGraphics"
+  link framework "MessageUI"
+  link framework "SafariServices"
+  link framework "Security"
+  link framework "SystemConfiguration"
+  link framework "UIKit"
+  link framework "WebKit"
+  link framework "UserNotifications"
+  link "sqlite3"
+}

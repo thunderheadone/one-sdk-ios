@@ -59,6 +59,6 @@ The SDK requires modules to be enabled. If you require modules to be disabled, y
 
 If any of the frameworks are missing from your app, select the +icon in the lower-left corner of the **Link Binary With Libraries** section and add each framework, as needed, using the popup window.
 
-## Questions or Need Help
+## Questions or need help
 
 _The Thunderhead ONE team is available 24/7 to answer any questions you have. Just email onesupport@thunderhead.com or visit our docs page for more detailed installation and usage information._

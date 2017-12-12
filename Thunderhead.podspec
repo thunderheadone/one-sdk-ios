@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                = 'Thunderhead'
-  s.version             = '2.19.2'
+  s.version             = '2.20.0'
   s.summary             = 'The ONE SDK for iOS, for integrating the ONE Engagmeent Hub into your iOS application.'
   s.license             = { :type => 'Commercial', :text => 'Copyright (c) 2017 Thunderhead One Inc. All rights reserved.' }
   s.authors             = { 'Thunderhead ONE' => 'onesupport@thunderhead.com'}

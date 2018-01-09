@@ -406,19 +406,19 @@ If your object is not an instance of `UIViewController` class, perform the next 
 	Swift:
 	```swift
 	func interaction(interactionPath: String!, didReceiveResponse response: [NSObject : AnyObject]!) {
-        if (response != nil) {
-            // work with the response
-        }
+        	if (response != nil) {
+            	// work with the response
+        	}
 	}
 	```
 
 
 	Objective-C:
 	```objective-c
-	`-` (void)interaction:(NSString *)interactionPath didReceiveResponse:(NSDictionary *)response {
-    	if (response) {
-    		// Do something with the response.
-    	}
+	- (void)interaction:(NSString *)interactionPath didReceiveResponse:(NSDictionary *)response {
+    		if (response) {
+    			// Do something with the response.
+    		}
 	}
 	```
 
@@ -451,7 +451,7 @@ let myProperties = ["key1":"value1","key2":"value2"]
 Objective-C:
 ```objective-c
 NSDictionary *myProperties = @{@"Key1":@"Value1", @"Key2":@"Value2"};
-	```
+```
 
 #### Send properties to a base touchpoint
 
@@ -884,9 +884,9 @@ To get a structure data, call `getStructureData` method by passing a structureâ€
 Swift:
 ```swift
 One.getStructureData("YourStructureName") { (response, error) in
-if (error == nil) {
-	// work with response
-}
+	if (error == nil) {
+		// work with response
+	}
 }
 ```
 
@@ -894,9 +894,9 @@ if (error == nil) {
 Objective-C:
 ```objective-c
 [One getStructureData:@"yourStructureName" withBlock:^(NSDictionary *response, NSError *error) {
-if (!error) {
-	// work with response
-}
+	if (!error) {
+		// work with response
+	}
 }];
 ```
 

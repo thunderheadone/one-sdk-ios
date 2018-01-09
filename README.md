@@ -170,9 +170,9 @@ override func viewDidLoad() {
 Objective-C:
 ```objective-c
 - (void)viewDidLoad {
-[super viewDidLoad];
-// Do any additional setup after loading the view.
-self.oneInteractionPath = @"/myCustomInteractionPath";
+	[super viewDidLoad];
+	// Do any additional setup after loading the view.
+	self.oneInteractionPath = @"/myCustomInteractionPath";
 }
 ```
 
@@ -197,9 +197,9 @@ override func viewDidLoad() {
 Objective-C:
 ```objective-c
 - (void)viewDidLoad {    
-[super viewDidLoad];
-// Do any additional setup after loading the view.
-self.excludeInteractionPath = YES;
+	[super viewDidLoad];
+	// Do any additional setup after loading the view.
+	self.excludeInteractionPath = YES;
 }
 ```
 
@@ -259,7 +259,7 @@ if (error == nil) {
 
 Objective-C:
 ```objective-c
-[One sendInteraction:@"/loginAuthenticated" withBlock:^(NSDictionary *response, NSError *error) {
+[One sendInteraction:@"/InteractionPath" withBlock:^(NSDictionary *response, NSError *error) {
 	if (!error) {
 		[One processResponse:response];
 }

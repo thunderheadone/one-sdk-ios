@@ -248,11 +248,11 @@ You can send an Interaction request programmatically by passing an Interaction p
 Swift:
 ```swift
 One.sendInteraction("/InteractionPath") { (response, error) -> Void in
-if (error == nil) {
-	if let response = response {
-	One.processResponse(response)
+	if (error == nil) {
+		if let response = response {
+			One.processResponse(response)
+		}
 	}
-}
 }
 ```
 
@@ -262,7 +262,7 @@ Objective-C:
 [One sendInteraction:@"/InteractionPath" withBlock:^(NSDictionary *response, NSError *error) {
 	if (!error) {
 		[One processResponse:response];
-}
+	}
 }];
 ```
 
@@ -865,7 +865,7 @@ passing the location object as a parameter to `updateLocation` method. Use `CLLo
 Swift:
 ```swift
 func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-One.updateLocation(locations.first)
+	One.updateLocation(locations.first)
 }
 ```
 
@@ -873,7 +873,7 @@ One.updateLocation(locations.first)
 Objective-C:
 ```objective-c
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-[One updateLocation:[locations firstObject]];
+	[One updateLocation:[locations firstObject]];
 }
 ```
 

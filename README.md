@@ -476,7 +476,7 @@ You can send an Interaction request with Interaction properties by calling the m
 
 Swift:
 ```swift
-One.sendInteraction(interactionPath, withProperties:myProperties)
+One.sendInteraction("interactionPath", withProperties:myProperties)
 ```
 
 
@@ -791,6 +791,23 @@ To receive push notifications from ONE, take the following steps:
 
 *Note:* To disable this feature if it once was enabled, simply call the same method and pass `false`.   
 
+### Get a push token
+
+To the push token codelessly retrieved by the SDK, call `getPushToken` method as shown below:
+
+Swift:
+```swift
+let pushToken =  One.getPushToken()
+// work with the push token
+```
+
+
+Objective-C:
+```objective-c
+NSString *pushToken = [One getPushToken];
+// work with the push token
+```
+
 ### Send a push token
 
 To send a push token, call `sendPushToken` method by passing a push token:
@@ -827,23 +844,6 @@ Objective-C:
 ```
 
 *Note:* Use this function only to store the push token in ONE if you haven't enabled push notification support.
-
-### Get a push token
-
-To get a push token, call `getPushToken` method as shown below:
-
-Swift:
-```swift
-let pushToken =  One.getPushToken();
-// work with the push token
-```
-
-
-Objective-C:
-```objective-c
-NSString *pushToken = [One getPushToken];
-// work with the push token
-```
 
 ### Send a location object
 

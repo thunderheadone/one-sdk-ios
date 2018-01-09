@@ -87,55 +87,55 @@ To start tracking, capturing, and receiving optimizations with the ONE SDK in Us
 
 With your parameters ready to hand, add the following line to the top of the `didFinishLaunchingWithOptions`:
 	
-	Swift:
-	```swift
-	One.startSessionWithSK("ONE-XXXXXXXXXX-1022", 
-		uri:"myAppsNameURI",
-		apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
-		sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx", 
-		userId:"api@yourCompanyName", 
-		adminMode:false, 
-		hostName:"eu2.thunderhead.com")
-	```
+Swift:
+```swift
+One.startSessionWithSK("ONE-XXXXXXXXXX-1022", 
+	uri:"myAppsNameURI",
+	apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
+	sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx", 
+	userId:"api@yourCompanyName", 
+	adminMode:false, 
+	hostName:"eu2.thunderhead.com")
+```
 
 
-	Objective-C:
-	```objective-c
-	[One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
-                    uri:@"myAppsNameURI"
-                 apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
-           sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-                 userId:@"api@yourCompanyName"	
-              adminMode:NO	
-               hostName:@"eu2.thunderhead.com"];
-	```
+Objective-C:
+```objective-c
+[One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
+	    uri:@"myAppsNameURI"
+	 apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
+   sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
+	 userId:@"api@yourCompanyName"	
+      adminMode:NO	
+       hostName:@"eu2.thunderhead.com"];
+```
 
 #### Set up the Framework in Admin mode
 
 To use the framework in Admin mode, simply change the `adminMode` boolean to `true`, as follows:
 
-	Swift:
-	```swift
-	One.startSessionWithSK("ONE-XXXXXXXXXX-1022", 
-		uri:"myAppsNameURI",
-		apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
-		sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx", 
-		userId:"api@yourCompanyName", 
-		adminMode:true, 
-		hostName:"eu2.thunderhead.com")
-	```
+Swift:
+```swift
+One.startSessionWithSK("ONE-XXXXXXXXXX-1022", 
+	uri:"myAppsNameURI",
+	apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
+	sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx", 
+	userId:"api@yourCompanyName", 
+	adminMode:true, 
+	hostName:"eu2.thunderhead.com")
+```
 
 
-	Objective-C:
-	```objective-c
-	[One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
-	                    uri:@"myAppsNameURI"
-	                 apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
-	           sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-	                 userId:@"api@yourCompanyName"	
-	              adminMode:YES	
-	               hostName:@"eu2.thunderhead.com"];
-	```
+Objective-C:
+```objective-c
+[One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
+		    uri:@"myAppsNameURI"
+		 apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
+	   sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
+		 userId:@"api@yourCompanyName"	
+	      adminMode:YES	
+	       hostName:@"eu2.thunderhead.com"];
+```
 
 #### View controller/view lifecycle overriding rules
 
@@ -157,24 +157,24 @@ The SDK automatically assigns an Interaction path to each view controller. To ov
 
 In your `viewDidLoad` or any other view lifecycle methods, which come before `viewDidAppear`, simply set an Interaction path as shown below:
 
-	Swift:
-	```swift
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		// Do any additional setup after loading the view
-		self.oneInteractionPath = "/myCustomInteractionPath"
-	}
-	```
+Swift:
+```swift
+override func viewDidLoad() {
+	super.viewDidLoad()
+	// Do any additional setup after loading the view
+	self.oneInteractionPath = "/myCustomInteractionPath"
+}
+```
 
 
-	Objective-C:
-	```objective-c
-	- (void)viewDidLoad {
-    	[super viewDidLoad];
-    	// Do any additional setup after loading the view.
-    	self.oneInteractionPath = @"/myCustomInteractionPath";
-	}
-	```
+Objective-C:
+```objective-c
+- (void)viewDidLoad {
+[super viewDidLoad];
+// Do any additional setup after loading the view.
+self.oneInteractionPath = @"/myCustomInteractionPath";
+}
+```
 
 *Important note:* Please ensure your custom Interaction starts with a “/” and only contains letters, numbers and/or dashes.
 
@@ -184,24 +184,24 @@ You can exclude a specific view controller from being recognized as an Interacti
 
 In your `viewDidLoad` or any other view lifecycle methods, which come before the `viewDidAppear` method, simply set `excludeInteractionPath` to `true` as shown below:
 
-	Swift:
-	```swift
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		// Do any additional setup after loading the view
-		self.excludeInteractionPath = true
-	}
-	```
+Swift:
+```swift
+override func viewDidLoad() {
+	super.viewDidLoad()
+	// Do any additional setup after loading the view
+	self.excludeInteractionPath = true
+}
+```
 
 
-	Objective-C:
-	```objective-c
-	- (void)viewDidLoad {    
-    	[super viewDidLoad];
-    	// Do any additional setup after loading the view.
-    	self.excludeInteractionPath = YES;
-	}
-	```
+Objective-C:
+```objective-c
+- (void)viewDidLoad {    
+[super viewDidLoad];
+// Do any additional setup after loading the view.
+self.excludeInteractionPath = YES;
+}
+```
 
 By default, `excludeInteractionPath` returns `false`.
 
@@ -209,16 +209,16 @@ By default, `excludeInteractionPath` returns `false`.
 
 You can disable automatic interaction detection by calling the method `disableAutomaticInteractionDetection:` and passing `true` as a parameter, as shown below:
 
-	Swift:
-	```swift
-	One.disableAutomaticInteractionDetection(true)
-	```
+Swift:
+```swift
+One.disableAutomaticInteractionDetection(true)
+```
 
 
-	Objective-C:
-	```objective-c
-	[One disableAutomaticInteractionDetection:YES];
-	```
+Objective-C:
+```objective-c
+[One disableAutomaticInteractionDetection:YES];
+```
 
 An appropriate place to call the method might be under `didFinishLaunchingWithOptions` in your application delegate. 
 
@@ -228,16 +228,16 @@ By disabling automatic interaction detection, the SDK will no longer automatical
 
 You can send an Interaction request programmatically by calling the `sendInteraction` method and passing an Interaction path as a parameter as shown below:
 
-	Swift:
-	```swift
-	One.sendInteraction("/InteractionPath")
-	```
+Swift:
+```swift
+One.sendInteraction("/InteractionPath")
+```
 
 
-	Objective-C:
-	```objective-c
-	[One sendInteraction:@"/InteractionPath"];
-	```
+Objective-C:
+```objective-c
+[One sendInteraction:@"/InteractionPath"];
+```
 
 *Note:* This will send a POST request to ONE. Only the tid from the response will be used by the SDK - all other response objects will be ignored.
 
@@ -245,26 +245,26 @@ You can send an Interaction request programmatically by calling the `sendInterac
 
 You can send an Interaction request programmatically by passing an Interaction path and a completion block as a parameters as shown below:
 
-	Swift:
-	```swift
-	One.sendInteraction("/InteractionPath") { (response, error) -> Void in
-    	if (error == nil) {
-        	if let response = response {
-            	One.processResponse(response)
-        	}
-    	}
+Swift:
+```swift
+One.sendInteraction("/InteractionPath") { (response, error) -> Void in
+if (error == nil) {
+	if let response = response {
+	One.processResponse(response)
 	}
-	```
+}
+}
+```
 
 
-	Objective-C:
-	```objective-c
-	[One sendInteraction:@"/loginAuthenticated" withBlock:^(NSDictionary *response, NSError *error) {
-    		if (!error) {
-        		[One processResponse:response];
-    	}
-	}];
-	```
+Objective-C:
+```objective-c
+[One sendInteraction:@"/loginAuthenticated" withBlock:^(NSDictionary *response, NSError *error) {
+	if (!error) {
+		[One processResponse:response];
+}
+}];
+```
 
 *Note:* This will send a POST request to ONE. The response can be passed to the `processResponse` method as a parameter as shown above. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
 

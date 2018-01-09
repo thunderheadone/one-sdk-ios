@@ -87,26 +87,26 @@ To start tracking, capturing, and receiving optimizations with the ONE SDK in Us
 
 With your parameters ready to hand, add the following line to the top of the didFinishLaunchingWithOptions:
 	
-	Swift:
-	```swift
-	One.startSessionWithSK("ONE-XXXXXXXXXX-1022", 
-		uri:"myAppsNameURI",
-		apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
-		sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx", 
-		userId:"api@yourCompanyName", 
-		adminMode:false, 
-		hostName:"eu2.thunderhead.com")```
+Swift:
+```swift
+One.startSessionWithSK("ONE-XXXXXXXXXX-1022", 
+	uri:"myAppsNameURI",
+	apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
+	sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx", 
+	userId:"api@yourCompanyName", 
+	adminMode:false, 
+	hostName:"eu2.thunderhead.com")```
 
 
-	Objective-C:
-	```objective-c
-	[One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
-	                    uri:@"myAppsNameURI"
-	                 apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
-	           sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-	                 userId:@"api@yourCompanyName"	
-	              adminMode:NO	
-	               hostName:@"eu2.thunderhead.com"];```
+Objective-C:
+```objective-c
+[One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
+                    uri:@"myAppsNameURI"
+                 apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
+           sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
+                 userId:@"api@yourCompanyName"	
+              adminMode:NO	
+               hostName:@"eu2.thunderhead.com"];```
 
 #### Set up the Framework in Admin mode
 

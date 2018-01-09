@@ -442,31 +442,31 @@ The above mentioned method returns an interaction path and a corresponding inter
 
 Properties in the form of key/value pair strings can be sent to ONE using the SDK's public methods. Simply create a dictionary of key/value pair strings and call the appropriate properties public method, as follows:
 
-	Swift:
-	```swift
-	let myProperties = ["key1":"value1","key2":"value2"]
-	```
+Swift:
+```swift
+let myProperties = ["key1":"value1","key2":"value2"]
+```
 
 
-	Objective-C:
-	```objective-c
-	NSDictionary *myProperties = @{@"Key1":@"Value1", @"Key2":@"Value2"};
+Objective-C:
+```objective-c
+NSDictionary *myProperties = @{@"Key1":@"Value1", @"Key2":@"Value2"};
 	```
 
 #### Send properties to a base touchpoint
 
 To send properties to a base touchpoint, call the following public method and pass in your dictionary of key/value pair strings:
 
-	Swift:
-	```swift
-	One.sendBaseTouchpointProperties(myProperties)
-	```
+Swift:
+```swift
+One.sendBaseTouchpointProperties(myProperties)
+```
 
 
-	Objective-C:
-	```objective-c
-	[One sendBaseTouchpointProperties:myProperties];
-	```
+Objective-C:
+```objective-c
+[One sendBaseTouchpointProperties:myProperties];
+```
 
 *Note:* This will send a PUT request to ONE. 
 
@@ -474,16 +474,16 @@ To send properties to a base touchpoint, call the following public method and pa
 
 You can send an Interaction request with Interaction properties by calling the method below, passing Interaction path and dictionary of properties to it:
 
-	Swift:
-	```swift
-	One.sendInteraction(interactionPath, withProperties:myProperties)
-	```
+Swift:
+```swift
+One.sendInteraction(interactionPath, withProperties:myProperties)
+```
 
 
-	Objective-C:
-	```objective-c
-	[One sendInteraction:@"/interactionPath" withProperties:myProperties];
-	```
+Objective-C:
+```objective-c
+[One sendInteraction:@"/interactionPath" withProperties:myProperties];
+```
 
 *Note:* This will send a POST request to ONE. Only the tid from the response will be used by the SDK - all other response objects will be ignored.
 
@@ -491,27 +491,27 @@ You can send an Interaction request with Interaction properties by calling the m
 
 You can send an Interaction request with properties and a completion block by calling the method below, passing an Interaction path, a dictionary of properties and a completion block to it:
 
-	Swift:
-	```swift
-	One.sendInteraction("/interactionPath", withProperties:myProperties) { 
-		(response, error) in
-			if (error == nil) {
-				if let response = response {
-					One.processResponse(response)
-				}
+Swift:
+```swift
+One.sendInteraction("/interactionPath", withProperties:myProperties) { 
+	(response, error) in
+		if (error == nil) {
+			if let response = response {
+				One.processResponse(response)
 			}
+		}
+}
+```
+
+
+Objective-C:
+```objective-c
+[One sendInteraction:@"/interactionPath" withProperties:myProperties andBlock:^(NSDictionary *response, NSError *error) {
+	if (!error) {
+		[One processResponse:response];
 	}
-	```
-
-
-	Objective-C:
-	```objective-c
-	[One sendInteraction:@"/interactionPath" withProperties:myProperties andBlock:^(NSDictionary *response, NSError *error) {
-    	if (!error) {
-        	[One processResponse:response];
-    	}
-	}];
-	```
+}];
+```
 
 *Note:* This will send a POST request to ONE. 
 
@@ -521,16 +521,16 @@ The response can be passed to the `processResponse` method as a parameter as sho
 
 To send properties to a specific Interaction, call the following public method, passing in your dictionary of key/value pair strings and providing the Interaction path:
 
-	Swift:
-	```swift
-	One.sendProperties(myProperties, forInteractionPath:"/InteractionPath")
-	```
+Swift:
+```swift
+One.sendProperties(myProperties, forInteractionPath:"/InteractionPath")
+```
 
 
-	Objective-C:
-	```objective-c
-	[One sendProperties:myProperties forInteractionPath:@"/interactionPath"];
-	```
+Objective-C:
+```objective-c
+[One sendProperties:myProperties forInteractionPath:@"/interactionPath"];
+```
 
 *Note:* This will send a PUT request to ONE. 
 
@@ -538,16 +538,16 @@ To send properties to a specific Interaction, call the following public method, 
 
 To send a response code, call the method shown below by passing the response code and the corresponding interaction path as parameters:
 
-	Swift:
-	```swift
-	One.sendResponseCode("yourCode", forInteractionPath:"/InteractionPath")
-	```
+Swift:
+```swift
+One.sendResponseCode("yourCode", forInteractionPath:"/InteractionPath")
+```
 
 
-	Objective-C:
-	```objective-c
-	[One sendResponseCode:@"yourCode" forInteractionPath:@"/interactionPath"];
-	```
+Objective-C:
+```objective-c
+[One sendResponseCode:@"yourCode" forInteractionPath:@"/interactionPath"];
+```
 
 *Note:* This will send a PUT request to ONE. 
 
@@ -557,64 +557,64 @@ To send a response code, call the method shown below by passing the response cod
 
 To synchronise the Safari Mobile identity set by our ONE Tag with the current app identity, call: 
 
-	Swift:
-	```swift
-	One.identitySync()
-	```
+Swift:
+```swift
+One.identitySync()
+```
 
 
-	Objective-C:
-	```objective-c
-	[One identitySync];
-	```
+Objective-C:
+```objective-c
+[One identitySync];
+```
 
 #### Identity sync with ONE and your web touchpoint
 
 To synchronise the Safari Mobile identity set by our ONE Tag with the current app identity and your web touchpoint, call: 
 
-	Swift:
-	```swift
-	One.identitySyncWithURL(URL(string: "https://yourWebsite"))
-	```
+Swift:
+```swift
+One.identitySyncWithURL(URL(string: "https://yourWebsite"))
+```
 
 
-	Objective-C:
-	```objective-c
-	[One identitySyncWithURL:[NSURL URLWithString:@"https://yourwebsite"]];
-	```
+Objective-C:
+```objective-c
+[One identitySyncWithURL:[NSURL URLWithString:@"https://yourwebsite"]];
+```
 
 ### Ability to whitelist identity transfer links
 
 The SDK allows to whitelist links to which the SDK appends a one-tid by calling the method `whitelistIdentityTransferLinks` and passing links to it as shown below:
 
-	Swift:
-	```swift
-	// This example blacklists links with the domain names
-	// www.google.com and www.uber.com. For example,
-	// https://www.google.com, https://www.uber.com/en/,
-	// https://www.uber.com/en/ride/, etc.
-	One.whitelistIdentityTransferLinks(["www.google.com","www.uber.com"])
+Swift:
+```swift
+// This example blacklists links with the domain names
+// www.google.com and www.uber.com. For example,
+// https://www.google.com, https://www.uber.com/en/,
+// https://www.uber.com/en/ride/, etc.
+One.whitelistIdentityTransferLinks(["www.google.com","www.uber.com"])
 
-	// This example blacklists links with the main domain name
-	// wikipedia.org and any subdomain. For example,
-	// https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-	One.whitelistIdentityTransferLinks(["*.wikipedia.org"]
-	```
+// This example blacklists links with the main domain name
+// wikipedia.org and any subdomain. For example,
+// https://en.wikipedia.org, https://simple.wikipedia.org, etc.
+One.whitelistIdentityTransferLinks(["*.wikipedia.org"]
+```
 
 
-	Objective-C:
-	```objective-c
-	// This example whitelists links with the domain names
-	// www.google.com and www.uber.com. For example,
-	// https://www.google.com, https://www.uber.com/en/,
-	// https://www.uber.com/en/ride/, etc. 
-	[One whitelistIdentityTransferLinks:@[@"www.google.com", @"www.uber.com"]];
+Objective-C:
+```objective-c
+// This example whitelists links with the domain names
+// www.google.com and www.uber.com. For example,
+// https://www.google.com, https://www.uber.com/en/,
+// https://www.uber.com/en/ride/, etc. 
+[One whitelistIdentityTransferLinks:@[@"www.google.com", @"www.uber.com"]];
 
-	// This example whitelists links with the main domain name
-	// wikipedia.org and any subdomain. For example,
-	// https://en.wikipedia.org, https://simple.wikipedia.org, etc. 
-	[One whitelistIdentityTransferLinks:@[@"*.wikipedia.org"]];
-	```
+// This example whitelists links with the main domain name
+// wikipedia.org and any subdomain. For example,
+// https://en.wikipedia.org, https://simple.wikipedia.org, etc. 
+[One whitelistIdentityTransferLinks:@[@"*.wikipedia.org"]];
+```
 
 *Note:* If a link is whitelisted, a one-tid will be appended to this link only.
 
@@ -622,34 +622,34 @@ The SDK allows to whitelist links to which the SDK appends a one-tid by calling 
 
 The SDK allows to blacklist links to which the SDK appends a one-tid by calling the method `blacklistIdentityTransferLinks` and passing links to it as shown below:
 
-	Swift:
-	```swift
-	// This example blacklists links with the domain names
-	// www.google.com and www.uber.com. For example,
-	// https://www.google.com, https://www.uber.com/en/,
-	// https://www.uber.com/en/ride/, etc.
-	One.blacklistIdentityTransferLinks(["www.google.com","www.uber.com"])
+Swift:
+```swift
+// This example blacklists links with the domain names
+// www.google.com and www.uber.com. For example,
+// https://www.google.com, https://www.uber.com/en/,
+// https://www.uber.com/en/ride/, etc.
+One.blacklistIdentityTransferLinks(["www.google.com","www.uber.com"])
 
-	// This example blacklists links with the main domain name
-	// wikipedia.org and any subdomain. For example,
-	// https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-	One.blacklistIdentityTransferLinks(["*.wikipedia.org"] 
-	```
+// This example blacklists links with the main domain name
+// wikipedia.org and any subdomain. For example,
+// https://en.wikipedia.org, https://simple.wikipedia.org, etc.
+One.blacklistIdentityTransferLinks(["*.wikipedia.org"] 
+```
 
 
-	Objective-C:
-	```objective-c
-	// This example blacklists links with the domain names
-	// www.google.com and www.uber.com. For example,
-	// https://www.google.com, https://www.uber.com/en-BY/,
-	// https://www.uber.com/en/ride/, etc. 
-	[One blacklistIdentityTransferLinks :@[@"www.google.com", @"www.uber.com"]];
+Objective-C:
+```objective-c
+// This example blacklists links with the domain names
+// www.google.com and www.uber.com. For example,
+// https://www.google.com, https://www.uber.com/en-BY/,
+// https://www.uber.com/en/ride/, etc. 
+[One blacklistIdentityTransferLinks :@[@"www.google.com", @"www.uber.com"]];
 
-	// This example blacklists links with the main domain name
-	// wikipedia.org and any subdomain. For example,
-	// https://en.wikipedia.org, https://simple.wikipedia.org, etc. 
-	[One blacklistIdentityTransferLinks:@[@"*.wikipedia.org"]];
-	```
+// This example blacklists links with the main domain name
+// wikipedia.org and any subdomain. For example,
+// https://en.wikipedia.org, https://simple.wikipedia.org, etc. 
+[One blacklistIdentityTransferLinks:@[@"*.wikipedia.org"]];
+```
 
 *Note:* If a link is blacklisted, a one-tid will be appended to all other links but the blacklisted link. 
 
@@ -657,16 +657,16 @@ The SDK allows to blacklist links to which the SDK appends a one-tid by calling 
 
 By default, the SDK adds ‘one-tid’ as a URL query parameter to outgoing network requests. To disable it, call the method `disableIdentityTransfer` by passing true as shown below: 
 
-	Swift:
-	```swift
-	One.disableIdentityTransfer(true)
-	```
+Swift:
+```swift
+One.disableIdentityTransfer(true)
+```
 
 
-	Objective-C:
-	```objective-c
-	[One disableIdentityTransfer:YES];
-	```
+Objective-C:
+```objective-c
+[One disableIdentityTransfer:YES];
+```
 
 *Note:* This will also disable the ability to automatically pick up parameters from deep links that open the app and will also prevent the SDK from adding a ‘one-tid’ as a URL query parameter to web links opened from the app, resulting in the customer identity not being transferred.
 
@@ -674,65 +674,64 @@ By default, the SDK adds ‘one-tid’ as a URL query parameter to outgoing netw
 
 If you have disabled automatic identity transfer you can still send all URL parameters received as part of a URL scheme, which opens your app, by calling
 
-	Swift:
-	```swift
-	One.handleURL(yourNSURL)
-	```
+Swift:
+```swift
+One.handleURL(yourNSURL)
+```
 
 
-	Objective-C:
-	```objective-c
-	[One handleURL:yourNSURL];
-	```
+Objective-C:
+```objective-c
+[One handleURL:yourNSURL];
+```
 
 passing the URL as a parameter into the handleURL SDK public method, as shown below: 
 
-	Swift:
-	```swift
-	func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool  {
-		One.handleURL(yourNSURL)
-		return true 
-	}
-	```
+Swift:
+```swift
+func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool  {
+	One.handleURL(yourNSURL)
+	return true 
+}
+```
 
 
-	Objective-C:
-	```objective-c
-	- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-	{
-    	[One handleURL:url];
-    	return YES;
-	}
-	```
+Objective-C:
+```objective-c
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+	[One handleURL:url];
+	return YES;
+}
+```
 Note: This will send a PUT request to ONE.
 
 #### Append a ‘one-tid’ parameter to a URL to facilitate identity transfer 
 
 If you have disabled automatic identity transfer, you can still add a ‘one-tid’ parameter to a URL in order to facilitate identity transfer across channels, by calling:
 
-	Swift:
-	```swift
-	One.getURLWithOneTid(yourNSURL)
-	```
+Swift:
+```swift
+One.getURLWithOneTid(yourNSURL)
+```
 
 
-	Objective-C:
-	```objective-c
-	[One getURLWithOneTid:yourNSURL];
-	```
+Objective-C:
+```objective-c
+[One getURLWithOneTid:yourNSURL];
+```
 
 passing the URL as a parameter, which will return back a the same URL containing a ‘one-tid’ parameter. 
 
-	Swift:
-	```swift
-	let urlWithOneTid = One.getURLWithOneTid(yourNSURL)
-	```
+Swift:
+```swift
+let urlWithOneTid = One.getURLWithOneTid(yourNSURL)
+```
 
 
-	Objective-C:
-	```objective-c
-	NSURL *urlWithOneTid = [One getURLWithOneTid:yourNSURL];
-	```
+Objective-C:
+```objective-c
+NSURL *urlWithOneTid = [One getURLWithOneTid:yourNSURL];
+```
 
 ### Disable automatic outbound link tracking
 
@@ -740,31 +739,31 @@ By default, the SDK will automatically send an Interaction request to ‘/one-cl
 
 To disable it, call the method `disableAutomaticOutboundLinkTracking` by passing `true` as shown below:
 
-	Swift:
-	```swift
-	One.disableAutomaticOutboundLinkTracking(true)
-	```
+Swift:
+```swift
+One.disableAutomaticOutboundLinkTracking(true)
+```
 
 
-	Objective-C:
-	```objective-c
-	[One disableAutomaticOutboundLinkTracking:YES];
-	```
+Objective-C:
+```objective-c
+[One disableAutomaticOutboundLinkTracking:YES];
+```
 
 #### Programmatically trigger an outbound link tracking interaction
 
 If you have disabled automatic outbound link tracking, you can still track a URL, by calling:
 
-	Swift:
-	```swift
-	One.sendInteractionForOutboundLink(yourNSURL)
-	```
+Swift:
+```swift
+One.sendInteractionForOutboundLink(yourNSURL)
+```
 
 
-	Objective-C:
-	```objective-c
-	[One sendInteractionForOutboundLink:yourNSURL];
-	```
+Objective-C:
+```objective-c
+[One sendInteractionForOutboundLink:yourNSURL];
+```
 
 passing the URL which will send an interaction request ‘/one-click’ using the same logic as available automatically. 
 
@@ -796,36 +795,36 @@ To receive push notifications from ONE, take the following steps:
 
 To send a push token, call `sendPushToken` method by passing a push token:
 
-	Swift:
-	```swift
-	One.sendPushToken(pushToken)
-	```
+Swift:
+```swift
+One.sendPushToken(pushToken)
+```
 
 
-	Objective-C:
-	```objective-c
-	[One sendPushToken:pushToken];
-	```
+Objective-C:
+```objective-c
+[One sendPushToken:pushToken];
+```
 
 The push token can be obtained and sent from the app delegate’s method `didRegisterForRemoteNotificationsWithDeviceToken` as shown below:
 
-	Swift:
-	```swift
-	func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        One.sendPushToken(deviceToken)
-        // work with the push token
-	}
-	```
+Swift:
+```swift
+func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+	One.sendPushToken(deviceToken)
+	// work with the push token
+}
+```
 
 
-	Objective-C:
-	```objective-c
-	- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-	{
-    	[One sendPushToken:deviceToken];
-    	// work with the push token
-	}
-	```
+Objective-C:
+```objective-c
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+	[One sendPushToken:deviceToken];
+	// work with the push token
+}
+```
 
 *Note:* Use this function only to store the push token in ONE if you haven't enabled push notification support.
 
@@ -833,88 +832,88 @@ The push token can be obtained and sent from the app delegate’s method `didReg
 
 To get a push token, call `getPushToken` method as shown below:
 
-	Swift:
-	```swift
-	let pushToken =  One.getPushToken();
-	// work with the push token
-	```
+Swift:
+```swift
+let pushToken =  One.getPushToken();
+// work with the push token
+```
 
 
-	Objective-C:
-	```objective-c
-	NSString *pushToken = [One getPushToken];
-	// work with the push token
-	```
+Objective-C:
+```objective-c
+NSString *pushToken = [One getPushToken];
+// work with the push token
+```
 
 ### Send a location object
 
 To send a location object, call:
 
-	Swift:
-	```swift
-	One.updateLocation(location)
-	```
+Swift:
+```swift
+One.updateLocation(location)
+```
 
 
-	Objective-C:
-	```objective-c
-	[One updateLocation:location]; 
-	```
+Objective-C:
+```objective-c
+[One updateLocation:location]; 
+```
 
 passing the location object as a parameter to `updateLocation` method. Use `CLLocationManager` delegate methods to call `updateLocation`, as shown below:
 
-	Swift:
-	```swift
-	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        One.updateLocation(locations.first)
-	}
-	```
+Swift:
+```swift
+func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+One.updateLocation(locations.first)
+}
+```
 
 
-	Objective-C:
-	```objective-c
-	- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    	[One updateLocation:[locations firstObject]];
-	}
-	```
+Objective-C:
+```objective-c
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+[One updateLocation:[locations firstObject]];
+}
+```
 
 ### Get a structure data
 
 To get a structure data, call `getStructureData` method by passing a structure’s name and a completion block as shown below:
 
-	Swift:
-	```swift
-	One.getStructureData("YourStructureName") { (response, error) in
-    	if (error == nil) {
-        	// work with response
-    	}
-	}
-	```
+Swift:
+```swift
+One.getStructureData("YourStructureName") { (response, error) in
+if (error == nil) {
+	// work with response
+}
+}
+```
 
 
-	Objective-C:
-	```objective-c
-	[One getStructureData:@"yourStructureName" withBlock:^(NSDictionary *response, NSError *error) {
-    	if (!error) {
-        	// work with response
-    	}
-	}];
-	```
+Objective-C:
+```objective-c
+[One getStructureData:@"yourStructureName" withBlock:^(NSDictionary *response, NSError *error) {
+if (!error) {
+	// work with response
+}
+}];
+```
 
 ### Get Tid
 
 To get the current ‘tid’ used by the SDK, call:
 
-	Swift:
-	```swift
-	One.getTid
-	```
+Swift:
+```swift
+One.getTid
+```
 
 
-	Objective-C:
-	```objective-c
-	[One getTid];
-	```
+Objective-C:
+```objective-c
+[One getTid];
+```
 
 This will return the tid assigned to the current user as a `String`.
 
@@ -980,31 +979,31 @@ The ONE SDK for iOS provides 4 distinct debugging levels, that can be enabled in
 
 You can find out the current version of the framework by calling:
 
-	Swift:
-	```swift
-	One.frameworkVersion()
-	```
+Swift:
+```swift
+One.frameworkVersion()
+```
 
 
-	Objective-C:
-	```objective-c
-	[One frameworkVersion];
-	```
+Objective-C:
+```objective-c
+[One frameworkVersion];
+```
 
 ### Clear the user profile
 
 You can programmatically erase the user profile data by calling:
 
-	Swift:
-	```swift
-	One.clearUserProfile()
-	```
+Swift:
+```swift
+One.clearUserProfile()
+```
 
 
-	Objective-C:
-	```objective-c
-	[One clearUserProfile];
-	```
+Objective-C:
+```objective-c
+[One clearUserProfile];
+```
 
 *Note:* This method removes tid from the user preferences and the keychain.
 

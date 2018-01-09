@@ -85,28 +85,30 @@ Complete the following steps to initialize the SDK.
 
 To start tracking, capturing, and receiving optimizations with the ONE SDK in User mode, you must first initialize it with your ONE API parameters. You can find your ONE API parameters on the ONE website.
 
-With your parameters ready to hand, add the following line to the top of the didFinishLaunchingWithOptions:
+With your parameters ready to hand, add the following line to the top of the `didFinishLaunchingWithOptions`:
 	
-Swift:
-```swift
-One.startSessionWithSK("ONE-XXXXXXXXXX-1022", 
-	uri:"myAppsNameURI",
-	apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
-	sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx", 
-	userId:"api@yourCompanyName", 
-	adminMode:false, 
-	hostName:"eu2.thunderhead.com")```
+	Swift:
+	```swift
+	One.startSessionWithSK("ONE-XXXXXXXXXX-1022", 
+		uri:"myAppsNameURI",
+		apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
+		sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx", 
+		userId:"api@yourCompanyName", 
+		adminMode:false, 
+		hostName:"eu2.thunderhead.com")
+	```
 
 
-Objective-C:
-```objective-c
-[One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
+	Objective-C:
+	```objective-c
+	[One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
                     uri:@"myAppsNameURI"
                  apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
            sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
                  userId:@"api@yourCompanyName"	
               adminMode:NO	
-               hostName:@"eu2.thunderhead.com"];```
+               hostName:@"eu2.thunderhead.com"];
+	```
 
 #### Set up the Framework in Admin mode
 
@@ -145,7 +147,7 @@ The framework listens to a number of UIViewController and UIView methods to prov
 
 If you use these methods in your code, please ensure to call super when implementing them.
 
-*You have now successfully integrated the codeless ONE SDK for iOS.*
+**You have now successfully integrated the codeless ONE SDK for iOS.**
 
 Follow any of the steps below to access further functions of the SDK.
 

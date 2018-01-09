@@ -95,8 +95,7 @@ With your parameters ready to hand, add the following line to the top of the did
 		sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx", 
 		userId:"api@yourCompanyName", 
 		adminMode:false, 
-		hostName:"eu2.thunderhead.com")
-	```
+		hostName:"eu2.thunderhead.com")```
 
 
 	Objective-C:
@@ -107,8 +106,7 @@ With your parameters ready to hand, add the following line to the top of the did
 	           sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
 	                 userId:@"api@yourCompanyName"	
 	              adminMode:NO	
-	               hostName:@"eu2.thunderhead.com"];
-	```
+	               hostName:@"eu2.thunderhead.com"];```
 
 #### Set up the Framework in Admin mode
 

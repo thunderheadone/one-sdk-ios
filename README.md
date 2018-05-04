@@ -149,6 +149,7 @@ If you use these methods in your code, please ensure to call super when implemen
 
 **You have now successfully integrated the codeless ONE SDK for iOS.**
 
+## Additional features
 Follow any of the steps below to access further functions of the SDK.
 
 ### Manually set a specific Interaction path

@@ -151,6 +151,21 @@ If you use these methods in your code, please ensure to call super when implemen
 
 Follow any of the steps below to access further functions of the SDK.
 
+### Opt an end-user out of tracking
+To opt an end-user out of tracking when the end-user does not give permission to be tracked in the client app, call the opt out method as shown below:
+
+Swift:
+```swift
+One.opt(out: true)
+```
+
+
+Objective-C:
+```objective-c
+[One optOut:YES];
+```
+*Note:* When opted out, tracking will stop and local data will be cleared. At any point you cna opt a user back in by passing `false` into the same method. For instructions on how completly remove a user's data from ONE - see our [one-api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
+
 ### Manually set a specific Interaction path
 
 The SDK automatically assigns an Interaction path to each view controller. To override the Interaction path that is created automatically, call your view controller and pass your desired Interaction path as a string to the view controller’s `oneInteractionPath` property. 

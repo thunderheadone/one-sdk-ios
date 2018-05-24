@@ -251,6 +251,12 @@ typedef NS_ENUM(NSInteger, OneLogLevel) {
  */
 + (void)removeInteractionResponseDelegate:(id)delegate NS_SWIFT_NAME(removeInteractionResponseDelegate(_:));
 
+/*!
+ @brief Configure ONE SDK to opt in/out from all interactions.
+ @param optOut YES, if ONE SDK should be configured to opt out from all interactions or NO otherwise.
+ */
++ (void)optOut:(BOOL)optOut NS_SWIFT_NAME(opt(out:));
+
 @end
 
 

@@ -165,7 +165,7 @@ Objective-C:
 ```objective-c
 [One optOut:YES];
 ```
-*Note:* When opted out, tracking will stop and local data will be cleared. At any point you cna opt a user back in by passing `false` into the same method. For instructions on how completly remove a user's data from ONE - see our [one-api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
+*Note:* When opted out, tracking will stop and local data will be cleared. At any point you can opt a user back in by passing `false` into the same method. For instructions on how completly remove a user's data from ONE - see our [one-api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
 ### Manually set a specific Interaction path
 

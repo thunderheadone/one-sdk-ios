@@ -41,7 +41,8 @@ $ pod install
 	+ Confirm **_ThunderheadBundle.bundle_** is located in the **Copy Bundle Resources** section.
 5. Ensure your project enables modules by going to **Build Settings** tab and setting the flag for **Enable Modules (C and Objective-C)** to **Yes**. Check out **_Adding the SDK dependencies for manual installation_** if you need modules to be disabled.
 
-**Note:** If your project’s deployment target is less than iOS 8, the **_WebKit.framework_** has to be added manually. Check out **_Adding the SDK dependencies  for manual installation_**.
+*Note:* 
+- If your project’s deployment target is less than iOS 8, the **_WebKit.framework_** has to be added manually as noted below.
 
 #### Adding the SDK dependencies for manual installation
 
@@ -57,7 +58,8 @@ The SDK requires modules to be enabled. If you require modules to be disabled, y
 + *SafariServices.framework*
 + *WebKit.framework*
 
-If any of the frameworks are missing from your app, select the +icon in the lower-left corner of the **Link Binary With Libraries** section and add each framework, as needed, using the popup window.
+*Note:* 
+- If any of the frameworks are missing from your app, select the +icon in the lower-left corner of the **Link Binary With Libraries** section and add each framework, as needed, using the popup window.
 
 ## Use the Codeless ONE SDK for iOS
 
@@ -165,7 +167,10 @@ Objective-C:
 ```objective-c
 [One optOut:YES];
 ```
-*Note:* When opted out, tracking will stop and local data will be cleared. At any point you can opt a user back in by passing `false` into the same method. For instructions on how completly remove a user's data from ONE - see our [one-api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
+*Note:* 
+- When opted out, tracking will stop and locally queued data will be removed. 
+- At any point you can opt a user back in by passing `false` into the same method. 
+- For instructions on how completely remove a user's data from ONE - see our [one-api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
 ### Manually set a specific Interaction path
 
@@ -192,7 +197,8 @@ Objective-C:
 }
 ```
 
-*Important note:* Please ensure your custom Interaction starts with a “/” and only contains letters, numbers and/or dashes.
+*Note:* 
+- When setting the Interaction path programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 ### Exclude an Interaction
 
@@ -221,9 +227,9 @@ Objective-C:
 
 By default, `excludeInteractionPath` returns `false`.
 
-### Disable automatic interaction detection
+### Disable automatic Interaction detection
 
-You can disable automatic interaction detection by calling the method `disableAutomaticInteractionDetection:` and passing `true` as a parameter, as shown below:
+You can disable automatic Interaction detection by calling the method `disableAutomaticInteractionDetection:` and passing `true` as a parameter, as shown below:
 
 Swift:
 ```swift
@@ -238,7 +244,9 @@ Objective-C:
 
 An appropriate place to call the method might be under `didFinishLaunchingWithOptions` in your application delegate. 
 
-By disabling automatic interaction detection, the SDK will no longer automatically send interaction requests as view controllers are presented on screen. It becomes your responsibility to send them when needed by using the send interaction methods outlined below.
+By disabling automatic Interaction detection, the SDK will no longer automatically send Interaction requests as view controllers are presented on screen. It becomes your responsibility to send them when needed by using the send Interaction methods outlined below.
+
+You can set this back to false at any point to restart automatic Interaction detection.
 
 ### Send an Interaction request programmatically
 
@@ -255,7 +263,9 @@ Objective-C:
 [One sendInteraction:@"/InteractionPath"];
 ```
 
-*Note:* This will send a POST request to ONE. Only the tid from the response will be used by the SDK - all other response objects will be ignored.
+*Note:* 
+- This will send a POST request to ONE. Only the tid from the response will be used by the SDK - all other response objects will be ignored.
+- When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 ### Send an Interaction request programmatically with a completion block
 
@@ -281,8 +291,11 @@ Objective-C:
 	}
 }];
 ```
+The response can be passed to the `processResponse` method as a parameter as shown above. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
 
-*Note:* This will send a POST request to ONE. The response can be passed to the `processResponse` method as a parameter as shown above. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
+*Note:* 
+- This will send a `POST` request to ONE. 
+- When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 ### Retrieve a response for a UIViewController instance
 
@@ -290,7 +303,7 @@ You can retrieve a response for an automatically triggered specific Interaction 
 
 #### Retrieve a response for a UIViewController instance
 
-If your object is an instance of `UIViewController` class, perform the next steps to get a response for an automatically triggered interaction request.
+If your object is an instance of `UIViewController` class, perform the next steps to get a response for an automatically triggered Interaction request.
 
 1. Add an object, which will be receiving the response, as a parameter to a method `addInteractionResponseDelegate` as shown below:
 
@@ -320,7 +333,7 @@ If your object is an instance of `UIViewController` class, perform the next step
 	@interface MyViewController() <OneInteractionResponseDelegate>
 	```
 
-3. If the automatic interaction detection is switched off, set a value to oneInteractionPath property of your object:
+3. If the automatic Interaction detection is switched off, set a value to oneInteractionPath property of your object:
 
 	Swift:
 	```swift
@@ -354,9 +367,9 @@ If your object is an instance of `UIViewController` class, perform the next step
 	}
 	```
 
-The method returns an interaction path and a corresponding Interaction response. You can either use the `processResponse` method to let the SDK process the default response for you or process it by yourself. 
+The method returns an Interaction path and a corresponding Interaction response. You can either use the `processResponse` method to let the SDK process the default response for you or process it by yourself. 
 
-5. If you no longer need to obtain response for automatically triggered interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below:
+5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below:
 
 	Swift:
 	```swift
@@ -371,7 +384,7 @@ The method returns an interaction path and a corresponding Interaction response.
 
 #### Retrieve a response for other instances
 
-If your object is not an instance of `UIViewController` class, perform the next steps to get a response for an automatically triggered interaction request.
+If your object is not an instance of `UIViewController` class, perform the next steps to get a response for an automatically triggered Interaction request.
 
 1.	Add an object, which will be receiving the response, as a parameter to a method `addInteractionResponseDelegate` as shown below:
 
@@ -438,9 +451,9 @@ If your object is not an instance of `UIViewController` class, perform the next 
 	}
 	```
 
-The above mentioned method returns an interaction path and a corresponding interaction response. You can either use the `processResponse` method to let the SDK process the default response for you or process it by yourself. 
+The above mentioned method returns an Interaction path and a corresponding Interaction response. You can either use the `processResponse` method to let the SDK process the default response for you or process it by yourself. 
 
-5. If you no longer need to obtain response for automatically triggered interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below
+5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below
 
 	Swift:
 	```swift
@@ -484,7 +497,9 @@ Objective-C:
 [One sendBaseTouchpointProperties:myProperties];
 ```
 
-*Note:* This will send a PUT request to ONE. 
+*Note:* 
+- This will send a PUT request to ONE. 
+- Properties sent to a base touchpoint will be captured under a base (`/`) or wildcard (`/*`) Interaction in ONE.
 
 #### Send an Interaction request with properties
 
@@ -492,7 +507,7 @@ You can send an Interaction request with Interaction properties by calling the m
 
 Swift:
 ```swift
-One.sendInteraction("interactionPath", withProperties:myProperties)
+One.sendInteraction("/interactionPath", withProperties:myProperties)
 ```
 
 
@@ -501,7 +516,10 @@ Objective-C:
 [One sendInteraction:@"/interactionPath" withProperties:myProperties];
 ```
 
-*Note:* This will send a POST request to ONE. Only the tid from the response will be used by the SDK - all other response objects will be ignored.
+*Note:* 
+- This will send a `POST` request to ONE. 
+- Only the tid from the response will be used by the SDK - all other response objects will be ignored.
+- When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 #### Send an Interaction request with properties and a completion block
 
@@ -529,9 +547,11 @@ Objective-C:
 }];
 ```
 
-*Note:* This will send a POST request to ONE. 
+*Note:* 
+- This will send a POST request to ONE. 
+- When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-The response can be passed to the `processResponse` method as a parameter as shown above. This method returns the response to the SDK to process, attaching any capture, track or optimize instructions to the interaction.
+The response can be passed to the `processResponse` method as a parameter as shown above. This method returns the response to the SDK to process, attaching any capture, track or optimize instructions to the Interaction.
 
 #### Send properties to an Interaction
 
@@ -539,7 +559,7 @@ To send properties to a specific Interaction, call the following public method, 
 
 Swift:
 ```swift
-One.sendProperties(myProperties, forInteractionPath:"/InteractionPath")
+One.sendProperties(myProperties, forInteractionPath:"/interactionPath")
 ```
 
 
@@ -548,11 +568,13 @@ Objective-C:
 [One sendProperties:myProperties forInteractionPath:@"/interactionPath"];
 ```
 
-*Note:* This will send a PUT request to ONE. 
+*Note:* 
+- This will send a `PUT` request to ONE.
+- When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 #### Send a response code
 
-To send a response code, call the method shown below by passing the response code and the corresponding interaction path as parameters:
+To send a response code, call the method shown below by passing the response code and the corresponding Interaction path as parameters:
 
 Swift:
 ```swift
@@ -565,7 +587,10 @@ Objective-C:
 [One sendResponseCode:@"yourCode" forInteractionPath:@"/interactionPath"];
 ```
 
-*Note:* This will send a PUT request to ONE. 
+*Note:* 
+- This method should be used when displaying optimziations programmatically and you need to capture the user's response.
+- This will send a `PUT` request to ONE. 
+- When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 ### Identity sync
 
@@ -584,6 +609,9 @@ Objective-C:
 [One identitySync];
 ```
 
+*Note:*
+- This functionality only works in iOS 9 and 10. 
+
 #### Identity sync with ONE and your web touchpoint
 
 To synchronise the Safari Mobile identity set by our ONE Tag with the current app identity and your web touchpoint, call: 
@@ -599,20 +627,23 @@ Objective-C:
 [One identitySyncWithURL:[NSURL URLWithString:@"https://yourwebsite"]];
 ```
 
+*Note:*
+- This functionality only works in iOS 9 and 10. 
+
 ### Ability to whitelist identity transfer links
 
-The SDK allows to whitelist links to which the SDK appends a one-tid by calling the method `whitelistIdentityTransferLinks` and passing links to it as shown below:
+The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` to a specific set of links, you can whitelist the links to which the SDK should append a `one-tid` by calling the method `whitelistIdentityTransferLinks` and passing your links as shown below:
 
 Swift:
 ```swift
-// This example blacklists links with the domain names
+// This example shows how to whitelist links under specific domain names
 // www.google.com and www.uber.com. For example,
 // https://www.google.com, https://www.uber.com/en/,
 // https://www.uber.com/en/ride/, etc.
 One.whitelistIdentityTransferLinks(["www.google.com","www.uber.com"])
 
-// This example blacklists links with the main domain name
-// wikipedia.org and any subdomain. For example,
+// This example shows how to whitelist the main domain name
+// wikipedia.org and any subdomains. For example,
 // https://en.wikipedia.org, https://simple.wikipedia.org, etc.
 One.whitelistIdentityTransferLinks(["*.wikipedia.org"]
 ```
@@ -620,33 +651,34 @@ One.whitelistIdentityTransferLinks(["*.wikipedia.org"]
 
 Objective-C:
 ```objective-c
-// This example whitelists links with the domain names
+// This example shows how to whitelist links for specific domain names
 // www.google.com and www.uber.com. For example,
 // https://www.google.com, https://www.uber.com/en/,
 // https://www.uber.com/en/ride/, etc. 
 [One whitelistIdentityTransferLinks:@[@"www.google.com", @"www.uber.com"]];
 
-// This example whitelists links with the main domain name
+// This example shows how to whitelist the main domain name
 // wikipedia.org and any subdomain. For example,
 // https://en.wikipedia.org, https://simple.wikipedia.org, etc. 
 [One whitelistIdentityTransferLinks:@[@"*.wikipedia.org"]];
 ```
 
-*Note:* If a link is whitelisted, a one-tid will be appended to this link only.
+*Note:* 
+- When a link is whitelisted, a `one-tid` will be appended to the whitelisted link/s only.
 
 ### Ability to blacklist identity transfer links
 
-The SDK allows to blacklist links to which the SDK appends a one-tid by calling the method `blacklistIdentityTransferLinks` and passing links to it as shown below:
+The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` specific set of links, you can blacklist the links to which the SDK should not append a `one-tid` by calling the method `blacklistIdentityTransferLinks` and passing your links as shown below: 
 
 Swift:
 ```swift
-// This example blacklists links with the domain names
+// This example shows how to blacklist links under specific domain names
 // www.google.com and www.uber.com. For example,
 // https://www.google.com, https://www.uber.com/en/,
 // https://www.uber.com/en/ride/, etc.
 One.blacklistIdentityTransferLinks(["www.google.com","www.uber.com"])
 
-// This example blacklists links with the main domain name
+// This example shows how to blacklist the main domain name
 // wikipedia.org and any subdomain. For example,
 // https://en.wikipedia.org, https://simple.wikipedia.org, etc.
 One.blacklistIdentityTransferLinks(["*.wikipedia.org"] 
@@ -655,23 +687,24 @@ One.blacklistIdentityTransferLinks(["*.wikipedia.org"]
 
 Objective-C:
 ```objective-c
-// This example blacklists links with the domain names
+// This example shows how to blacklist links under specific domain names
 // www.google.com and www.uber.com. For example,
 // https://www.google.com, https://www.uber.com/en-BY/,
 // https://www.uber.com/en/ride/, etc. 
 [One blacklistIdentityTransferLinks :@[@"www.google.com", @"www.uber.com"]];
 
-// This example blacklists links with the main domain name
+// This example shows how to blacklist the main domain name
 // wikipedia.org and any subdomain. For example,
 // https://en.wikipedia.org, https://simple.wikipedia.org, etc. 
 [One blacklistIdentityTransferLinks:@[@"*.wikipedia.org"]];
 ```
 
-*Note:* If a link is blacklisted, a one-tid will be appended to all other links but the blacklisted link. 
+*Note:* 
+- If a link is blacklisted, a `one-tid` will be appended to all other links but the blacklisted link. 
 
 ###	Disable automatic identity transfer
 
-By default, the SDK adds ‘one-tid’ as a URL query parameter to outgoing network requests. To disable it, call the method `disableIdentityTransfer` by passing true as shown below: 
+By default, the SDK adds ‘one-tid’ as a URL query parameter to outgoing network requests. To disable it, call the method `disableIdentityTransfer` by passing `true` as shown below: 
 
 Swift:
 ```swift
@@ -684,7 +717,8 @@ Objective-C:
 [One disableIdentityTransfer:YES];
 ```
 
-*Note:* This will also disable the ability to automatically pick up parameters from deep links that open the app and will also prevent the SDK from adding a ‘one-tid’ as a URL query parameter to web links opened from the app, resulting in the customer identity not being transferred.
+*Note:* 
+- This will also disable the ability to automatically pick up parameters from deep links that open the app, whilst also preventing the SDK from adding a ‘one-tid’ as a URL query parameter to web links opened from the app, resulting in the customer's identity not being transferred as they move across channels.
 
 #### Send properties for a URL scheme
 
@@ -721,9 +755,9 @@ Objective-C:
 ```
 Note: This will send a PUT request to ONE.
 
-#### Append a ‘one-tid’ parameter to a URL to facilitate identity transfer 
+#### Append a ‘one-tid’ parameter to a `NSURL` to facilitate identity transfer 
 
-If you have disabled automatic identity transfer, you can still add a ‘one-tid’ parameter to a URL in order to facilitate identity transfer across channels, by calling:
+If you have disabled automatic identity transfer, you can still add a `one-tid` parameter to a link opened from the app programmatically, by calling `getURLWithOneTid` as shown below:
 
 Swift:
 ```swift
@@ -736,7 +770,7 @@ Objective-C:
 [One getURLWithOneTid:yourNSURL];
 ```
 
-passing the URL as a parameter, which will return back a the same URL containing a ‘one-tid’ parameter. 
+passing the URL as a parameter, which will return back a the same `NSURL` containing a ‘one-tid’ parameter. 
 
 Swift:
 ```swift
@@ -751,9 +785,9 @@ NSURL *urlWithOneTid = [One getURLWithOneTid:yourNSURL];
 
 ### Disable automatic outbound link tracking
 
-By default, the SDK will automatically send an Interaction request to ‘/one-click’ as a URL is opened in Safari, `SafariViewController`, `UIWebview` or `WKWebView`.
+By default, the SDK will automatically send an Interaction request to `/one-click` as a url is opened in Safari, `SafariViewController`, `UIWebview` or `WKWebView` to facilitate last click attribution.
 
-To disable it, call the method `disableAutomaticOutboundLinkTracking` by passing `true` as shown below:
+To disable this functionality call the `disableAutomaticOutboundLinkTracking` method and pass `true`, as shown below:
 
 Swift:
 ```swift
@@ -766,7 +800,7 @@ Objective-C:
 [One disableAutomaticOutboundLinkTracking:YES];
 ```
 
-#### Programmatically trigger an outbound link tracking interaction
+#### Programmatically trigger an outbound link tracking Interaction call
 
 If you have disabled automatic outbound link tracking, you can still track a URL, by calling:
 
@@ -781,7 +815,7 @@ Objective-C:
 [One sendInteractionForOutboundLink:yourNSURL];
 ```
 
-passing the URL which will send an interaction request ‘/one-click’ using the same logic as available automatically. 
+passing the URL which will send an Interaction request ‘/one-click’ using the same logic as available automatically. 
 
 *Note:* This will send a POST request to ONE.
 
@@ -809,7 +843,7 @@ To receive push notifications from ONE, take the following steps:
 
 ### Get a push token
 
-To the push token codelessly retrieved by the SDK, call `getPushToken` method as shown below:
+To get the push token codelessly retrieved by the SDK, call the `getPushToken` method as shown below:
 
 Swift:
 ```swift
@@ -823,6 +857,9 @@ Objective-C:
 NSString *pushToken = [One getPushToken];
 // work with the push token
 ```
+
+*Note:*
+- This can be useful for testing and debugging, or to retrieve the token and pass it to another push notification provider. 
 
 ### Send a push token
 
@@ -859,7 +896,8 @@ Objective-C:
 }
 ```
 
-*Note:* Use this function only to store the push token in ONE if you haven't enabled push notification support.
+*Note:* 
+- Use this function only to store the push token in ONE if you haven't enabled push notification support.
 
 ### Send a location object
 
@@ -876,7 +914,7 @@ Objective-C:
 [One updateLocation:location]; 
 ```
 
-passing the location object as a parameter to `updateLocation` method. Use `CLLocationManager` delegate methods to call `updateLocation`, as shown below:
+passing the location object as a parameter to the `updateLocation` method. Use `CLLocationManager` delegate methods to call `updateLocation`, as shown below:
 
 Swift:
 ```swift
@@ -931,13 +969,15 @@ Objective-C:
 [One getTid];
 ```
 
-This will return the tid assigned to the current user as a `String`.
+*Note:*
+- This will return the `tid` assigned to the current user as a `NSString`.
+- Retrieving the current `tid` can be useful if you want to monitor the current user in ONE or if you need to pass the identity of the current user to another system which sends data to ONE.
 
 ### Access Debug Information
 
 The ONE SDK for iOS provides 4 distinct debugging levels, that can be enabled in the `didFinishLaunchingWithOptions` method of your project's AppDelegate, as shown below:
 
-1. kOneLogLevelNone - if set, no messages will be displayed in the console.
+1. `kOneLogLevelNone` - if set, no messages will be displayed in the console.
 	
 	Swift:
 	```swift
@@ -950,7 +990,7 @@ The ONE SDK for iOS provides 4 distinct debugging levels, that can be enabled in
 	[One setLogLevel:kOneLogLevelNone];
 	```
 
-2. kOneLogLevelAll - if set, all log messages will be displayed in the console.
+2. `kOneLogLevelAll` - if set, all log messages will be displayed in the console.
 	
 	Swift:
 	```swift
@@ -963,7 +1003,7 @@ The ONE SDK for iOS provides 4 distinct debugging levels, that can be enabled in
 	[One setLogLevel:kOneLogLevelAll];
 	```
 
-3. kOneLogLevelWebService - if set, only web service logs will be displayed in the console.
+3. `kOneLogLevelWebService` - if set, only web service logs will be displayed in the console.
 	
 	Swift:
 	```swift
@@ -976,7 +1016,7 @@ The ONE SDK for iOS provides 4 distinct debugging levels, that can be enabled in
 	[One setLogLevel:kOneLogLevelWebService];
 	```
 
-4. kOneLogLevelFramework - if set, only framework logs will be displayed in the console.
+4. `kOneLogLevelFramework` - if set, only framework logs will be displayed in the console.
 	
 	Swift:
 	```swift
@@ -989,7 +1029,8 @@ The ONE SDK for iOS provides 4 distinct debugging levels, that can be enabled in
 	[One setLogLevel:kOneLogLevelFramework];
 	```
 
-*Note:* By default, the ONE SDK for iOS does not display any debug log messages. Only exception messages are printed in the console, when these occur.
+*Note:* 
+- By default, the ONE SDK for Android does not display any debug log messages. However, exception messages are printed in the console, when these occur.
 
 ### Identify the framework version
 
@@ -1021,7 +1062,9 @@ Objective-C:
 [One clearUserProfile];
 ```
 
-*Note:* This method removes tid from the user preferences and the keychain.
+*Note:* 
+- This method removes `tid` from local storage only.
+- For instructions on how completely remove a user's data from ONE - see our [one-api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
 ## Questions or need help
 

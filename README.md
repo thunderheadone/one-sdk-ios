@@ -17,7 +17,7 @@ Specify the *Thunderhead ONE SDK* in your podfile
 ```txt
 # Thunderhead ONE SDK
     target :YourTargetName do
-      pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '2.22.0'
+      pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '2.22.1'
     end
 ```
 

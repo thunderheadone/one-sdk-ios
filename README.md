@@ -315,7 +315,7 @@ The response can be passed to the `processResponse` method as a parameter as sho
 
 ### Retrieve a response for a UIViewController instance
 
-You can retrieve a response for an automatically triggered specific Interaction request by making your object conform to the protocol `OneInteractionResponseDelegate`. Your object might be an instance of `UIViewController` or any other class. Follow the instructions below in order to set up this functionality depending on your object’s class.
+You can retrieve a response for a specific, automatically triggered Interaction request by making your object conform to the protocol `OneInteractionResponseDelegate`. Your object might be an instance of `UIViewController` or any other class. Follow the instructions below in order to set up this functionality depending on your object’s class.
 
 #### Retrieve a response for a UIViewController instance
 
@@ -384,7 +384,7 @@ If your object is an instance of `UIViewController` class, perform the next step
 	}
 	```
 
-The method returns an Interaction path and a corresponding Interaction response. You can either use the `processResponse` method to let the SDK process the default response for you or process it by yourself.
+The method returns an Interaction path and a corresponding Interaction response. You can either use the `processResponse` method to let the SDK process the default response for you or process it yourself.
 
 5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below:
 
@@ -487,7 +487,7 @@ The above mentioned method returns an Interaction path and a corresponding Inter
 
 ### Send Properties to Thunderhead ONE or Salesforce Interaction Studio
 
-Properties in the form of key/value pair strings can be sent to Thunderhead ONE or Salesforce Interaction Studio using the SDK's public methods. Simply create a dictionary of key/value pair strings and call the appropriate properties public method, as follows:
+Properties can be sent to Thunderhead ONE or Salesforce Interaction Studio as Strings, in the form of key/value pairs using the SDK's public methods, as shown below:
 
 Swift:
 ```swift
@@ -917,7 +917,7 @@ Objective-C:
 ```
 
 *Note:*
-- Use this function only to store the push token in Thunderhead ONE or Salesforce Interaction Studio if you haven't enabled push notification support.
+- If you haven't enabled push notification support, you can use this function to programmatically store the push token in Thunderhead ONE or Salesforce Interaction Studio.
 
 ### Send a location object
 
@@ -991,7 +991,8 @@ Objective-C:
 
 *Note:*
 - This will return the `tid` assigned to the current user as a `NSString`.
-- Retrieving the current `tid` can be useful if you want to monitor the current user in Thunderhead ONE or Salesforce Interaction Studio or if you need to pass the identity of the current user to another system which sends data to Thunderhead ONE or Salesforce Interaction Studio.
+- Retrieving the current `tid` can be useful if you want to monitor the current user in Thunderhead ONE or Salesforce Interaction Studio.
+- The tid can also be used if you need to pass the identity of the current user to another system which sends data to Thunderhead ONE or Salesforce Interaction Studio.
 
 ### Access Debug Information
 

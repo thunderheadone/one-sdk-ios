@@ -25,6 +25,17 @@ typedef NS_ENUM(NSInteger, OneLogLevel) {
 };
 
 /*!
+ @typedef OneTheme
+ @brief This is an enum which specifies the theme used in design time.
+ @field OneThemeDefault Default theme in design time.
+ @field OneThemeInteractionStudio  Interaction Studio theme in design time.
+ */
+typedef NS_ENUM(NSInteger, OneTheme) {
+    OneThemeDefault NS_SWIFT_NAME(Default),
+    OneThemeInteractionStudio NS_SWIFT_NAME(InteractionStudio)
+};
+
+/*!
  @brief This delegate can be used to retrieve interaction responses from automatically triggered interactions. 
  @discussion Using this delegate is optional. See the ONE SDK for iOS integration document for further details.
  */
@@ -256,6 +267,13 @@ typedef NS_ENUM(NSInteger, OneLogLevel) {
  @param optOut YES, if ONE SDK should be configured to opt out from all interactions or NO otherwise.
  */
 + (void)optOut:(BOOL)optOut NS_SWIFT_NAME(opt(out:));
+
+/*!
+ @brief Sets the framework's UI theme.
+ @param OneTheme theme. Possible values are OneThemeDefault, OneThemeInteractionStudio.
+ @discussion Set specific themes to update the framework's UI in design time. By default, the theme is set to kOneThemeDefault.
+ */
++ (void)setTheme:(OneTheme)theme NS_SWIFT_NAME(setTheme(_:));
 
 @end
 

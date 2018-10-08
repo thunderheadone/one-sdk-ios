@@ -138,7 +138,7 @@ Objective-C:
 	      adminMode:YES
 	       hostName:@"eu2.thunderhead.com"];
 ```
-##### For Salesforce Interaction Studio integrations
+#### For Salesforce Interaction Studio integrations
 
 When integrating with Salesforce Interaction Studio you can set the Admin mode theme to match the Interaction Studio look and feel, as follows:
 

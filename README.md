@@ -1,6 +1,6 @@
-![Thunderhead ONE SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead ONE")
+![Thunderhead SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead")
 
-The ONE SDK for iOS supports iOS 7.1 and above.
+The Thunderhead SDK for iOS supports iOS 7.1 and above.
 
 ## Installation
 
@@ -12,10 +12,10 @@ Make sure you have the [CocoaPods](http://cocoapods.org) dependency manager inst
 $ gem install cocoapods
 ```
 
-Specify the *Thunderhead ONE SDK* in your podfile
+Specify the *Thunderhead SDK* in your podfile
 
 ```txt
-# Thunderhead ONE SDK
+# Thunderhead SDK
     target :YourTargetName do
       pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '2.23.0'
     end
@@ -30,7 +30,7 @@ $ pod install
 
 ### Manual Installation
 
-1. [Download the latest ONE SDK for iOS](https://github.com/thunderheadone/one-sdk-ios/releases) and extract the zip.
+1. [Download the latest Thunderhead SDK for iOS](https://github.com/thunderheadone/one-sdk-ios/releases) and extract the zip.
 2. Open your existing iOS application Xcode project.
 3. Import the Thunderhead.embeddedframework into your project.
 4. Confirm the SDK files have been added to your project, as follows:
@@ -41,7 +41,7 @@ $ pod install
 	+ Confirm **_ThunderheadBundle.bundle_** is located in the **Copy Bundle Resources** section.
 5. Ensure your project enables modules by going to **Build Settings** tab and setting the flag for **Enable Modules (C and Objective-C)** to **Yes**. Check out **_Adding the SDK dependencies for manual installation_** if you need modules to be disabled.
 
-*Note:* 
+*Note:*
 - If your project’s deployment target is less than iOS 8, the **_WebKit.framework_** has to be added manually as noted below.
 
 #### Adding the SDK dependencies for manual installation
@@ -58,12 +58,12 @@ The SDK requires modules to be enabled. If you require modules to be disabled, y
 + *SafariServices.framework*
 + *WebKit.framework*
 
-*Note:* 
+*Note:*
 - If any of the frameworks are missing from your app, select the +icon in the lower-left corner of the **Link Binary With Libraries** section and add each framework, as needed, using the popup window.
 
-## Use the Codeless ONE SDK for iOS
+## Use the Codeless Thunderhead SDK for iOS
 
-Enable your app to automatically recognize ONE Interactions by executing the following steps.
+Enable your app to automatically recognize **Interactions** by executing the following steps.
 
 ### Initialize the SDK
 
@@ -85,18 +85,18 @@ Complete the following steps to initialize the SDK.
 
 #### Set up the Framework in User mode
 
-To start tracking, capturing, and receiving optimizations with the ONE SDK in User mode, you must first initialize it with your ONE API parameters. You can find your ONE API parameters on the ONE website.
+To start tracking, capturing, and receiving optimizations with the Thunderhead SDK in User mode, you must first initialize it with your Thunderhead API parameters. You can find your Thunderhead API parameters on the Thunderhead ONE website or in Salesforce Interaction Studio.
 
-With your parameters ready to hand, add the following line to the top of the `didFinishLaunchingWithOptions`:
-	
+With your parameters ready at hand, add the following lines to the top of the `didFinishLaunchingWithOptions`:
+
 Swift:
 ```swift
-One.startSessionWithSK("ONE-XXXXXXXXXX-1022", 
+One.startSessionWithSK("ONE-XXXXXXXXXX-1022",
 	uri:"myAppsNameURI",
 	apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
-	sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx", 
-	userId:"api@yourCompanyName", 
-	adminMode:false, 
+	sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx",
+	userId:"api@yourCompanyName",
+	adminMode:false,
 	hostName:"eu2.thunderhead.com")
 ```
 
@@ -107,8 +107,8 @@ Objective-C:
 	    uri:@"myAppsNameURI"
 	 apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
    sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-	 userId:@"api@yourCompanyName"	
-      adminMode:NO	
+	 userId:@"api@yourCompanyName"
+      adminMode:NO
        hostName:@"eu2.thunderhead.com"];
 ```
 
@@ -118,12 +118,12 @@ To use the framework in Admin mode, simply change the `adminMode` boolean to `tr
 
 Swift:
 ```swift
-One.startSessionWithSK("ONE-XXXXXXXXXX-1022", 
+One.startSessionWithSK("ONE-XXXXXXXXXX-1022",
 	uri:"myAppsNameURI",
 	apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
-	sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx", 
-	userId:"api@yourCompanyName", 
-	adminMode:true, 
+	sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx",
+	userId:"api@yourCompanyName",
+	adminMode:true,
 	hostName:"eu2.thunderhead.com")
 ```
 
@@ -134,8 +134,8 @@ Objective-C:
 		    uri:@"myAppsNameURI"
 		 apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
 	   sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-		 userId:@"api@yourCompanyName"	
-	      adminMode:YES	
+		 userId:@"api@yourCompanyName"
+	      adminMode:YES
 	       hostName:@"eu2.thunderhead.com"];
 ```
 
@@ -149,7 +149,7 @@ The framework listens to a number of UIViewController and UIView methods to prov
 
 If you use these methods in your code, please ensure to call super when implementing them.
 
-**You have now successfully integrated the codeless ONE SDK for iOS.**
+**You have now successfully integrated the codeless Thunderhead SDK for iOS.**
 
 ## Additional features
 Follow any of the steps below to access further functions of the SDK.
@@ -167,14 +167,14 @@ Objective-C:
 ```objective-c
 [One optOut:YES];
 ```
-*Note:* 
-- When opted out, tracking will stop and locally queued data will be removed. 
-- At any point you can opt a user back in by passing `false` into the same method. 
-- For instructions on how completely remove a user's data from ONE - see our [one-api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
+*Note:*
+- When opted out, tracking will stop and locally queued data will be removed.
+- At any point you can opt a user back in by passing `false` into the same method.
+- For instructions on how completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
 ### Manually set a specific Interaction path
 
-The SDK automatically assigns an Interaction path to each view controller. To override the Interaction path that is created automatically, call your view controller and pass your desired Interaction path as a string to the view controller’s `oneInteractionPath` property. 
+The SDK automatically assigns an Interaction path to each view controller. To override the Interaction path that is created automatically, call your view controller and pass your desired Interaction path as a string to the view controller’s `oneInteractionPath` property.
 
 In your `viewDidLoad` or any other view lifecycle methods, which come before `viewDidAppear`, simply set an Interaction path as shown below:
 
@@ -197,7 +197,7 @@ Objective-C:
 }
 ```
 
-*Note:* 
+*Note:*
 - When setting the Interaction path programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 ### Exclude an Interaction
@@ -242,7 +242,7 @@ Objective-C:
 [One disableAutomaticInteractionDetection:YES];
 ```
 
-An appropriate place to call the method might be under `didFinishLaunchingWithOptions` in your application delegate. 
+An appropriate place to call the method might be under `didFinishLaunchingWithOptions` in your application delegate.
 
 By disabling automatic Interaction detection, the SDK will no longer automatically send Interaction requests as view controllers are presented on screen. It becomes your responsibility to send them when needed by using the send Interaction methods outlined below.
 
@@ -263,8 +263,8 @@ Objective-C:
 [One sendInteraction:@"/InteractionPath"];
 ```
 
-*Note:* 
-- This will send a POST request to ONE. Only the tid from the response will be used by the SDK - all other response objects will be ignored.
+*Note:*
+- This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio. Only the tid from the response will be used by the SDK - all other response objects will be ignored.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 ### Send an Interaction request programmatically with a completion block
@@ -293,13 +293,13 @@ Objective-C:
 ```
 The response can be passed to the `processResponse` method as a parameter as shown above. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
 
-*Note:* 
-- This will send a `POST` request to ONE. 
+*Note:*
+- This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 ### Retrieve a response for a UIViewController instance
 
-You can retrieve a response for an automatically triggered specific Interaction request by making your object conform to the protocol `OneInteractionResponseDelegate`. Your object might be an instance of `UIViewController` or any other class. Follow the instructions below in order to set up this functionality depending on your object’s class. 
+You can retrieve a response for an automatically triggered specific Interaction request by making your object conform to the protocol `OneInteractionResponseDelegate`. Your object might be an instance of `UIViewController` or any other class. Follow the instructions below in order to set up this functionality depending on your object’s class.
 
 #### Retrieve a response for a UIViewController instance
 
@@ -318,7 +318,8 @@ If your object is an instance of `UIViewController` class, perform the next step
 	[One addInteractionResponseDelegate:<your-object>];
 	```
 
-*Note:* the SDK will weakly store your object, so you need to keep a strong reference to it somewhere. 
+*Note:*
+- The SDK will weakly store your object, so you need to keep a strong reference to it somewhere.
 
 2. Make your object conform to the protocol `OneInteractionResponseDelegate`:
 
@@ -367,7 +368,7 @@ If your object is an instance of `UIViewController` class, perform the next step
 	}
 	```
 
-The method returns an Interaction path and a corresponding Interaction response. You can either use the `processResponse` method to let the SDK process the default response for you or process it by yourself. 
+The method returns an Interaction path and a corresponding Interaction response. You can either use the `processResponse` method to let the SDK process the default response for you or process it by yourself.
 
 5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below:
 
@@ -399,7 +400,8 @@ If your object is not an instance of `UIViewController` class, perform the next 
 	[One addInteractionResponseDelegate:<your-object>];
 	```
 
-*Note:* the SDK will weakly store your object, so you need to keep a strong reference to it somewhere. 
+*Note:*
+- The SDK will weakly store your object, so you need to keep a strong reference to it somewhere.
 
 2. Make your object conform to the protocol `OneInteractionResponseDelegate`:
 
@@ -415,10 +417,10 @@ If your object is not an instance of `UIViewController` class, perform the next 
 	```
 
 3. Declare a variable `oneInteractionPath` and set its value:
-	
+
 	Swift:
 	```swift
-	class YourObject: YourObjectClass, OneInteractionResponseDelegate {	
+	class YourObject: YourObjectClass, OneInteractionResponseDelegate {
 		var oneInteractionPath: String! = "/InteractionPath"
 		...
 	}
@@ -451,7 +453,7 @@ If your object is not an instance of `UIViewController` class, perform the next 
 	}
 	```
 
-The above mentioned method returns an Interaction path and a corresponding Interaction response. You can either use the `processResponse` method to let the SDK process the default response for you or process it by yourself. 
+The above mentioned method returns an Interaction path and a corresponding Interaction response. You can either use the `processResponse` method to let the SDK process the default response for you or process it by yourself.
 
 5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below
 
@@ -467,9 +469,9 @@ The above mentioned method returns an Interaction path and a corresponding Inter
 	```
 
 
-### Send Properties to ONE
+### Send Properties to Thunderhead ONE or Salesforce Interaction Studio
 
-Properties in the form of key/value pair strings can be sent to ONE using the SDK's public methods. Simply create a dictionary of key/value pair strings and call the appropriate properties public method, as follows:
+Properties in the form of key/value pair strings can be sent to Thunderhead ONE or Salesforce Interaction Studio using the SDK's public methods. Simply create a dictionary of key/value pair strings and call the appropriate properties public method, as follows:
 
 Swift:
 ```swift
@@ -497,9 +499,9 @@ Objective-C:
 [One sendBaseTouchpointProperties:myProperties];
 ```
 
-*Note:* 
-- This will send a PUT request to ONE. 
-- Properties sent to a base touchpoint will be captured under a base (`/`) or wildcard (`/*`) Interaction in ONE.
+*Note:*
+- This will send a PUT request to Thunderhead ONE or Salesforce Interaction Studio.
+- Properties sent to a base touchpoint will be captured under a base (`/`) or wildcard (`/*`) Interaction in Thunderhead ONE or Salesforce Interaction Studio.
 
 #### Send an Interaction request with properties
 
@@ -516,8 +518,8 @@ Objective-C:
 [One sendInteraction:@"/interactionPath" withProperties:myProperties];
 ```
 
-*Note:* 
-- This will send a `POST` request to ONE. 
+*Note:*
+- This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
 - Only the tid from the response will be used by the SDK - all other response objects will be ignored.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
@@ -527,7 +529,7 @@ You can send an Interaction request with properties and a completion block by ca
 
 Swift:
 ```swift
-One.sendInteraction("/interactionPath", withProperties:myProperties) { 
+One.sendInteraction("/interactionPath", withProperties:myProperties) {
 	(response, error) in
 		if (error == nil) {
 			if let response = response {
@@ -547,8 +549,8 @@ Objective-C:
 }];
 ```
 
-*Note:* 
-- This will send a POST request to ONE. 
+*Note:*
+- This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 The response can be passed to the `processResponse` method as a parameter as shown above. This method returns the response to the SDK to process, attaching any capture, track or optimize instructions to the Interaction.
@@ -568,8 +570,8 @@ Objective-C:
 [One sendProperties:myProperties forInteractionPath:@"/interactionPath"];
 ```
 
-*Note:* 
-- This will send a `PUT` request to ONE.
+*Note:*
+- This will send a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 #### Send a response code
@@ -587,16 +589,16 @@ Objective-C:
 [One sendResponseCode:@"yourCode" forInteractionPath:@"/interactionPath"];
 ```
 
-*Note:* 
+*Note:*
 - This method should be used when displaying optimziations programmatically and you need to capture the user's response.
-- This will send a `PUT` request to ONE. 
+- This will send a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 ### Identity sync
 
-#### Identity sync with ONE
+#### Identity sync with Thunderhead ONE or Salesforce Interaction Studio
 
-To synchronise the Safari Mobile identity set by our ONE Tag with the current app identity, call: 
+To synchronise the Safari Mobile identity set by the ONE Tag, or Interaction Studio Tag, with the current app identity, call:
 
 Swift:
 ```swift
@@ -610,11 +612,11 @@ Objective-C:
 ```
 
 *Note:*
-- This functionality only works in iOS 9 and 10. 
+- This functionality only works in iOS 9 and 10.
 
-#### Identity sync with ONE and your web touchpoint
+#### Identity sync with Thunderhead ONE or Salesforce Interaction Studio and your web touchpoint
 
-To synchronise the Safari Mobile identity set by our ONE Tag with the current app identity and your web touchpoint, call: 
+To synchronise the Safari Mobile identity set by the ONE Tag, or Interaction Studio Tag, with the current app identity and your web touchpoint, call:
 
 Swift:
 ```swift
@@ -628,11 +630,11 @@ Objective-C:
 ```
 
 *Note:*
-- This functionality only works in iOS 9 and 10. 
+- This functionality only works in iOS 9 and 10.
 
 ### Ability to whitelist identity transfer links
 
-The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` to a specific set of links, you can whitelist the links to which the SDK should append a `one-tid` by calling the method `whitelistIdentityTransferLinks` and passing your links as shown below:
+The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behavior, for the SDK to only append a `one-tid` to a specific set of links, you can whitelist the links to which the SDK should append a `one-tid` by calling the method `whitelistIdentityTransferLinks` and passing your links as shown below:
 
 Swift:
 ```swift
@@ -654,21 +656,21 @@ Objective-C:
 // This example shows how to whitelist links for specific domain names
 // www.google.com and www.uber.com. For example,
 // https://www.google.com, https://www.uber.com/en/,
-// https://www.uber.com/en/ride/, etc. 
+// https://www.uber.com/en/ride/, etc.
 [One whitelistIdentityTransferLinks:@[@"www.google.com", @"www.uber.com"]];
 
 // This example shows how to whitelist the main domain name
 // wikipedia.org and any subdomain. For example,
-// https://en.wikipedia.org, https://simple.wikipedia.org, etc. 
+// https://en.wikipedia.org, https://simple.wikipedia.org, etc.
 [One whitelistIdentityTransferLinks:@[@"*.wikipedia.org"]];
 ```
 
-*Note:* 
+*Note:*
 - When a link is whitelisted, a `one-tid` will be appended to the whitelisted link/s only.
 
 ### Ability to blacklist identity transfer links
 
-The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` specific set of links, you can blacklist the links to which the SDK should not append a `one-tid` by calling the method `blacklistIdentityTransferLinks` and passing your links as shown below: 
+The SDK will append a `one-tid` url parameter to all links opened from a mobile app. If you would like to limit this behaviour, for the SDK to only append a `one-tid` specific set of links, you can blacklist the links to which the SDK should not append a `one-tid` by calling the method `blacklistIdentityTransferLinks` and passing your links as shown below:
 
 Swift:
 ```swift
@@ -681,7 +683,7 @@ One.blacklistIdentityTransferLinks(["www.google.com","www.uber.com"])
 // This example shows how to blacklist the main domain name
 // wikipedia.org and any subdomain. For example,
 // https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-One.blacklistIdentityTransferLinks(["*.wikipedia.org"] 
+One.blacklistIdentityTransferLinks(["*.wikipedia.org"]
 ```
 
 
@@ -690,21 +692,21 @@ Objective-C:
 // This example shows how to blacklist links under specific domain names
 // www.google.com and www.uber.com. For example,
 // https://www.google.com, https://www.uber.com/en-BY/,
-// https://www.uber.com/en/ride/, etc. 
+// https://www.uber.com/en/ride/, etc.
 [One blacklistIdentityTransferLinks :@[@"www.google.com", @"www.uber.com"]];
 
 // This example shows how to blacklist the main domain name
 // wikipedia.org and any subdomain. For example,
-// https://en.wikipedia.org, https://simple.wikipedia.org, etc. 
+// https://en.wikipedia.org, https://simple.wikipedia.org, etc.
 [One blacklistIdentityTransferLinks:@[@"*.wikipedia.org"]];
 ```
 
-*Note:* 
-- If a link is blacklisted, a `one-tid` will be appended to all other links but the blacklisted link. 
+*Note:*
+- If a link is blacklisted, a `one-tid` will be appended to all other links but the blacklisted link.
 
 ###	Disable automatic identity transfer
 
-By default, the SDK adds ‘one-tid’ as a URL query parameter to outgoing network requests. To disable it, call the method `disableIdentityTransfer` by passing `true` as shown below: 
+By default, the SDK adds ‘one-tid’ as a URL query parameter to outgoing network requests. To disable it, call the method `disableIdentityTransfer` by passing `true` as shown below:
 
 Swift:
 ```swift
@@ -717,7 +719,7 @@ Objective-C:
 [One disableIdentityTransfer:YES];
 ```
 
-*Note:* 
+*Note:*
 - This will also disable the ability to automatically pick up parameters from deep links that open the app, whilst also preventing the SDK from adding a ‘one-tid’ as a URL query parameter to web links opened from the app, resulting in the customer's identity not being transferred as they move across channels.
 
 #### Send properties for a URL scheme
@@ -735,13 +737,13 @@ Objective-C:
 [One handleURL:yourNSURL];
 ```
 
-passing the URL as a parameter into the handleURL SDK public method, as shown below: 
+passing the URL as a parameter into the handleURL SDK public method, as shown below:
 
 Swift:
 ```swift
 func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool  {
 	One.handleURL(yourNSURL)
-	return true 
+	return true
 }
 ```
 
@@ -753,9 +755,9 @@ Objective-C:
 	return YES;
 }
 ```
-Note: This will send a PUT request to ONE.
+Note: This will send a PUT request to Thunderhead ONE or Salesforce Interaction Studio.
 
-#### Append a ‘one-tid’ parameter to a `NSURL` to facilitate identity transfer 
+#### Append a ‘one-tid’ parameter to a `NSURL` to facilitate identity transfer
 
 If you have disabled automatic identity transfer, you can still add a `one-tid` parameter to a link opened from the app programmatically, by calling `getURLWithOneTid` as shown below:
 
@@ -770,7 +772,7 @@ Objective-C:
 [One getURLWithOneTid:yourNSURL];
 ```
 
-passing the URL as a parameter, which will return back a the same `NSURL` containing a ‘one-tid’ parameter. 
+passing the URL as a parameter, which will return back a the same `NSURL` containing a ‘one-tid’ parameter.
 
 Swift:
 ```swift
@@ -815,18 +817,19 @@ Objective-C:
 [One sendInteractionForOutboundLink:yourNSURL];
 ```
 
-passing the URL which will send an Interaction request ‘/one-click’ using the same logic as available automatically. 
+passing the URL which will send an Interaction request ‘/one-click’ using the same logic as available automatically.
 
-*Note:* This will send a POST request to ONE.
+*Note:*
+- This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio.
 
 ### Enable push notifications
 
-To receive push notifications from ONE, take the following steps:
+To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, take the following steps:
 
 1.	enable Push Notifications in Capabilities pane
 2.	enable Background Modes in Capabilities pane
 3.	select Remote Notifications under Background Modes section
-4.	call the method `enablePushNotifications` by passing `true` as shown below: 
+4.	call the method `enablePushNotifications` by passing `true` as shown below:
 
 	Swift:
 	```swift
@@ -839,7 +842,8 @@ To receive push notifications from ONE, take the following steps:
 	[One enablePushNotifications:YES];
 	```
 
-*Note:* To disable this feature if it once was enabled, simply call the same method and pass `false`.   
+*Note:*
+- To disable this feature if it once was enabled, simply call the same method and pass `false`.   
 
 ### Get a push token
 
@@ -859,7 +863,7 @@ NSString *pushToken = [One getPushToken];
 ```
 
 *Note:*
-- This can be useful for testing and debugging, or to retrieve the token and pass it to another push notification provider. 
+- This can be useful for testing and debugging, or to retrieve the token and pass it to another push notification provider.
 
 ### Send a push token
 
@@ -896,8 +900,8 @@ Objective-C:
 }
 ```
 
-*Note:* 
-- Use this function only to store the push token in ONE if you haven't enabled push notification support.
+*Note:*
+- Use this function only to store the push token in Thunderhead ONE or Salesforce Interaction Studio if you haven't enabled push notification support.
 
 ### Send a location object
 
@@ -911,7 +915,7 @@ One.updateLocation(location)
 
 Objective-C:
 ```objective-c
-[One updateLocation:location]; 
+[One updateLocation:location];
 ```
 
 passing the location object as a parameter to the `updateLocation` method. Use `CLLocationManager` delegate methods to call `updateLocation`, as shown below:
@@ -971,14 +975,14 @@ Objective-C:
 
 *Note:*
 - This will return the `tid` assigned to the current user as a `NSString`.
-- Retrieving the current `tid` can be useful if you want to monitor the current user in ONE or if you need to pass the identity of the current user to another system which sends data to ONE.
+- Retrieving the current `tid` can be useful if you want to monitor the current user in Thunderhead ONE or Salesforce Interaction Studio or if you need to pass the identity of the current user to another system which sends data to Thunderhead ONE or Salesforce Interaction Studio.
 
 ### Access Debug Information
 
-The ONE SDK for iOS provides 4 distinct debugging levels, that can be enabled in the `didFinishLaunchingWithOptions` method of your project's AppDelegate, as shown below:
+The Thunderhead SDK for iOS provides 4 distinct debugging levels, that can be enabled in the `didFinishLaunchingWithOptions` method of your project's AppDelegate, as shown below:
 
 1. `kOneLogLevelNone` - if set, no messages will be displayed in the console.
-	
+
 	Swift:
 	```swift
 	One.setLogLevel(.None)
@@ -991,7 +995,7 @@ The ONE SDK for iOS provides 4 distinct debugging levels, that can be enabled in
 	```
 
 2. `kOneLogLevelAll` - if set, all log messages will be displayed in the console.
-	
+
 	Swift:
 	```swift
 	One.setLogLevel(.All)
@@ -1004,7 +1008,7 @@ The ONE SDK for iOS provides 4 distinct debugging levels, that can be enabled in
 	```
 
 3. `kOneLogLevelWebService` - if set, only web service logs will be displayed in the console.
-	
+
 	Swift:
 	```swift
 	One.setLogLevel(.WebService)
@@ -1017,7 +1021,7 @@ The ONE SDK for iOS provides 4 distinct debugging levels, that can be enabled in
 	```
 
 4. `kOneLogLevelFramework` - if set, only framework logs will be displayed in the console.
-	
+
 	Swift:
 	```swift
 	One.setLogLevel(.Framework)
@@ -1029,8 +1033,8 @@ The ONE SDK for iOS provides 4 distinct debugging levels, that can be enabled in
 	[One setLogLevel:kOneLogLevelFramework];
 	```
 
-*Note:* 
-- By default, the ONE SDK for Android does not display any debug log messages. However, exception messages are printed in the console, when these occur.
+*Note:*
+- By default, the Thunderhead SDK for iOS does not display any debug log messages. However, exception messages are printed in the console, when these occur.
 
 ### Identify the framework version
 
@@ -1062,9 +1066,9 @@ Objective-C:
 [One clearUserProfile];
 ```
 
-*Note:* 
+*Note:*
 - This method removes `tid` from local storage only.
-- For instructions on how completely remove a user's data from ONE - see our [one-api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
+- For instructions on how completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
 ## Questions or need help
 

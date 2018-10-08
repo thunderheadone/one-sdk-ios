@@ -138,6 +138,22 @@ Objective-C:
 	      adminMode:YES
 	       hostName:@"eu2.thunderhead.com"];
 ```
+##### For Salesforce Interaction Studio integrations
+
+When integrating with Salesforce Interaction Studio you can set the Admin mode theme to match the Interaction Studio look and feel, as follows:
+
+Swift:
+```swift
+One.setTheme(OneTheme.InteractionStudio)
+```
+
+
+Objective-C:
+```objective-c
+ [One setTheme:OneThemeInteractionStudio];
+```
+*Note:*
+- By default the SDK will be launched using the Thunderhead ONE theme. You should only use the Interaction Studio theme if you are a Salesforce customer.
 
 #### View controller/view lifecycle overriding rules
 

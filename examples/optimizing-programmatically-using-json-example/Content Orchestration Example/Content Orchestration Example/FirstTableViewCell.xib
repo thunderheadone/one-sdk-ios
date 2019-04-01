@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="200" id="KGk-i7-Jjw" customClass="FirstTableViewCell" customModule="Content_Orchestration_Example" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="452" height="191"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="452" height="190.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GNf-bm-DzO">
+                        <rect key="frame" x="0.0" y="0.0" width="452" height="171"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZT8-E7-Lg0">
+                        <rect key="frame" x="0.0" y="171" width="452" height="19.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="ZT8-E7-Lg0" secondAttribute="trailing" id="2y1-xg-tbq"/>
+                    <constraint firstAttribute="bottom" secondItem="ZT8-E7-Lg0" secondAttribute="bottom" id="A6Z-T0-69v"/>
+                    <constraint firstItem="GNf-bm-DzO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="AnL-ca-qVW"/>
+                    <constraint firstItem="ZT8-E7-Lg0" firstAttribute="top" secondItem="GNf-bm-DzO" secondAttribute="bottom" id="UYH-g5-6if"/>
+                    <constraint firstItem="GNf-bm-DzO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="UxR-J9-zRg"/>
+                    <constraint firstItem="ZT8-E7-Lg0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Y2V-d5-X38"/>
+                    <constraint firstAttribute="trailing" secondItem="GNf-bm-DzO" secondAttribute="trailing" id="rT8-pX-uWP"/>
+                    <constraint firstAttribute="bottom" secondItem="GNf-bm-DzO" secondAttribute="bottom" constant="19.5" id="vd2-LQ-ITM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="myImageView" destination="GNf-bm-DzO" id="5WZ-4U-dPB"/>
+            </connections>
+            <point key="canvasLocation" x="230.43478260869566" y="193.86160714285714"/>
+        </tableViewCell>
+    </objects>
+</document>

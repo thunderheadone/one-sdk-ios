@@ -2,6 +2,12 @@
 
 The Thunderhead SDK for iOS supports iOS 7.1 and above.
 
+### iOS Version Updates
+
++ iOS minimum version (deployment target): iOS 7.1
++ iOS base SDK version: iOS 12
++ Xcode minimum version: 10
+
 ## Installation
 
 ### CocoaPods
@@ -17,7 +23,7 @@ Specify the *Thunderhead SDK* in your podfile
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-      pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '2.23.1'
+      pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '2.24.0'
     end
 ```
 
@@ -60,6 +66,20 @@ The SDK requires modules to be enabled. If you require modules to be disabled, y
 
 *Note:*
 - If any of the frameworks are missing from your app, select the +icon in the lower-left corner of the **Link Binary With Libraries** section and add each framework, as needed, using the popup window.
+
+#### Biometric Authentication
+
+The SDK supports biometric authentication (Touch ID / Face ID) in Admin mode
+
+*Note:*
+- To use Face ID authentication, you need to add:
+
+```
+<key>NSFaceIDUsageDescription</key>
+<string>Why is my app authenticating using face id?</string>
+```
+
+to your `Info.plist` file. Failure to do so results in a dialog that tells the user your app has not provided the Face ID usage description.
 
 ## Use the Codeless Thunderhead SDK for iOS
 
@@ -471,7 +491,7 @@ If your object is not an instance of `UIViewController` class, perform the next 
 
 The above mentioned method returns an Interaction path and a corresponding Interaction response. You can either use the `processResponse` method to let the SDK process the default response for you or process it by yourself.
 
-5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below
+5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below:
 
 	Swift:
 	```swift
@@ -740,7 +760,7 @@ Objective-C:
 
 #### Send properties for a URL scheme
 
-If you have disabled automatic identity transfer you can still send all URL parameters received as part of a URL scheme, which opens your app, by calling
+If you have disabled automatic identity transfer you can still send all URL parameters received as part of a URL scheme, which opens your app, by calling:
 
 Swift:
 ```swift
@@ -771,7 +791,8 @@ Objective-C:
 	return YES;
 }
 ```
-Note: This will send a PUT request to Thunderhead ONE or Salesforce Interaction Studio.
+*Note:*
+- This will send a PUT request to Thunderhead ONE or Salesforce Interaction Studio.
 
 #### Append a ‘one-tid’ parameter to a `NSURL` to facilitate identity transfer
 
@@ -842,10 +863,10 @@ passing the URL which will send an Interaction request ‘/one-click’ using th
 
 To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, take the following steps:
 
-1.	enable Push Notifications in Capabilities pane
-2.	enable Background Modes in Capabilities pane
-3.	select Remote Notifications under Background Modes section
-4.	call the method `enablePushNotifications` by passing `true` as shown below:
+1.	Enable Push Notifications in Capabilities pane
+2.	Enable Background Modes in Capabilities pane
+3.	Select Remote Notifications under Background Modes section
+4.	Call the method `enablePushNotifications` by passing `true` as shown below:
 
 	Swift:
 	```swift
@@ -918,6 +939,66 @@ Objective-C:
 
 *Note:*
 - If you haven't enabled push notification support, you can use this function to programmatically store the push token in Thunderhead ONE or Salesforce Interaction Studio.
+
+### Handle notifications received through the ONE APNs interface
+
+##### Handling notifications while the app in foreground or background
+
+Swift:
+```swift
+func application(_ application: UIApplication,
+	 didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+   	 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+	 // Handle notification
+	 // Call `completionHandler` with the appropriate `UIBackgroundFetchResult`. For example:
+	 completionHandler(.newData)
+}
+```
+
+
+Objective-C:
+```objective-c
+- (void)application:(UIApplication *)application
+	didReceiveRemoteNotification:(NSDictionary *)userInfo
+	fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
+{
+    // Handle notification
+	// Call `completionHandler` with the appropriate `UIBackgroundFetchResult`. For example:
+	completionHandler(UIBackgroundFetchResultNewData);
+}
+```
+
+
+##### Displaying notifications while the app in foreground
+
+Notifications received while the app is running in the foreground will not generate the standard system alert. Instead, they are passed to the `application:didReceiveRemoteNotification:fetchCompletionHandler:` callback on your app delegate. To display standard system alert, implement `userNotificationCenter:willPresentNotification:withCompletionHandler:` method.
+
+For example, to show a standard alert view, do the following:
+
+###### iOS 10+
+
+Swift:
+```swift
+func userNotificationCenter(_ center: UNUserNotificationCenter,
+                         willPresent notification: UNNotification,
+               withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+	// Handle notification
+	completionHandler([.alert, .badge, .sound])
+}
+```
+
+
+Objective-C:
+```objective-c
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+       willPresentNotification:(UNNotification *)notification
+         withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
+{
+	// Handle notification
+	completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound);
+}
+```
+
 
 ### Send a location object
 

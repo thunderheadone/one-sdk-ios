@@ -5,8 +5,8 @@ The Thunderhead SDK for iOS supports iOS 7.1 and above.
 ### iOS Version Updates
 
 + iOS minimum version (deployment target): iOS 7.1
-+ iOS base SDK version: iOS 12
-+ Xcode minimum version: 10
++ iOS base SDK version: iOS 12.0
++ Xcode minimum version: 10.1
 
 ## Installation
 
@@ -23,7 +23,7 @@ Specify the *Thunderhead SDK* in your podfile
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-      pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '2.24.0'
+      pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '2.24.1'
     end
 ```
 

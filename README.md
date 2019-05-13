@@ -121,12 +121,12 @@ One.startSessionWithSK("ONE-XXXXXXXXXX-1022",
 Objective-C:
 ```objective-c
 [One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
-	    uri:@"myAppsNameURI"
-	 apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
-   sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-	 userId:@"api@yourCompanyName"
-      adminMode:NO
-       hostName:@"eu2.thunderhead.com"];
+	            uri:@"myAppsNameURI"
+	         apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
+           sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
+	         userId:@"api@yourCompanyName"
+              adminMode:NO
+               hostName:@"eu2.thunderhead.com"];
 ```
 
 #### Set up the Framework in Admin mode

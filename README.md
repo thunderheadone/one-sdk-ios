@@ -1,10 +1,10 @@
 ![Thunderhead SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead")
 
-The Thunderhead SDK for iOS supports iOS 7.1 and above.
+The Thunderhead SDK for iOS supports iOS 8.0 and above.
 
 ### iOS Version Updates
 
-+ iOS minimum version (deployment target): iOS 7.1
++ iOS minimum version (deployment target): iOS 8.0
 + iOS base SDK version: iOS 12.0
 + Xcode minimum version: 10.1
 
@@ -23,7 +23,7 @@ Specify the *Thunderhead SDK* in your podfile
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-      pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '2.24.1'
+      pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '3.0.0'
     end
 ```
 
@@ -46,9 +46,6 @@ $ pod install
 	+ Confirm **_Thunderhead.framework_** is located in the **Link Binary With Libraries** section.
 	+ Confirm **_ThunderheadBundle.bundle_** is located in the **Copy Bundle Resources** section.
 5. Ensure your project enables modules by going to **Build Settings** tab and setting the flag for **Enable Modules (C and Objective-C)** to **Yes**. Check out **_Adding the SDK dependencies for manual installation_** if you need modules to be disabled.
-
-*Note:*
-- If your project’s deployment target is less than iOS 8, the **_WebKit.framework_** has to be added manually as noted below.
 
 #### Adding the SDK dependencies for manual installation
 
@@ -124,12 +121,12 @@ One.startSessionWithSK("ONE-XXXXXXXXXX-1022",
 Objective-C:
 ```objective-c
 [One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
-	    uri:@"myAppsNameURI"
-	 apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
-   sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-	 userId:@"api@yourCompanyName"
-      adminMode:NO
-       hostName:@"eu2.thunderhead.com"];
+	            uri:@"myAppsNameURI"
+	         apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
+           sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
+	         userId:@"api@yourCompanyName"
+              adminMode:NO
+               hostName:@"eu2.thunderhead.com"];
 ```
 
 #### Set up the Framework in Admin mode
@@ -946,10 +943,10 @@ Objective-C:
 
 Swift:
 ```swift
-func application(_ application: UIApplication,
-	 didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+func application(_ application: UIApplication, 
+	 didReceiveRemoteNotification userInfo: [AnyHashable : Any], 
    	 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-	 // Handle notification
+	 // Handle notification 
 	 // Call `completionHandler` with the appropriate `UIBackgroundFetchResult`. For example:
 	 completionHandler(.newData)
 }
@@ -958,11 +955,11 @@ func application(_ application: UIApplication,
 
 Objective-C:
 ```objective-c
-- (void)application:(UIApplication *)application
-	didReceiveRemoteNotification:(NSDictionary *)userInfo
+- (void)application:(UIApplication *)application 
+	didReceiveRemoteNotification:(NSDictionary *)userInfo 
 	fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
 {
-    // Handle notification
+    // Handle notification 
 	// Call `completionHandler` with the appropriate `UIBackgroundFetchResult`. For example:
 	completionHandler(UIBackgroundFetchResultNewData);
 }
@@ -971,7 +968,7 @@ Objective-C:
 
 ##### Displaying notifications while the app in foreground
 
-Notifications received while the app is running in the foreground will not generate the standard system alert. Instead, they are passed to the `application:didReceiveRemoteNotification:fetchCompletionHandler:` callback on your app delegate. To display standard system alert, implement `userNotificationCenter:willPresentNotification:withCompletionHandler:` method.
+Notifications received while the app is running in the foreground will not generate the standard system alert. Instead, they are passed to the `application:didReceiveRemoteNotification:fetchCompletionHandler:` callback on your app delegate. To display standard system alert, implement `userNotificationCenter:willPresentNotification:withCompletionHandler:` method. 
 
 For example, to show a standard alert view, do the following:
 
@@ -979,8 +976,8 @@ For example, to show a standard alert view, do the following:
 
 Swift:
 ```swift
-func userNotificationCenter(_ center: UNUserNotificationCenter,
-                         willPresent notification: UNNotification,
+func userNotificationCenter(_ center: UNUserNotificationCenter, 
+                         willPresent notification: UNNotification, 
                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
 	// Handle notification
 	completionHandler([.alert, .badge, .sound])
@@ -990,8 +987,8 @@ func userNotificationCenter(_ center: UNUserNotificationCenter,
 
 Objective-C:
 ```objective-c
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center
-       willPresentNotification:(UNNotification *)notification
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center 
+       willPresentNotification:(UNNotification *)notification 
          withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
 {
 	// Handle notification

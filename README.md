@@ -23,7 +23,7 @@ Specify the *Thunderhead SDK* in your podfile
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-      pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '3.0.1'
+      pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '3.0.2'
     end
 ```
 
@@ -821,7 +821,7 @@ NSURL *urlWithOneTid = [One getURLWithOneTid:yourNSURL];
 
 ### Disable automatic outbound link tracking
 
-By default, the SDK will automatically send an Interaction request to `/one-click` as a url is opened in Safari, `SafariViewController`, `UIWebview` or `WKWebView` to facilitate last click attribution.
+By default, the SDK will automatically send an Interaction request to `/one-click` as a url is opened in Safari, `SafariViewController` or `WKWebView` to facilitate last click attribution.
 
 To disable this functionality call the `disableAutomaticOutboundLinkTracking` method and pass `true`, as shown below:
 

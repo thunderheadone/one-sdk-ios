@@ -44,6 +44,13 @@ class FirstViewController: UITableViewController, OneInteractionResponseDelegate
         if(response != nil) {
             
             //
+            // Pass on the reponse to ONE SDK. This method returns the response to
+            // the SDK to process - attaching any capture, track or optimize
+            // instructions to the Interaction.
+            //
+            One.processResponse(response)
+            
+            //
             // Retrieve the response and decode it as a OneInteractionResponse
             //
             var interactionResponse: OneInteractionResponse?

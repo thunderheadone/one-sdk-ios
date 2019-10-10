@@ -13,7 +13,7 @@ import Thunderhead
 // Declared the OneInteractionResponseDelegate which will notify us when a response is received for this view controller
 //
 class FirstViewController: UITableViewController, OneInteractionResponseDelegate {
-
+    
     var myTableViewData = ["product-1A","product-2A","product-3A"]
     var myOptimizationData : [String : OneOptimizationResponse] = [:]
     
@@ -67,28 +67,26 @@ class FirstViewController: UITableViewController, OneInteractionResponseDelegate
                     if let optimizationString = optimization.data,
                         let optimizationData = Data(base64Encoded: optimizationString) {
                         
-                            do {
-                                if let optimizationDataResponse = try decoder.decode(OptimizationDataResponse.self, from:optimizationData) as? OptimizationDataResponse,
-                                    let action = optimizationDataResponse.actions?.first,
-                                    let asset =  action.asset,
-                                    let content = asset.content,
-                                    let responses = asset.responses
-                                {
+                        do {
+                            let optimizationDataResponse = try decoder.decode(OptimizationDataResponse.self, from:optimizationData)
+                            if let action = optimizationDataResponse.actions?.first,
+                                let asset =  action.asset,
+                                let content = asset.content,
+                                let responses = asset.responses
+                            {
                                 //
                                 // Escape the HTML tags to retrieve the decoded asset content
                                 //
                                 let decodedContent = content.stringByEscapingHTMLTags()
                                 
-                                if let decodedContentData = decodedContent.data(using: .utf8),
-                                    let decodedContentDataResponse = try decoder.decode(OneAssetContentResponse.self, from:decodedContentData) as? OneAssetContentResponse,
-                                    
+                                if let decodedContentData = decodedContent.data(using: .utf8) {
+                                    let decodedContentDataResponse = try decoder.decode(OneAssetContentResponse.self, from:decodedContentData)
                                     //
                                     // Fot the purposes of this demo we retrieve the image and path
                                     // The optimization path will determine where the asset will be displayed in the table view
                                     //
-                                    let contentImage = decodedContentDataResponse.image,
-                                    let optimizationPath = optimization.path
-                                    {
+                                    if let contentImage = decodedContentDataResponse.image,
+                                        let optimizationPath = optimization.path {
                                         if (optimizationPath == topBannerIdentifier) {
                                             print(decodedContentDataResponse)
                                             myTableViewData[0] = contentImage
@@ -98,7 +96,7 @@ class FirstViewController: UITableViewController, OneInteractionResponseDelegate
                                             print(decodedContentDataResponse)
                                             myTableViewData[1] = contentImage
                                         }
-
+                                        
                                         myOptimizationData[optimizationPath] = OneOptimizationResponse(optimization: optimization, responses: responses)
                                         
                                         DispatchQueue.main.async {
@@ -106,13 +104,21 @@ class FirstViewController: UITableViewController, OneInteractionResponseDelegate
                                         }
                                     }
                                 }
-                            } catch {
-                            print("Failed to parse optimization data: \(error.localizedDescription)")
                             }
+                        } catch {
+                            print("Failed to parse optimization data: \(error.localizedDescription)")
                         }
                     }
                 }
             }
+            
+            //
+            // Pass on the reponse to ONE SDK. This method returns the response to
+            // the SDK to process - attaching any capture, track or optimize
+            // instructions to the Interaction.
+            //
+            One.processResponse(response)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -167,7 +173,7 @@ extension FirstViewController {
         
         if indexPath.row == 0 {
             optimizationPath = topBannerIdentifier
-         
+            
         }
         else if indexPath.row == 1 {
             optimizationPath = cardItemIdentifier
@@ -175,8 +181,8 @@ extension FirstViewController {
         
         if let optimizationPath = optimizationPath,
             let myOptimizationData = myOptimizationData[optimizationPath] {
-                let response = myOptimizationData.responses.filter {$0.sentiment == "positive"}.first
-                One.sendResponseCode(response?.code, forInteractionPath: self.oneInteractionPath)
+            let response = myOptimizationData.responses.filter {$0.sentiment == "positive"}.first
+            One.sendResponseCode(response?.code, forInteractionPath: self.oneInteractionPath)
         }
     }
     

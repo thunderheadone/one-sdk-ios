@@ -5,8 +5,12 @@ The Thunderhead SDK for iOS supports iOS 8.0 and above.
 ### iOS Version Updates
 
 + iOS minimum version (deployment target): iOS 8.0
-+ iOS base SDK version: iOS 12.0
-+ Xcode minimum version: 10.1
++ iOS base SDK version: iOS 13.0
++ Xcode minimum version: 10.2 (requires bitcode disabled for archiving)
++ Xcode recommended version: 11.0 (supports bitcode enabled for archiving)
+
+*Note:*
+- Use Xcode 11.0 when archiving an app with bitcode enabled. You should disable bitcode if archiving with lower versions of Xcode.
 
 ## Installation
 
@@ -23,7 +27,7 @@ Specify the *Thunderhead SDK* in your podfile
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-      pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '3.0.2'
+    pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '4.0.0'
     end
 ```
 
@@ -386,7 +390,9 @@ If your object is an instance of `UIViewController` class, perform the next step
 	```swift
 	func interaction(interactionPath: String!, didReceiveResponse response: [NSObject : AnyObject]!) {
         if (response != nil) {
-            // work with the response
+            // Work with the response.
+            /* Pass on the reponse to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction. */ 
+            One.processResponse(response)
         }
 	}
 	```
@@ -394,14 +400,16 @@ If your object is an instance of `UIViewController` class, perform the next step
 
 	Objective-C:
 	```objective-c
-	`- (void)interaction:(NSString *)interactionPath didReceiveResponse:(NSDictionary *)response {
+	- (void)interaction:(NSString *)interactionPath didReceiveResponse:(NSDictionary *)response {
     	if (response) {
-        	// Do something with the response.
+    		// Do something with the response.
+    		// Pass on the reponse to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
+    		[One processResponse:response];
     	}
 	}
 	```
 
-The method returns an Interaction path and a corresponding Interaction response. You can either use the `processResponse` method to let the SDK process the default response for you or process it yourself.
+The method returns an Interaction path and a corresponding Interaction response. You can process the response in the delegate callback. Once processed, pass on the reponse using `processResponse` method to let the SDK process the response - attaching any capture, track or optimize instructions to the Interaction. Example code can be found [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L45).
 
 5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below:
 
@@ -470,9 +478,11 @@ If your object is not an instance of `UIViewController` class, perform the next 
 	Swift:
 	```swift
 	func interaction(interactionPath: String!, didReceiveResponse response: [NSObject : AnyObject]!) {
-        	if (response != nil) {
-            	// work with the response
-        	}
+        if (response != nil) {
+            // Work with the response.
+        	// Pass on the reponse to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
+        	One.processResponse(response)
+        }
 	}
 	```
 
@@ -480,13 +490,15 @@ If your object is not an instance of `UIViewController` class, perform the next 
 	Objective-C:
 	```objective-c
 	- (void)interaction:(NSString *)interactionPath didReceiveResponse:(NSDictionary *)response {
-    		if (response) {
-    			// Do something with the response.
-    		}
+    	if (response) {
+    		// Do something with the response.
+    		// Pass on the reponse to ONE SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
+    		[One processResponse:response];
+    	}
 	}
 	```
 
-The above mentioned method returns an Interaction path and a corresponding Interaction response. You can either use the `processResponse` method to let the SDK process the default response for you or process it by yourself.
+The above mentioned method returns an Interaction path and a corresponding Interaction response. You can process the response in the delegate callback. Once processed, pass on the reponse using `processResponse` method to let the SDK process the response - attaching any capture, track or optimize instructions to the Interaction. Example code can be found [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L45).
 
 5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below:
 

@@ -270,7 +270,7 @@ typedef NS_ENUM(NSInteger, OneTheme) {
 
 /*!
  @brief Sets the framework's UI theme.
- @param OneTheme theme. Possible values are OneThemeDefault, OneThemeInteractionStudio.
+ @param theme A OneTheme enum. Possible values are OneThemeDefault, OneThemeInteractionStudio.
  @discussion Set specific themes to update the framework's UI in design time. By default, the theme is set to kOneThemeDefault.
  */
 + (void)setTheme:(OneTheme)theme NS_SWIFT_NAME(setTheme(_:));

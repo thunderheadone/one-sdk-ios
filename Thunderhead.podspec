@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
   s.name                = 'Thunderhead'
-  s.version             = '4.0.1'
+  s.version             = '4.0.2'
   s.summary             = 'The Thunderhead SDK for iOS, for integrating the ONE Engagement Hub or Interaction Studio into your iOS application.'
-  s.license             = { :type => 'Commercial', :text => 'Copyright (c) 2018 Thunderhead One Inc. All rights reserved.' }
+  s.license             = { :type => 'Commercial', :text => 'Copyright (c) 2020 Thunderhead One Inc. All rights reserved.' }
   s.authors             = { 'Thunderhead ONE' => 'onesupport@thunderhead.com'}
   s.homepage            = 'https://github.com/thunderheadone/one-sdk-ios'
   s.description         = 'The Thunderhead SDK for iOS, for integrating ONE or Interaction Studio into your iOS application. The SDK supports iOS 8.0 and above.'

@@ -1,16 +1,77 @@
 ![Thunderhead SDK](https://www.thunderhead.com/uploads/2015/07/Thunderhead_LogoIcon_Aubergine.png "Thunderhead")
 
+## Table of Contents
+
+- [Requirements](#requirements)
+  * [iOS Version Requirements](#ios-version-requirements)
+- [Installation](#installation)
+  * [CocoaPods](#cocoapods)
+  * [Manual Installation](#manual-installation)
+    + [Adding the SDK dependencies for manual installation](#adding-the-sdk-dependencies-for-manual-installation)
+    + [Biometric Authentication](#biometric-authentication)
+- [Use the Codeless Thunderhead SDK for iOS](#use-the-codeless-thunderhead-sdk-for-ios)
+  * [Initialize the SDK](#initialize-the-sdk)
+    + [Import the SDK’s module](#import-the-sdks-module)
+    + [Set up the Framework in User mode](#set-up-the-framework-in-user-mode)
+    + [Set up the Framework in Admin mode](#set-up-the-framework-in-admin-mode)
+    + [For Salesforce Interaction Studio integrations](#for-salesforce-interaction-studio-integrations)
+    + [View controller/view lifecycle overriding rules](#view-controllerview-lifecycle-overriding-rules)
+- [Additional features](#additional-features)
+  * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
+  * [Late initialization and reconfiguration of the SDK](#late-initialization-and-reconfiguration-of-the-sdk)
+  * [Manually set a specific Interaction path](#manually-set-a-specific-interaction-path)
+  * [Exclude an Interaction](#exclude-an-interaction)
+  * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
+  * [Send an Interaction request programmatically](#send-an-interaction-request-programmatically)
+  * [Send an Interaction request programmatically with a completion block](#send-an-interaction-request-programmatically-with-a-completion-block)
+  * [Retrieve a response for a UIViewController instance](#retrieve-a-response-for-a-uiviewcontroller-instance)
+    + [Retrieve a response for a UIViewController instance](#retrieve-a-response-for-a-uiviewcontroller-instance-1)
+    + [Retrieve a response for other instances](#retrieve-a-response-for-other-instances)
+  * [Send Properties to Thunderhead ONE or Salesforce Interaction Studio](#send-properties-to-thunderhead-one-or-salesforce-interaction-studio)
+    + [Send properties to a base touchpoint](#send-properties-to-a-base-touchpoint)
+    + [Send an Interaction request with properties](#send-an-interaction-request-with-properties)
+    + [Send an Interaction request with properties and a completion block](#send-an-interaction-request-with-properties-and-a-completion-block)
+    + [Send properties to an Interaction](#send-properties-to-an-interaction)
+    + [Send a response code](#send-a-response-code)
+  * [Identity sync](#identity-sync)
+    + [Identity sync with Thunderhead ONE or Salesforce Interaction Studio](#identity-sync-with-thunderhead-one-or-salesforce-interaction-studio)
+    + [Identity sync with Thunderhead ONE or Salesforce Interaction Studio and your web touchpoint](#identity-sync-with-thunderhead-one-or-salesforce-interaction-studio-and-your-web-touchpoint)
+  * [Ability to whitelist identity transfer links](#ability-to-whitelist-identity-transfer-links)
+  * [Ability to blacklist identity transfer links](#ability-to-blacklist-identity-transfer-links)
+  * [Disable automatic identity transfer](#disable-automatic-identity-transfer)
+    + [Send properties for a URL scheme](#send-properties-for-a-url-scheme)
+    + [Append a ‘one-tid’ parameter to a `NSURL` to facilitate identity transfer](#append-a-one-tid-parameter-to-a-nsurl-to-facilitate-identity-transfer)
+  * [Disable automatic outbound link tracking](#disable-automatic-outbound-link-tracking)
+    + [Programmatically trigger an outbound link tracking Interaction call](#programmatically-trigger-an-outbound-link-tracking-interaction-call)
+  * [Enable push notifications](#enable-push-notifications)
+  * [Get a push token](#get-a-push-token)
+  * [Send a push token](#send-a-push-token)
+  * [Handle notifications received through the ONE APNs interface](#handle-notifications-received-through-the-one-apns-interface)
+      - [Handling notifications while the app in foreground or background](#handling-notifications-while-the-app-in-foreground-or-background)
+      - [Displaying notifications while the app in foreground](#displaying-notifications-while-the-app-in-foreground)
+  * [Send a location object](#send-a-location-object)
+  * [Get a structure data](#get-a-structure-data)
+  * [Get Tid](#get-tid)
+  * [Access Debug Information](#access-debug-information)
+  * [Identify the framework version](#identify-the-framework-version)
+  * [Clear the user profile](#clear-the-user-profile)
+- [Troubleshooting Guide](#troubleshooting-guide)
+- [Questions or need help](#questions-or-need-help)
+  * [Salesforce Interaction Studio Support](#salesforce-interaction-studio-support)
+  * [Thunderhead ONE Support](#thunderhead-one-support)
+
+## Requirements
+
 The Thunderhead SDK for iOS supports iOS 8.0 and above.
 
-### iOS Version Updates
+### iOS Version Requirements
 
 + iOS minimum version (deployment target): iOS 8.0
 + iOS base SDK version: iOS 13.0
-+ Xcode minimum version: 10.2 (requires bitcode disabled for archiving)
-+ Xcode recommended version: 11.0 (supports bitcode enabled for archiving)
++ Xcode minimum version: 11.0
 
 *Note:*
-- Use Xcode 11.0 when archiving an app with bitcode enabled. You should disable bitcode if archiving with lower versions of Xcode.
+- Xcode 11+ only supports archiving an application with bitcode enabled.
 
 ## Installation
 
@@ -27,7 +88,7 @@ Specify the *Thunderhead SDK* in your podfile
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-    pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '4.0.2'
+    pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '5.0.0'
     end
 ```
 
@@ -207,7 +268,11 @@ Objective-C:
 *Note:*
 - When opted out, tracking will stop and locally queued data will be removed.
 - At any point you can opt a user back in by passing `false` into the same method.
-- For instructions on how completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
+- For instructions on how to completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
+
+### Late initialization and reconfiguration of the SDK
+
+Need to late initialize or reconfigure the SDK to support multiple regions in your app? - see details [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/dynamic-initialization-example).
 
 ### Manually set a specific Interaction path
 
@@ -306,7 +371,7 @@ Objective-C:
 
 ### Send an Interaction request programmatically with a completion block
 
-You can send an Interaction request programmatically by passing an Interaction path and a completion block as a parameters as shown below:
+You can send an Interaction request programmatically by passing an Interaction path and a completion block as a parameters, as shown below:
 
 Swift:
 ```swift
@@ -328,7 +393,7 @@ Objective-C:
 	}
 }];
 ```
-The response can be passed to the `processResponse` method as a parameter as shown above. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
+The response can be passed to the `processResponse` method as a parameter, as shown above. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
 
 *Note:*
 - This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
@@ -336,7 +401,7 @@ The response can be passed to the `processResponse` method as a parameter as sho
 
 ### Retrieve a response for a UIViewController instance
 
-You can retrieve a response for a specific, automatically triggered Interaction request by making your object conform to the protocol `OneInteractionResponseDelegate`. Your object might be an instance of `UIViewController` or any other class. Follow the instructions below in order to set up this functionality depending on your object’s class.
+You can retrieve a response for a specific automatically triggered Interaction request by making your object conform to the protocol `OneInteractionResponseDelegate`. Your object might be an instance of `UIViewController` or any other class. Follow the instructions below in order to set up this functionality depending on your object’s class.
 
 #### Retrieve a response for a UIViewController instance
 
@@ -391,7 +456,7 @@ If your object is an instance of `UIViewController` class, perform the next step
 	func interaction(interactionPath: String!, didReceiveResponse response: [NSObject : AnyObject]!) {
         if (response != nil) {
             // Work with the response.
-            /* Pass on the reponse to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction. */ 
+            /* Pass on the response to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction. */ 
             One.processResponse(response)
         }
 	}
@@ -403,13 +468,13 @@ If your object is an instance of `UIViewController` class, perform the next step
 	- (void)interaction:(NSString *)interactionPath didReceiveResponse:(NSDictionary *)response {
     	if (response) {
     		// Do something with the response.
-    		// Pass on the reponse to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
+    		// Pass on the response to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
     		[One processResponse:response];
     	}
 	}
 	```
 
-The method returns an Interaction path and a corresponding Interaction response. You can process the response in the delegate callback. Once processed, pass on the reponse using `processResponse` method to let the SDK process the response - attaching any capture, track or optimize instructions to the Interaction. Example code can be found [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L45).
+The method returns an Interaction path and a corresponding Interaction response. You can process the response in the delegate callback. Once processed, pass on the response using `processResponse` method to let the SDK process the response - attaching any capture, track or optimize instructions to the Interaction. Example code can be found [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L45).
 
 5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below:
 
@@ -480,7 +545,7 @@ If your object is not an instance of `UIViewController` class, perform the next 
 	func interaction(interactionPath: String!, didReceiveResponse response: [NSObject : AnyObject]!) {
         if (response != nil) {
             // Work with the response.
-        	// Pass on the reponse to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
+        	// Pass on the response to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
         	One.processResponse(response)
         }
 	}
@@ -492,13 +557,13 @@ If your object is not an instance of `UIViewController` class, perform the next 
 	- (void)interaction:(NSString *)interactionPath didReceiveResponse:(NSDictionary *)response {
     	if (response) {
     		// Do something with the response.
-    		// Pass on the reponse to ONE SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
+    		// Pass on the response to ONE SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
     		[One processResponse:response];
     	}
 	}
 	```
 
-The above mentioned method returns an Interaction path and a corresponding Interaction response. You can process the response in the delegate callback. Once processed, pass on the reponse using `processResponse` method to let the SDK process the response - attaching any capture, track or optimize instructions to the Interaction. Example code can be found [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L45).
+The above mentioned method returns an Interaction path and a corresponding Interaction response. You can process the response in the delegate callback. Once processed, pass on the response using `processResponse` method to let the SDK process the response - attaching any capture, track or optimize instructions to the Interaction. Example code can be found [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L45).
 
 5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below:
 
@@ -635,7 +700,7 @@ Objective-C:
 ```
 
 *Note:*
-- This method should be used when displaying optimziations programmatically and you need to capture the user's response.
+- This method should be used when displaying optimizations programmatically and you need to capture the user's response.
 - This will send a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
@@ -980,11 +1045,11 @@ Objective-C:
 
 ##### Displaying notifications while the app in foreground
 
-Notifications received while the app is running in the foreground will not generate the standard system alert. Instead, they are passed to the `application:didReceiveRemoteNotification:fetchCompletionHandler:` callback on your app delegate. To display standard system alert, implement `userNotificationCenter:willPresentNotification:withCompletionHandler:` method. 
+Notifications received while the app is running in the foreground will not generate the standard system alert. Instead, they are passed to the `application:didReceiveRemoteNotification:fetchCompletionHandler:` callback on your app delegate. To display a standard system alert, implement `userNotificationCenter:willPresentNotification:withCompletionHandler:` method. 
 
 For example, to show a standard alert view, do the following:
 
-###### iOS 10+
+**iOS 10+**
 
 Swift:
 ```swift
@@ -1047,7 +1112,7 @@ To get a structure data, call `getStructureData` method by passing a structure�
 
 Swift:
 ```swift
-One.getStructureData("YourStructureName") { (response, error) in
+One.getStructureData("yourStructureName") { (response, error) in
 	if (error == nil) {
 		// work with response
 	}
@@ -1066,7 +1131,7 @@ Objective-C:
 
 ### Get Tid
 
-To get the current ‘tid’ used by the SDK, call:
+To get the current `tid` used by the SDK, call:
 
 Swift:
 ```swift
@@ -1175,8 +1240,16 @@ Objective-C:
 
 *Note:*
 - This method removes `tid` from local storage only.
-- For instructions on how completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
+- For instructions on how to completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
+
+
+## Troubleshooting Guide
+[Troubleshooting Guide](TROUBLESHOOTING-GUIDE.md)
 
 ## Questions or need help
 
-_The Thunderhead ONE team is available 24/7 to answer any questions you have. Just email onesupport@thunderhead.com or visit our docs page for more detailed installation and usage information._
+### Salesforce Interaction Studio Support
+_For Salesforce Marketing Cloud Interaction Studio questions, please submit a support ticket via https://help.salesforce.com/home_
+
+### Thunderhead ONE Support
+_The Thunderhead team is available 24/7 to answer any questions you have. Just email [onesupport@thunderhead.com](mailto:onesupport@thunderhead.com) or visit our docs page for more detailed installation and usage information._

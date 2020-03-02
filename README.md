@@ -98,6 +98,7 @@ Install using the following command:
 $ pod install
 ```
 
+See example project for pod installation [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/dynamic-initialization-example).
 
 ### Manual Installation
 
@@ -111,6 +112,11 @@ $ pod install
 	+ Confirm **_Thunderhead.framework_** is located in the **Link Binary With Libraries** section.
 	+ Confirm **_ThunderheadBundle.bundle_** is located in the **Copy Bundle Resources** section.
 5. Ensure your project enables modules by going to **Build Settings** tab and setting the flag for **Enable Modules (C and Objective-C)** to **Yes**. Check out **_Adding the SDK dependencies for manual installation_** if you need modules to be disabled.
+
+See example project for manual installation [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/optimizing-programmatically-using-json-example).
+
+*Note:*
+- If you encounter the `No such module 'Thunderhead'` compile error, see our [Troubleshooting Guide](TROUBLESHOOTING-GUIDE.md#no-such-module-thunderhead-xcode-compile-error)
 
 #### Adding the SDK dependencies for manual installation
 

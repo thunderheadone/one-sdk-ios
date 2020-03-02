@@ -1,20 +1,10 @@
+![Nevercode build status](https://app.nevercode.io/api/projects/4714447b-05e5-45ff-921e-ea60c07e6ef2/workflows/b09232cf-8cac-453c-b9db-b08c7d96428e/status_badge.svg?branch=master&style=shields)
+
 # Optimizing Programatically Using JSON Example 
 
 ## Installation
 
-### CocoaPods
-
-Make sure you have the [CocoaPods](http://cocoapods.org) dependency manager installed. You can do so by executing the following command:
-
-```sh
-$ gem install cocoapods
-```
-
-In order to run the app, install the Thunderhead SDK into the Example App using the following command:
-
-```sh
-$ pod install
-```
+This example app integrates the Thunderhead SDK using [manual installation](https://github.com/thunderheadone/one-sdk-ios#manual-installation).  To integrate via Cocoapods, see [here](https://github.com/thunderheadone/one-sdk-ios#cocoapods).
 
 ## Questions or need help
 

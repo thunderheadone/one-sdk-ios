@@ -28,3 +28,9 @@ These are **Apple error logs** logging *all* failed outgoing network connections
     - See [here](https://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-logs)
 - Or, if you require to see the OS logs and only want to filter Thunderhead SDK's network calls, you can temporarily set the SDK's `optOut` setting to `true`.  
 	- See [here](https://github.com/thunderheadone/one-sdk-ios#opt-an-end-user-out-of-tracking)
+
+## No such module 'Thunderhead' Xcode compile error
+
+When integrating the Thunderhead SDK manually into your app, you may encounter this compile error.
+
+In **Build Settings**, ensure the **Framework Search Paths** contains the framework filepath. If the framework is placed in your project directory, simply set the framework search path to $(SRCROOT) and set it to recursive.

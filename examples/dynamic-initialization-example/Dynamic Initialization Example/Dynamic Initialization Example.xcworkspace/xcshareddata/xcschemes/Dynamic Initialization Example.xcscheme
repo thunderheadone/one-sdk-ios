@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "1130"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C98847352248E60100CA48F9"
-               BuildableName = "Content Orchestration Example.app"
-               BlueprintName = "Content Orchestration Example"
-               ReferencedContainer = "container:Content Orchestration Example.xcodeproj">
+               BlueprintIdentifier = "79AB871C23F5FD86005D4891"
+               BuildableName = "Dynamic Initialization Example.app"
+               BlueprintName = "Dynamic Initialization Example"
+               ReferencedContainer = "container:Dynamic Initialization Example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,18 +28,27 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "79AB873223F5FD8D005D4891"
+               BuildableName = "Dynamic Initialization ExampleTests.xctest"
+               BlueprintName = "Dynamic Initialization ExampleTests"
+               ReferencedContainer = "container:Dynamic Initialization Example.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "79AB873D23F5FD8D005D4891"
+               BuildableName = "Dynamic Initialization ExampleUITests.xctest"
+               BlueprintName = "Dynamic Initialization ExampleUITests"
+               ReferencedContainer = "container:Dynamic Initialization Example.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C98847352248E60100CA48F9"
-            BuildableName = "Content Orchestration Example.app"
-            BlueprintName = "Content Orchestration Example"
-            ReferencedContainer = "container:Content Orchestration Example.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -55,14 +64,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C98847352248E60100CA48F9"
-            BuildableName = "Content Orchestration Example.app"
-            BlueprintName = "Content Orchestration Example"
-            ReferencedContainer = "container:Content Orchestration Example.xcodeproj">
+            BlueprintIdentifier = "79AB871C23F5FD86005D4891"
+            BuildableName = "Dynamic Initialization Example.app"
+            BlueprintName = "Dynamic Initialization Example"
+            ReferencedContainer = "container:Dynamic Initialization Example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -74,10 +81,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C98847352248E60100CA48F9"
-            BuildableName = "Content Orchestration Example.app"
-            BlueprintName = "Content Orchestration Example"
-            ReferencedContainer = "container:Content Orchestration Example.xcodeproj">
+            BlueprintIdentifier = "79AB871C23F5FD86005D4891"
+            BuildableName = "Dynamic Initialization Example.app"
+            BlueprintName = "Dynamic Initialization Example"
+            ReferencedContainer = "container:Dynamic Initialization Example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

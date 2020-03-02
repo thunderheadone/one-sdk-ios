@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8CAC29ECC58B61CFC69D1144 /* Pods_Content_Orchestration_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D8BE0E5B9BE2A594B7C68FB /* Pods_Content_Orchestration_Example.framework */; };
+		4671CCC3240D63E40035F3A4 /* Thunderhead.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4671CCC1240D63E40035F3A4 /* Thunderhead.framework */; };
+		4671CCC4240D63E40035F3A4 /* ThunderheadBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4671CCC2240D63E40035F3A4 /* ThunderheadBundle.bundle */; };
 		C988473A2248E60100CA48F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98847392248E60100CA48F9 /* AppDelegate.swift */; };
 		C988473C2248E60100CA48F9 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988473B2248E60100CA48F9 /* FirstViewController.swift */; };
 		C988473E2248E60100CA48F9 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988473D2248E60100CA48F9 /* SecondViewController.swift */; };
@@ -20,8 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6D8BE0E5B9BE2A594B7C68FB /* Pods_Content_Orchestration_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Content_Orchestration_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE40FE9D8494D4AFF200D233 /* Pods-Content Orchestration Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Content Orchestration Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Content Orchestration Example/Pods-Content Orchestration Example.release.xcconfig"; sourceTree = "<group>"; };
+		4671CCBE240D63AE0035F3A4 /* Thunderhead.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Thunderhead.framework; path = ../../../Thunderhead.embeddedframework/Thunderhead.framework; sourceTree = "<group>"; };
+		4671CCC1240D63E40035F3A4 /* Thunderhead.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Thunderhead.framework; sourceTree = "<group>"; };
+		4671CCC2240D63E40035F3A4 /* ThunderheadBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ThunderheadBundle.bundle; sourceTree = "<group>"; };
 		C98847362248E60100CA48F9 /* Content Orchestration Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Content Orchestration Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98847392248E60100CA48F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C988473B2248E60100CA48F9 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -33,7 +35,6 @@
 		C988474D2248F1E600CA48F9 /* OneInteractionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneInteractionResponse.swift; sourceTree = "<group>"; };
 		C9BE6307224A672000442D26 /* FirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTableViewCell.swift; sourceTree = "<group>"; };
 		C9BE6308224A672000442D26 /* FirstTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstTableViewCell.xib; sourceTree = "<group>"; };
-		EECBB4AC5E583F0625F60F77 /* Pods-Content Orchestration Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Content Orchestration Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Content Orchestration Example/Pods-Content Orchestration Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,37 +42,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CAC29ECC58B61CFC69D1144 /* Pods_Content_Orchestration_Example.framework in Frameworks */,
+				4671CCC3240D63E40035F3A4 /* Thunderhead.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2BB3364B12270BD4CE9F5899 /* Pods */ = {
+		4671CCBD240D63AE0035F3A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EECBB4AC5E583F0625F60F77 /* Pods-Content Orchestration Example.debug.xcconfig */,
-				AE40FE9D8494D4AFF200D233 /* Pods-Content Orchestration Example.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		60E6D220E07D3A5D769D6E77 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6D8BE0E5B9BE2A594B7C68FB /* Pods_Content_Orchestration_Example.framework */,
+				4671CCBE240D63AE0035F3A4 /* Thunderhead.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4671CCC0240D63E40035F3A4 /* Thunderhead.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				4671CCC1240D63E40035F3A4 /* Thunderhead.framework */,
+				4671CCC2240D63E40035F3A4 /* ThunderheadBundle.bundle */,
+			);
+			name = Thunderhead.embeddedframework;
+			path = ../../../Thunderhead.embeddedframework;
 			sourceTree = "<group>";
 		};
 		C988472D2248E60100CA48F9 = {
 			isa = PBXGroup;
 			children = (
+				4671CCC0240D63E40035F3A4 /* Thunderhead.embeddedframework */,
 				C98847382248E60100CA48F9 /* Content Orchestration Example */,
 				C98847372248E60100CA48F9 /* Products */,
-				2BB3364B12270BD4CE9F5899 /* Pods */,
-				60E6D220E07D3A5D769D6E77 /* Frameworks */,
+				4671CCBD240D63AE0035F3A4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,11 +109,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C988474A2248E60200CA48F9 /* Build configuration list for PBXNativeTarget "Content Orchestration Example" */;
 			buildPhases = (
-				861152A7FE14AB874E629B98 /* [CP] Check Pods Manifest.lock */,
 				C98847322248E60100CA48F9 /* Sources */,
 				C98847332248E60100CA48F9 /* Frameworks */,
 				C98847342248E60100CA48F9 /* Resources */,
-				54A9EA513E56EDB9429D80A8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -160,6 +160,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4671CCC4240D63E40035F3A4 /* ThunderheadBundle.bundle in Resources */,
 				C98847462248E60200CA48F9 /* LaunchScreen.storyboard in Resources */,
 				C98847432248E60200CA48F9 /* Assets.xcassets in Resources */,
 				C9BE630A224A672000442D26 /* FirstTableViewCell.xib in Resources */,
@@ -168,45 +169,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		54A9EA513E56EDB9429D80A8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Content Orchestration Example/Pods-Content Orchestration Example-resources.sh",
-				"${PODS_ROOT}/Thunderhead/Thunderhead.embeddedframework/ThunderheadBundle.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ThunderheadBundle.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Content Orchestration Example/Pods-Content Orchestration Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		861152A7FE14AB874E629B98 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Content Orchestration Example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C98847322248E60100CA48F9 /* Sources */ = {
@@ -361,11 +323,11 @@
 		};
 		C988474B2248E60200CA48F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EECBB4AC5E583F0625F60F77 /* Pods-Content Orchestration Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6E2YDNU9BM;
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../../../**";
 				INFOPLIST_FILE = "$(SRCROOT)/Content Orchestration Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -381,11 +343,11 @@
 		};
 		C988474C2248E60200CA48F9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE40FE9D8494D4AFF200D233 /* Pods-Content Orchestration Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6E2YDNU9BM;
+				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}/../../../**";
 				INFOPLIST_FILE = "$(SRCROOT)/Content Orchestration Example/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (

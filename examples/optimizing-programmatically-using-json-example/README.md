@@ -4,7 +4,7 @@
 
 ## Installation
 
-This example app integrates the Thunderhead SDK using [manual installation](https://github.com/thunderheadone/one-sdk-ios#manual-installation).  To integrate via Cocoapods, see [here](https://github.com/thunderheadone/one-sdk-ios#cocoapods) 
+This example app integrates the Thunderhead SDK using [manual installation](https://github.com/thunderheadone/one-sdk-ios#manual-installation).  To integrate via Cocoapods, see [here](https://github.com/thunderheadone/one-sdk-ios#cocoapods).
 
 ## Questions or need help
 

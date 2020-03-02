@@ -42,7 +42,7 @@ Objective-C:
               adminMode:NO
                hostName:@""];
 ```
-See example of usage [here]( https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/dynamic-initialization-example/Dynamic%20Initialization%20Example/Dynamic%20Initialization%20Example/AppDelegate.swift#L47)
+See example of usage [here]( https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/dynamic-initialization-example/Dynamic%20Initialization%20Example/Dynamic%20Initialization%20Example/AppDelegate.swift#L47).
 
 ## Reconfiguring the Thunderhead SDK
 
@@ -74,7 +74,7 @@ Objective-C:
 
 ## Installation
 
-This example app integrates the Thunderhead SDK using [CocoaPods](https://github.com/thunderheadone/one-sdk-ios#cocoapods).  To integrate via manual installation, see [here](https://github.com/thunderheadone/one-sdk-ios#manual-installation)
+This example app integrates the Thunderhead SDK using [CocoaPods](https://github.com/thunderheadone/one-sdk-ios#cocoapods).  To integrate via manual installation, see [here](https://github.com/thunderheadone/one-sdk-ios#manual-installation).
 
 ### CocoaPods
 

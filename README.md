@@ -116,7 +116,7 @@ See example project for pod installation [here](https://github.com/thunderheadon
 See example project for manual installation [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/optimizing-programmatically-using-json-example)
 
 *Note:*
-- If you encounter the `No such module 'Thunderhead'` compile error, in **Build Settings**, ensure the **Framework Search Paths** contains the framework filepath. If the framework is placed in your project directory, simply set the framework search path to $(SRCROOT) and set it to recursive.
+- If you encounter the `No such module 'Thunderhead'` compile error, see our [Troubleshooting Guide](TROUBLESHOOTING-GUIDE.md#no-such-module-thunderhead-xcode-compile-error)
 
 #### Adding the SDK dependencies for manual installation
 

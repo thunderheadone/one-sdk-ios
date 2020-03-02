@@ -1,6 +1,7 @@
 # Late Initialization and Reconfiguration Example 
 
 This example app demonstrates how to late initialize and dynamically reconfigure the Thunderhead SDK on the fly.
+This example app demonstrates how to late initialize and dynamically reconfigure the Thunderhead SDK on the fly, and integrates the Thunderhead SDK using [CocoaPods](https://github.com/thunderheadone/one-sdk-ios#cocoapods).  To integrate via manual installation, see [here](https://github.com/thunderheadone/one-sdk-ios#manual-installation)
 
 App Flow Summary:
 1. In [AppDelegate.swift](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/dynamic-initialization-example/Dynamic%20Initialization%20Example/Dynamic%20Initialization%20Example/AppDelegate.swift#L47) `didFinishLaunchingWithOptions` method, the SDK is initialized with empty parameters. (*Late initialization*)
@@ -71,6 +72,8 @@ Objective-C:
 ```
 
 ## Installation
+
+This example app integrates the Thunderhead SDK using [CocoaPods](https://github.com/thunderheadone/one-sdk-ios#cocoapods).  To integrate via manual installation, see [here](https://github.com/thunderheadone/one-sdk-ios#manual-installation)
 
 ### CocoaPods
 

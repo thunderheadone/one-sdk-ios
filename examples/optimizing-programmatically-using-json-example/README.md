@@ -2,19 +2,7 @@
 
 ## Installation
 
-### CocoaPods
-
-Make sure you have the [CocoaPods](http://cocoapods.org) dependency manager installed. You can do so by executing the following command:
-
-```sh
-$ gem install cocoapods
-```
-
-In order to run the app, install the Thunderhead SDK into the Example App using the following command:
-
-```sh
-$ pod install
-```
+This example app integrates the Thunderhead SDK using [manual installation](https://github.com/thunderheadone/one-sdk-ios#manual-installation).  To integrate via Cocoapods, see [here](https://github.com/thunderheadone/one-sdk-ios#cocoapods) 
 
 ## Questions or need help
 

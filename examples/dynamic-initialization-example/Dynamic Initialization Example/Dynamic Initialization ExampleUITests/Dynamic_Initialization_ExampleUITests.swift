@@ -29,7 +29,7 @@ class Dynamic_Initialization_ExampleUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let selectButton = app.buttons["SELECT"]
-        let changeButton = app.buttons["CHANGE"]
+        var changeButton = app.buttons["CHANGE"]
         
         if (selectButton.exists) {
             selectButton.tap()
@@ -39,6 +39,8 @@ class Dynamic_Initialization_ExampleUITests: XCTestCase {
         
         let tablesQuery = app.tables
         tablesQuery/*@START_MENU_TOKEN@*/.staticTexts["United States"]/*[[".cells.staticTexts[\"United States\"]",".staticTexts[\"United States\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        changeButton = app.buttons["CHANGE"]
         changeButton.tap()
         XCTAssertTrue(app.staticTexts["United States"].exists)
         

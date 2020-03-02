@@ -1,5 +1,3 @@
-[![Nevercode build status](https://app.nevercode.io/api/projects/3744108b-e1a9-416a-80b2-ef0f0e405b97/workflows/4aece572-e257-461e-9b1c-3b449e3808d5/status_badge.svg?branch=master&style=shields)](https://app.nevercode.io/#/project/3744108b-e1a9-416a-80b2-ef0f0e405b97/workflow/4aece572-e257-461e-9b1c-3b449e3808d5/latestBuild?branch=master)
-
 # Late Initialization and Reconfiguration Example 
 
 This example app demonstrates how to late initialize and dynamically reconfigure the Thunderhead SDK on the fly.

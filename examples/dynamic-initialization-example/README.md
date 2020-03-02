@@ -1,7 +1,8 @@
+[![Nevercode build status](https://app.nevercode.io/api/projects/3744108b-e1a9-416a-80b2-ef0f0e405b97/workflows/4aece572-e257-461e-9b1c-3b449e3808d5/status_badge.svg?branch=master&style=shields)](https://app.nevercode.io/#/project/3744108b-e1a9-416a-80b2-ef0f0e405b97/workflow/4aece572-e257-461e-9b1c-3b449e3808d5/latestBuild?branch=master)
+
 # Late Initialization and Reconfiguration Example 
 
 This example app demonstrates how to late initialize and dynamically reconfigure the Thunderhead SDK on the fly.
-This example app demonstrates how to late initialize and dynamically reconfigure the Thunderhead SDK on the fly, and integrates the Thunderhead SDK using [CocoaPods](https://github.com/thunderheadone/one-sdk-ios#cocoapods).  To integrate via manual installation, see [here](https://github.com/thunderheadone/one-sdk-ios#manual-installation)
 
 App Flow Summary:
 1. In [AppDelegate.swift](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/dynamic-initialization-example/Dynamic%20Initialization%20Example/Dynamic%20Initialization%20Example/AppDelegate.swift#L47) `didFinishLaunchingWithOptions` method, the SDK is initialized with empty parameters. (*Late initialization*)

@@ -1,3 +1,5 @@
+![Nevercode build status](https://app.nevercode.io/api/projects/4714447b-05e5-45ff-921e-ea60c07e6ef2/workflows/b09232cf-8cac-453c-b9db-b08c7d96428e/status_badge.svg?branch=master)
+
 # Optimizing Programatically Using JSON Example 
 
 ## Installation

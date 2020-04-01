@@ -6,7 +6,7 @@ target 'Dynamic Initialization Example' do
   use_frameworks!
 
   # Pods for Dynamic Initialization Example
-  pod 'Thunderhead', :git => 'https://github.com/thunderheadone/one-sdk-ios.git', :tag => '5.0.0'
+  pod 'Thunderhead'
   
   target 'Dynamic Initialization ExampleTests' do
     inherit! :search_paths

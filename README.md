@@ -22,16 +22,16 @@
   * [Manually set a specific Interaction path](#manually-set-a-specific-interaction-path)
   * [Exclude an Interaction](#exclude-an-interaction)
   * [Disable automatic Interaction detection](#disable-automatic-interaction-detection)
-  * [Send an Interaction request programmatically](#send-an-interaction-request-programmatically)
-  * [Send an Interaction request programmatically with a completion block](#send-an-interaction-request-programmatically-with-a-completion-block)
-  * [Retrieve a response for a UIViewController instance](#retrieve-a-response-for-a-uiviewcontroller-instance)
-    + [Retrieve a response for a UIViewController instance](#retrieve-a-response-for-a-uiviewcontroller-instance-1)
+  * [Send Interactions to Thunderhead ONE or Salesforce Interaction Studio](#send-interactions-to-thunderhead-one-or-salesforce-interaction-studio)
+    + [Send an Interaction request](#send-an-interaction-request)
+    + [Send an Interaction request and retrieve the response](#send-an-interaction-request-and-retrieve-the-response)
+  * [Retrieve a response for an automatically triggered Interaction request](#retrieve-a-response-for-an-automatically-triggered-interaction-request)
     + [Retrieve a response for other instances](#retrieve-a-response-for-other-instances)
   * [Send Properties to Thunderhead ONE or Salesforce Interaction Studio](#send-properties-to-thunderhead-one-or-salesforce-interaction-studio)
-    + [Send properties to a base touchpoint](#send-properties-to-a-base-touchpoint)
-    + [Send an Interaction request with properties](#send-an-interaction-request-with-properties)
-    + [Send an Interaction request with properties and a completion block](#send-an-interaction-request-with-properties-and-a-completion-block)
-    + [Send properties to an Interaction](#send-properties-to-an-interaction)
+    + [Send Properties to a base touchpoint](#send-properties-to-a-base-touchpoint)
+    + [Send Properties to an Interaction](#send-properties-to-an-interaction)
+    + [Send an Interaction request with Properties](#send-an-interaction-request-with-properties)
+    + [Send an Interaction request with Properties and retrieve the response](#send-an-interaction-request-with-properties-and-retrieve-the-response)
     + [Send a response code](#send-a-response-code)
   * [Identity sync](#identity-sync)
     + [Identity sync with Thunderhead ONE or Salesforce Interaction Studio](#identity-sync-with-thunderhead-one-or-salesforce-interaction-studio)
@@ -39,7 +39,7 @@
   * [Ability to whitelist identity transfer links](#ability-to-whitelist-identity-transfer-links)
   * [Ability to blacklist identity transfer links](#ability-to-blacklist-identity-transfer-links)
   * [Disable automatic identity transfer](#disable-automatic-identity-transfer)
-    + [Send properties for a URL scheme](#send-properties-for-a-url-scheme)
+    + [Send Properties for a URL scheme](#send-properties-for-a-url-scheme)
     + [Append a ‘one-tid’ parameter to a `NSURL` to facilitate identity transfer](#append-a-one-tid-parameter-to-a-nsurl-to-facilitate-identity-transfer)
   * [Disable automatic outbound link tracking](#disable-automatic-outbound-link-tracking)
     + [Programmatically trigger an outbound link tracking Interaction call](#programmatically-trigger-an-outbound-link-tracking-interaction-call)
@@ -106,11 +106,11 @@ See example project for pod installation [here](https://github.com/thunderheadon
 2. Open your existing iOS application Xcode project.
 3. Import the Thunderhead.embeddedframework into your project.
 4. Confirm the SDK files have been added to your project, as follows:
-	+ Navigate to your project build settings by selecting your project's Project File in the Project Navigator.
-	+ Select the main build target for your app.
-	+ Select the **Build Phases** tab.
-	+ Confirm **_Thunderhead.framework_** is located in the **Link Binary With Libraries** section.
-	+ Confirm **_ThunderheadBundle.bundle_** is located in the **Copy Bundle Resources** section.
+    + Navigate to your project build settings by selecting your project's Project File in the Project Navigator.
+    + Select the main build target for your app.
+    + Select the **Build Phases** tab.
+    + Confirm **_Thunderhead.framework_** is located in the **Link Binary With Libraries** section.
+    + Confirm **_ThunderheadBundle.bundle_** is located in the **Copy Bundle Resources** section.
 5. Ensure your project enables modules by going to **Build Settings** tab and setting the flag for **Enable Modules (C and Objective-C)** to **Yes**. Check out **_Adding the SDK dependencies for manual installation_** if you need modules to be disabled.
 
 See example project for manual installation [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/optimizing-programmatically-using-json-example).
@@ -158,18 +158,18 @@ Enable your app to automatically recognize **Interactions** by executing the fol
 Complete the following steps to initialize the SDK.
 
 #### Import the SDK’s module
-1.	Open your App Delegate file.
-2.	Add the following line at the top of the file below your own import statements:
+1.    Open your App Delegate file.
+2.    Add the following line at the top of the file below your own import statements:
 
-	Swift:
-	```swift
-	import Thunderhead
-	```
+    Swift:
+    ```swift
+    import Thunderhead
+    ```
 
-	Objective-C:
-	```objective-c
-	@import Thunderhead;
-	```
+    Objective-C:
+    ```objective-c
+    @import Thunderhead;
+    ```
 
 #### Set up the Framework in User mode
 
@@ -180,22 +180,22 @@ With your parameters ready at hand, add the following lines to the top of the `d
 Swift:
 ```swift
 One.startSessionWithSK("ONE-XXXXXXXXXX-1022",
-	uri:"myAppsNameURI",
-	apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
-	sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx",
-	userId:"api@yourCompanyName",
-	adminMode:false,
-	hostName:"eu2.thunderhead.com")
+    uri:"myAppsNameURI",
+    apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
+    sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx",
+    userId:"api@yourCompanyName",
+    adminMode:false,
+    hostName:"eu2.thunderhead.com")
 ```
 
 
 Objective-C:
 ```objective-c
 [One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
-	            uri:@"myAppsNameURI"
-	         apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
+                uri:@"myAppsNameURI"
+             apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
            sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-	         userId:@"api@yourCompanyName"
+             userId:@"api@yourCompanyName"
               adminMode:NO
                hostName:@"eu2.thunderhead.com"];
 ```
@@ -207,24 +207,24 @@ To use the framework in Admin mode, simply change the `adminMode` boolean to `tr
 Swift:
 ```swift
 One.startSessionWithSK("ONE-XXXXXXXXXX-1022",
-	uri:"myAppsNameURI",
-	apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
-	sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx",
-	userId:"api@yourCompanyName",
-	adminMode:true,
-	hostName:"eu2.thunderhead.com")
+    uri:"myAppsNameURI",
+    apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
+    sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx",
+    userId:"api@yourCompanyName",
+    adminMode:true,
+    hostName:"eu2.thunderhead.com")
 ```
 
 
 Objective-C:
 ```objective-c
 [One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
-		    uri:@"myAppsNameURI"
-		 apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
-	   sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-		 userId:@"api@yourCompanyName"
-	      adminMode:YES
-	       hostName:@"eu2.thunderhead.com"];
+            uri:@"myAppsNameURI"
+         apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
+       sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
+         userId:@"api@yourCompanyName"
+          adminMode:YES
+           hostName:@"eu2.thunderhead.com"];
 ```
 #### For Salesforce Interaction Studio integrations
 
@@ -289,9 +289,9 @@ In your `viewDidLoad` or any other view lifecycle methods, which come before `vi
 Swift:
 ```swift
 override func viewDidLoad() {
-	super.viewDidLoad()
-	// Do any additional setup after loading the view
-	self.oneInteractionPath = "/myCustomInteractionPath"
+    super.viewDidLoad()
+    // Do any additional setup after loading the view
+    self.oneInteractionPath = "/myCustomInteractionPath"
 }
 ```
 
@@ -299,9 +299,9 @@ override func viewDidLoad() {
 Objective-C:
 ```objective-c
 - (void)viewDidLoad {
-	[super viewDidLoad];
-	// Do any additional setup after loading the view.
-	self.oneInteractionPath = @"/myCustomInteractionPath";
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.oneInteractionPath = @"/myCustomInteractionPath";
 }
 ```
 
@@ -317,9 +317,9 @@ In your `viewDidLoad` or any other view lifecycle methods, which come before the
 Swift:
 ```swift
 override func viewDidLoad() {
-	super.viewDidLoad()
-	// Do any additional setup after loading the view
-	self.excludeInteractionPath = true
+    super.viewDidLoad()
+    // Do any additional setup after loading the view
+    self.excludeInteractionPath = true
 }
 ```
 
@@ -327,9 +327,9 @@ override func viewDidLoad() {
 Objective-C:
 ```objective-c
 - (void)viewDidLoad {    
-	[super viewDidLoad];
-	// Do any additional setup after loading the view.
-	self.excludeInteractionPath = YES;
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    self.excludeInteractionPath = YES;
 }
 ```
 
@@ -356,7 +356,9 @@ By disabling automatic Interaction detection, the SDK will no longer automatical
 
 You can set this back to false at any point to restart automatic Interaction detection.
 
-### Send an Interaction request programmatically
+### Send Interactions to Thunderhead ONE or Salesforce Interaction Studio
+
+#### Send an Interaction request
 
 You can send an Interaction request programmatically by calling the `sendInteraction` method and passing an Interaction path as a parameter as shown below:
 
@@ -375,18 +377,18 @@ Objective-C:
 - This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio. Only the tid from the response will be used by the SDK - all other response objects will be ignored.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-### Send an Interaction request programmatically with a completion block
+#### Send an Interaction request and retrieve the response
 
-You can send an Interaction request programmatically by passing an Interaction path and a completion block as a parameters, as shown below:
+You can send an Interaction request programmatically and retrieve its response by passing an Interaction path and a completion block as a parameters, as shown below:
 
 Swift:
 ```swift
 One.sendInteraction("/InteractionPath") { (response, error) -> Void in
-	if (error == nil) {
-		if let response = response {
-			One.processResponse(response)
-		}
-	}
+    if (error == nil) {
+        if let response = response {
+            One.processResponse(response)
+        }
+    }
 }
 ```
 
@@ -394,9 +396,9 @@ One.sendInteraction("/InteractionPath") { (response, error) -> Void in
 Objective-C:
 ```objective-c
 [One sendInteraction:@"/InteractionPath" withBlock:^(NSDictionary *response, NSError *error) {
-	if (!error) {
-		[One processResponse:response];
-	}
+    if (!error) {
+        [One processResponse:response];
+    }
 }];
 ```
 The response can be passed to the `processResponse` method as a parameter, as shown above. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
@@ -405,184 +407,182 @@ The response can be passed to the `processResponse` method as a parameter, as sh
 - This will send a `POST` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-### Retrieve a response for a UIViewController instance
+### Retrieve a response for an automatically triggered Interaction request
 
 You can retrieve a response for a specific automatically triggered Interaction request by making your object conform to the protocol `OneInteractionResponseDelegate`. Your object might be an instance of `UIViewController` or any other class. Follow the instructions below in order to set up this functionality depending on your object’s class.
-
-#### Retrieve a response for a UIViewController instance
 
 If your object is an instance of `UIViewController` class, perform the next steps to get a response for an automatically triggered Interaction request.
 
 1. Add an object, which will be receiving the response, as a parameter to a method `addInteractionResponseDelegate` as shown below:
 
-	Swift:
-	```swift
-	One.addInteractionResponseDelegate(<your-object>)
-	```
+    Swift:
+    ```swift
+    One.addInteractionResponseDelegate(<your-object>)
+    ```
 
 
-	Objective-C:
-	```objective-c
-	[One addInteractionResponseDelegate:<your-object>];
-	```
+    Objective-C:
+    ```objective-c
+    [One addInteractionResponseDelegate:<your-object>];
+    ```
 
 *Note:*
 - The SDK will weakly store your object, so you need to keep a strong reference to it somewhere.
 
 2. Make your object conform to the protocol `OneInteractionResponseDelegate`:
 
-	Swift:
-	```swift
-	class MyViewController: UIViewController, OneInteractionResponseDelegate
-	```
+    Swift:
+    ```swift
+    class MyViewController: UIViewController, OneInteractionResponseDelegate
+    ```
 
 
-	Objective-C:
-	```objective-c
-	@interface MyViewController() <OneInteractionResponseDelegate>
-	```
+    Objective-C:
+    ```objective-c
+    @interface MyViewController() <OneInteractionResponseDelegate>
+    ```
 
 3. If the automatic Interaction detection is switched off, set a value to oneInteractionPath property of your object:
 
-	Swift:
-	```swift
-	self.oneInteractionPath = "/InteractionPath";
-	```
+    Swift:
+    ```swift
+    self.oneInteractionPath = "/InteractionPath";
+    ```
 
 
-	Objective-C:
-	```objective-c
-	self.oneInteractionPath = @"/InteractionPath";
-	```
+    Objective-C:
+    ```objective-c
+    self.oneInteractionPath = @"/InteractionPath";
+    ```
 
-4.	Implement a protocol’s required method as shown below:
+4.    Implement a protocol’s required method as shown below:
 
-	Swift:
-	```swift
-	func interaction(interactionPath: String!, didReceiveResponse response: [NSObject : AnyObject]!) {
+    Swift:
+    ```swift
+    func interaction(interactionPath: String!, didReceiveResponse response: [NSObject : AnyObject]!) {
         if (response != nil) {
             // Work with the response.
             /* Pass on the response to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction. */ 
             One.processResponse(response)
         }
-	}
-	```
+    }
+    ```
 
 
-	Objective-C:
-	```objective-c
-	- (void)interaction:(NSString *)interactionPath didReceiveResponse:(NSDictionary *)response {
-    	if (response) {
-    		// Do something with the response.
-    		// Pass on the response to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
-    		[One processResponse:response];
-    	}
-	}
-	```
+    Objective-C:
+    ```objective-c
+    - (void)interaction:(NSString *)interactionPath didReceiveResponse:(NSDictionary *)response {
+        if (response) {
+            // Do something with the response.
+            // Pass on the response to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
+            [One processResponse:response];
+        }
+    }
+    ```
 
 The method returns an Interaction path and a corresponding Interaction response. You can process the response in the delegate callback. Once processed, pass on the response using `processResponse` method to let the SDK process the response - attaching any capture, track or optimize instructions to the Interaction. Example code can be found [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L45).
 
 5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below:
 
-	Swift:
-	```swift
-	One.removeInteractionResponseDelegate(<your-object>)
-	```
+    Swift:
+    ```swift
+    One.removeInteractionResponseDelegate(<your-object>)
+    ```
 
 
-	Objective-C:
-	```objective-c
-	[One removeInteractionResponseDelegate:<your-object>];
-	```
+    Objective-C:
+    ```objective-c
+    [One removeInteractionResponseDelegate:<your-object>];
+    ```
 
 #### Retrieve a response for other instances
 
 If your object is not an instance of `UIViewController` class, perform the next steps to get a response for an automatically triggered Interaction request.
 
-1.	Add an object, which will be receiving the response, as a parameter to a method `addInteractionResponseDelegate` as shown below:
+1.    Add an object, which will be receiving the response, as a parameter to a method `addInteractionResponseDelegate` as shown below:
 
-	Swift:
-	```swift
-	One.addInteractionResponseDelegate(<your-object>)
-	```
+    Swift:
+    ```swift
+    One.addInteractionResponseDelegate(<your-object>)
+    ```
 
 
-	Objective-C:
-	```objective-c
-	[One addInteractionResponseDelegate:<your-object>];
-	```
+    Objective-C:
+    ```objective-c
+    [One addInteractionResponseDelegate:<your-object>];
+    ```
 
 *Note:*
 - The SDK will weakly store your object, so you need to keep a strong reference to it somewhere.
 
 2. Make your object conform to the protocol `OneInteractionResponseDelegate`:
 
-	Swift:
-	```swift
-	class YourObject: YourObjectClass, OneInteractionResponseDelegate
-	```
+    Swift:
+    ```swift
+    class YourObject: YourObjectClass, OneInteractionResponseDelegate
+    ```
 
 
-	Objective-C:
-	```objective-c
-	@interface YourObject() <OneInteractionResponseDelegate>;
-	```
+    Objective-C:
+    ```objective-c
+    @interface YourObject() <OneInteractionResponseDelegate>;
+    ```
 
 3. Declare a variable `oneInteractionPath` and set its value:
 
-	Swift:
-	```swift
-	class YourObject: YourObjectClass, OneInteractionResponseDelegate {
-		var oneInteractionPath: String! = "/InteractionPath"
-		...
-	}
-	```
+    Swift:
+    ```swift
+    class YourObject: YourObjectClass, OneInteractionResponseDelegate {
+        var oneInteractionPath: String! = "/InteractionPath"
+        ...
+    }
+    ```
 
 
-	Objective-C:
-	```objective-c
-	<your-object>.oneInteractionPath = @"/InteractionPath";
-	```
+    Objective-C:
+    ```objective-c
+    <your-object>.oneInteractionPath = @"/InteractionPath";
+    ```
 
-4.	Implement a protocol’s required method as shown below:
+4.    Implement a protocol’s required method as shown below:
 
-	Swift:
-	```swift
-	func interaction(interactionPath: String!, didReceiveResponse response: [NSObject : AnyObject]!) {
+    Swift:
+    ```swift
+    func interaction(interactionPath: String!, didReceiveResponse response: [NSObject : AnyObject]!) {
         if (response != nil) {
             // Work with the response.
-        	// Pass on the response to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
-        	One.processResponse(response)
+            // Pass on the response to Thunderhead SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
+            One.processResponse(response)
         }
-	}
-	```
+    }
+    ```
 
 
-	Objective-C:
-	```objective-c
-	- (void)interaction:(NSString *)interactionPath didReceiveResponse:(NSDictionary *)response {
-    	if (response) {
-    		// Do something with the response.
-    		// Pass on the response to ONE SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
-    		[One processResponse:response];
-    	}
-	}
-	```
+    Objective-C:
+    ```objective-c
+    - (void)interaction:(NSString *)interactionPath didReceiveResponse:(NSDictionary *)response {
+        if (response) {
+            // Do something with the response.
+            // Pass on the response to ONE SDK. This method returns the response to the SDK to process - attaching any capture, track or optimize instructions to the Interaction.
+            [One processResponse:response];
+        }
+    }
+    ```
 
 The above mentioned method returns an Interaction path and a corresponding Interaction response. You can process the response in the delegate callback. Once processed, pass on the response using `processResponse` method to let the SDK process the response - attaching any capture, track or optimize instructions to the Interaction. Example code can be found [here](https://github.com/thunderheadone/one-sdk-ios/blob/master/examples/optimizing-programmatically-using-json-example/Content%20Orchestration%20Example/Content%20Orchestration%20Example/FirstViewController.swift#L45).
 
 5. If you no longer need to obtain response for automatically triggered Interaction request, you can either nullify your object or call the SDK’s method `removeInteractionResponseDelegate` as shown below:
 
-	Swift:
-	```swift
-	One.removeInteractionResponseDelegate(<your-object>)
-	```
+    Swift:
+    ```swift
+    One.removeInteractionResponseDelegate(<your-object>)
+    ```
 
 
-	Objective-C:
-	```objective-c
-	[One removeInteractionResponseDelegate:<your-object>];
-	```
+    Objective-C:
+    ```objective-c
+    [One removeInteractionResponseDelegate:<your-object>];
+    ```
 
 
 ### Send Properties to Thunderhead ONE or Salesforce Interaction Studio
@@ -600,9 +600,9 @@ Objective-C:
 NSDictionary *myProperties = @{@"Key1":@"Value1", @"Key2":@"Value2"};
 ```
 
-#### Send properties to a base touchpoint
+#### Send Properties to a base touchpoint
 
-To send properties to a base touchpoint, call the following public method and pass in your dictionary of key/value pair strings:
+To send Properties to a base touchpoint, call the following public method and pass in your dictionary of key/value pair strings:
 
 Swift:
 ```swift
@@ -619,9 +619,28 @@ Objective-C:
 - This will send a PUT request to Thunderhead ONE or Salesforce Interaction Studio.
 - Properties sent to a base touchpoint will be captured under a base (`/`) or wildcard (`/*`) Interaction in Thunderhead ONE or Salesforce Interaction Studio.
 
-#### Send an Interaction request with properties
+#### Send Properties to an Interaction
 
-You can send an Interaction request with Interaction properties by calling the method below, passing Interaction path and dictionary of properties to it:
+To send Properties to a specific Interaction, call the following public method, passing in your dictionary of key/value pair strings and providing the Interaction path:
+
+Swift:
+```swift
+One.sendProperties(myProperties, forInteractionPath:"/interactionPath")
+```
+
+
+Objective-C:
+```objective-c
+[One sendProperties:myProperties forInteractionPath:@"/interactionPath"];
+```
+
+*Note:*
+- This will send a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
+- When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
+
+#### Send an Interaction request with Properties
+
+You can send an Interaction request with Interaction Properties by calling the method below, passing Interaction path and dictionary of Properties to it:
 
 Swift:
 ```swift
@@ -639,19 +658,19 @@ Objective-C:
 - Only the tid from the response will be used by the SDK - all other response objects will be ignored.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
-#### Send an Interaction request with properties and a completion block
+#### Send an Interaction request with Properties and retrieve the response
 
-You can send an Interaction request with properties and a completion block by calling the method below, passing an Interaction path, a dictionary of properties and a completion block to it:
+You can send an Interaction request with Properties and retrieve its response by calling the method below, passing an Interaction path, a dictionary of Properties and a completion block to it:
 
 Swift:
 ```swift
 One.sendInteraction("/interactionPath", withProperties:myProperties) {
-	(response, error) in
-		if (error == nil) {
-			if let response = response {
-				One.processResponse(response)
-			}
-		}
+    (response, error) in
+        if (error == nil) {
+            if let response = response {
+                One.processResponse(response)
+            }
+        }
 }
 ```
 
@@ -659,9 +678,9 @@ One.sendInteraction("/interactionPath", withProperties:myProperties) {
 Objective-C:
 ```objective-c
 [One sendInteraction:@"/interactionPath" withProperties:myProperties andBlock:^(NSDictionary *response, NSError *error) {
-	if (!error) {
-		[One processResponse:response];
-	}
+    if (!error) {
+        [One processResponse:response];
+    }
 }];
 ```
 
@@ -670,25 +689,6 @@ Objective-C:
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 The response can be passed to the `processResponse` method as a parameter as shown above. This method returns the response to the SDK to process, attaching any capture, track or optimize instructions to the Interaction.
-
-#### Send properties to an Interaction
-
-To send properties to a specific Interaction, call the following public method, passing in your dictionary of key/value pair strings and providing the Interaction path:
-
-Swift:
-```swift
-One.sendProperties(myProperties, forInteractionPath:"/interactionPath")
-```
-
-
-Objective-C:
-```objective-c
-[One sendProperties:myProperties forInteractionPath:@"/interactionPath"];
-```
-
-*Note:*
-- This will send a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
-- When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
 #### Send a response code
 
@@ -820,7 +820,7 @@ Objective-C:
 *Note:*
 - If a link is blacklisted, a `one-tid` will be appended to all other links but the blacklisted link.
 
-###	Disable automatic identity transfer
+###    Disable automatic identity transfer
 
 By default, the SDK adds ‘one-tid’ as a URL query parameter to outgoing network requests. To disable it, call the method `disableIdentityTransfer` by passing `true` as shown below:
 
@@ -838,7 +838,7 @@ Objective-C:
 *Note:*
 - This will also disable the ability to automatically pick up parameters from deep links that open the app, whilst also preventing the SDK from adding a ‘one-tid’ as a URL query parameter to web links opened from the app, resulting in the customer's identity not being transferred as they move across channels.
 
-#### Send properties for a URL scheme
+#### Send Properties for a URL scheme
 
 If you have disabled automatic identity transfer you can still send all URL parameters received as part of a URL scheme, which opens your app, by calling:
 
@@ -858,8 +858,8 @@ passing the URL as a parameter into the handleURL SDK public method, as shown be
 Swift:
 ```swift
 func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool  {
-	One.handleURL(yourNSURL)
-	return true
+    One.handleURL(yourNSURL)
+    return true
 }
 ```
 
@@ -867,8 +867,8 @@ func application(app: UIApplication, openURL url: NSURL, options: [String : AnyO
 Objective-C:
 ```objective-c
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-	[One handleURL:url];
-	return YES;
+    [One handleURL:url];
+    return YES;
 }
 ```
 *Note:*
@@ -943,21 +943,21 @@ passing the URL which will send an Interaction request ‘/one-click’ using th
 
 To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, take the following steps:
 
-1.	Enable Push Notifications in Capabilities pane
-2.	Enable Background Modes in Capabilities pane
-3.	Select Remote Notifications under Background Modes section
-4.	Call the method `enablePushNotifications` by passing `true` as shown below:
+1.    Enable Push Notifications in Capabilities pane
+2.    Enable Background Modes in Capabilities pane
+3.    Select Remote Notifications under Background Modes section
+4.    Call the method `enablePushNotifications` by passing `true` as shown below:
 
-	Swift:
-	```swift
-	One.enablePushNotifications(true)
-	```
+    Swift:
+    ```swift
+    One.enablePushNotifications(true)
+    ```
 
 
-	Objective-C:
-	```objective-c
-	[One enablePushNotifications:YES];
-	```
+    Objective-C:
+    ```objective-c
+    [One enablePushNotifications:YES];
+    ```
 
 *Note:*
 - To disable this feature if it once was enabled, simply call the same method and pass `false`.   
@@ -1002,8 +1002,8 @@ The push token can be obtained and sent from the app delegate’s method `didReg
 Swift:
 ```swift
 func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-	One.sendPushToken(deviceToken)
-	// work with the push token
+    One.sendPushToken(deviceToken)
+    // work with the push token
 }
 ```
 
@@ -1012,8 +1012,8 @@ Objective-C:
 ```objective-c
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-	[One sendPushToken:deviceToken];
-	// work with the push token
+    [One sendPushToken:deviceToken];
+    // work with the push token
 }
 ```
 
@@ -1027,11 +1027,11 @@ Objective-C:
 Swift:
 ```swift
 func application(_ application: UIApplication, 
-	 didReceiveRemoteNotification userInfo: [AnyHashable : Any], 
-   	 fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-	 // Handle notification 
-	 // Call `completionHandler` with the appropriate `UIBackgroundFetchResult`. For example:
-	 completionHandler(.newData)
+     didReceiveRemoteNotification userInfo: [AnyHashable : Any], 
+        fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+     // Handle notification 
+     // Call `completionHandler` with the appropriate `UIBackgroundFetchResult`. For example:
+     completionHandler(.newData)
 }
 ```
 
@@ -1039,12 +1039,12 @@ func application(_ application: UIApplication,
 Objective-C:
 ```objective-c
 - (void)application:(UIApplication *)application 
-	didReceiveRemoteNotification:(NSDictionary *)userInfo 
-	fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
+    didReceiveRemoteNotification:(NSDictionary *)userInfo 
+    fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
 {
     // Handle notification 
-	// Call `completionHandler` with the appropriate `UIBackgroundFetchResult`. For example:
-	completionHandler(UIBackgroundFetchResultNewData);
+    // Call `completionHandler` with the appropriate `UIBackgroundFetchResult`. For example:
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 ```
 
@@ -1062,8 +1062,8 @@ Swift:
 func userNotificationCenter(_ center: UNUserNotificationCenter, 
                          willPresent notification: UNNotification, 
                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-	// Handle notification
-	completionHandler([.alert, .badge, .sound])
+    // Handle notification
+    completionHandler([.alert, .badge, .sound])
 }
 ```
 
@@ -1074,8 +1074,8 @@ Objective-C:
        willPresentNotification:(UNNotification *)notification 
          withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
 {
-	// Handle notification
-	completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound);
+    // Handle notification
+    completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound);
 }
 ```
 
@@ -1100,7 +1100,7 @@ passing the location object as a parameter to the `updateLocation` method. Use `
 Swift:
 ```swift
 func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-	One.updateLocation(locations.first)
+    One.updateLocation(locations.first)
 }
 ```
 
@@ -1108,7 +1108,7 @@ func locationManager(manager: CLLocationManager, didUpdateLocations locations: [
 Objective-C:
 ```objective-c
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-	[One updateLocation:[locations firstObject]];
+    [One updateLocation:[locations firstObject]];
 }
 ```
 
@@ -1119,9 +1119,9 @@ To get a structure data, call `getStructureData` method by passing a structure�
 Swift:
 ```swift
 One.getStructureData("yourStructureName") { (response, error) in
-	if (error == nil) {
-		// work with response
-	}
+    if (error == nil) {
+        // work with response
+    }
 }
 ```
 
@@ -1129,9 +1129,9 @@ One.getStructureData("yourStructureName") { (response, error) in
 Objective-C:
 ```objective-c
 [One getStructureData:@"yourStructureName" withBlock:^(NSDictionary *response, NSError *error) {
-	if (!error) {
-		// work with response
-	}
+    if (!error) {
+        // work with response
+    }
 }];
 ```
 
@@ -1161,55 +1161,55 @@ The Thunderhead SDK for iOS provides 4 distinct debugging levels, that can be en
 
 1. `kOneLogLevelNone` - if set, no messages will be displayed in the console.
 
-	Swift:
-	```swift
-	One.setLogLevel(.None)
-	```
+    Swift:
+    ```swift
+    One.setLogLevel(.None)
+    ```
 
 
-	Objective-C:
-	```objective-c
-	[One setLogLevel:kOneLogLevelNone];
-	```
+    Objective-C:
+    ```objective-c
+    [One setLogLevel:kOneLogLevelNone];
+    ```
 
 2. `kOneLogLevelAll` - if set, all log messages will be displayed in the console.
 
-	Swift:
-	```swift
-	One.setLogLevel(.All)
-	```
+    Swift:
+    ```swift
+    One.setLogLevel(.All)
+    ```
 
 
-	Objective-C:
-	```objective-c
-	[One setLogLevel:kOneLogLevelAll];
-	```
+    Objective-C:
+    ```objective-c
+    [One setLogLevel:kOneLogLevelAll];
+    ```
 
 3. `kOneLogLevelWebService` - if set, only web service logs will be displayed in the console.
 
-	Swift:
-	```swift
-	One.setLogLevel(.WebService)
-	```
+    Swift:
+    ```swift
+    One.setLogLevel(.WebService)
+    ```
 
 
-	Objective-C:
-	```objective-c
-	[One setLogLevel:kOneLogLevelWebService];
-	```
+    Objective-C:
+    ```objective-c
+    [One setLogLevel:kOneLogLevelWebService];
+    ```
 
 4. `kOneLogLevelFramework` - if set, only framework logs will be displayed in the console.
 
-	Swift:
-	```swift
-	One.setLogLevel(.Framework)
-	```
+    Swift:
+    ```swift
+    One.setLogLevel(.Framework)
+    ```
 
 
-	Objective-C:
-	```objective-c
-	[One setLogLevel:kOneLogLevelFramework];
-	```
+    Objective-C:
+    ```objective-c
+    [One setLogLevel:kOneLogLevelFramework];
+    ```
 
 *Note:*
 - By default, the Thunderhead SDK for iOS does not display any debug log messages. However, exception messages are printed in the console, when these occur.

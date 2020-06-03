@@ -3,19 +3,19 @@
 ## Table of Contents
 
 - [Requirements](#requirements)
-  * [iOS Version Requirements](#ios-version-requirements)
+  * [iOS version requirements](#ios-version-requirements)
 - [Installation](#installation)
   * [CocoaPods](#cocoapods)
-  * [Manual Installation](#manual-installation)
+  * [Manual installation](#manual-installation)
     + [Adding the SDK dependencies for manual installation](#adding-the-sdk-dependencies-for-manual-installation)
-    + [Biometric Authentication](#biometric-authentication)
-- [Use the Codeless Thunderhead SDK for iOS](#use-the-codeless-thunderhead-sdk-for-ios)
+    + [Biometric authentication](#biometric-authentication)
+- [Use the codeless Thunderhead SDK for iOS](#use-the-codeless-thunderhead-sdk-for-ios)
   * [Initialize the SDK](#initialize-the-sdk)
     + [Import the SDK’s module](#import-the-sdks-module)
-    + [Set up the Framework in User mode](#set-up-the-framework-in-user-mode)
-    + [Set up the Framework in Admin mode](#set-up-the-framework-in-admin-mode)
+    + [Set up the SDK in User mode](#set-up-the-sdk-in-user-mode)
+    + [Set up the SDK in Admin mode](#set-up-the-sdk-in-admin-mode)
     + [For Salesforce Interaction Studio integrations](#for-salesforce-interaction-studio-integrations)
-    + [View controller/view lifecycle overriding rules](#view-controllerview-lifecycle-overriding-rules)
+    + [`ViewController`/`View` lifecycle overriding rules](#viewcontrollerview-lifecycle-overriding-rules)
 - [Additional features](#additional-features)
   * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
   * [Late initialization and reconfiguration of the SDK](#late-initialization-and-reconfiguration-of-the-sdk)
@@ -28,19 +28,19 @@
   * [Retrieve a response for an automatically triggered Interaction request](#retrieve-a-response-for-an-automatically-triggered-interaction-request)
     + [Retrieve a response for other instances](#retrieve-a-response-for-other-instances)
   * [Send Properties to Thunderhead ONE or Salesforce Interaction Studio](#send-properties-to-thunderhead-one-or-salesforce-interaction-studio)
-    + [Send Properties to a base touchpoint](#send-properties-to-a-base-touchpoint)
+    + [Send Properties to a base Touchpoint](#send-properties-to-a-base-touchpoint)
     + [Send Properties to an Interaction](#send-properties-to-an-interaction)
     + [Send an Interaction request with Properties](#send-an-interaction-request-with-properties)
     + [Send an Interaction request with Properties and retrieve the response](#send-an-interaction-request-with-properties-and-retrieve-the-response)
     + [Send a response code](#send-a-response-code)
   * [Identity sync](#identity-sync)
     + [Identity sync with Thunderhead ONE or Salesforce Interaction Studio](#identity-sync-with-thunderhead-one-or-salesforce-interaction-studio)
-    + [Identity sync with Thunderhead ONE or Salesforce Interaction Studio and your web touchpoint](#identity-sync-with-thunderhead-one-or-salesforce-interaction-studio-and-your-web-touchpoint)
+    + [Identity sync with Thunderhead ONE or Salesforce Interaction Studio and your web Touchpoint](#identity-sync-with-thunderhead-one-or-salesforce-interaction-studio-and-your-web-touchpoint)
   * [Ability to whitelist identity transfer links](#ability-to-whitelist-identity-transfer-links)
   * [Ability to blacklist identity transfer links](#ability-to-blacklist-identity-transfer-links)
   * [Disable automatic identity transfer](#disable-automatic-identity-transfer)
-    + [Send Properties for a URL scheme](#send-properties-for-a-url-scheme)
-    + [Append a ‘one-tid’ parameter to a `NSURL` to facilitate identity transfer](#append-a-one-tid-parameter-to-a-nsurl-to-facilitate-identity-transfer)
+    + [Send Properties for a `URL`one-tid scheme](#send-properties-for-a-url-scheme)
+    + [Append a `one-tid` parameter to a `NSURL` to facilitate identity transfer](#append-a-one-tid-parameter-to-a-nsurl-to-facilitate-identity-transfer)
   * [Disable automatic outbound link tracking](#disable-automatic-outbound-link-tracking)
     + [Programmatically trigger an outbound link tracking Interaction call](#programmatically-trigger-an-outbound-link-tracking-interaction-call)
   * [Enable push notifications](#enable-push-notifications)
@@ -52,19 +52,19 @@
   * [Send a location object](#send-a-location-object)
   * [Get a structure data](#get-a-structure-data)
   * [Get Tid](#get-tid)
-  * [Access Debug Information](#access-debug-information)
+  * [Access debug information](#access-debug-information)
   * [Identify the framework version](#identify-the-framework-version)
   * [Clear the user profile](#clear-the-user-profile)
-- [Troubleshooting Guide](#troubleshooting-guide)
+- [Troubleshooting guide](#troubleshooting-guide)
 - [Questions or need help](#questions-or-need-help)
-  * [Salesforce Interaction Studio Support](#salesforce-interaction-studio-support)
-  * [Thunderhead ONE Support](#thunderhead-one-support)
+  * [Salesforce Interaction Studio support](#salesforce-interaction-studio-support)
+  * [Thunderhead ONE support](#thunderhead-one-support)
 
 ## Requirements
 
 The Thunderhead SDK for iOS supports iOS 8.0 and above.
 
-### iOS Version Requirements
+### iOS version requirements
 
 + iOS minimum version (deployment target): iOS 8.0
 + iOS base SDK version: iOS 13.0
@@ -100,7 +100,7 @@ $ pod install
 
 See example project for pod installation [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/dynamic-initialization-example).
 
-### Manual Installation
+### Manual installation
 
 1. [Download the latest Thunderhead SDK for iOS](https://github.com/thunderheadone/one-sdk-ios/releases) and extract the zip.
 2. Open your existing iOS application Xcode project.
@@ -135,7 +135,7 @@ The SDK requires modules to be enabled. If you require modules to be disabled, y
 *Note:*
 - If any of the frameworks are missing from your app, select the +icon in the lower-left corner of the **Link Binary With Libraries** section and add each framework, as needed, using the popup window.
 
-#### Biometric Authentication
+#### Biometric authentication
 
 The SDK supports biometric authentication (Touch ID / Face ID) in Admin mode
 
@@ -149,7 +149,7 @@ The SDK supports biometric authentication (Touch ID / Face ID) in Admin mode
 
 to your `Info.plist` file. Failure to do so results in a dialog that tells the user your app has not provided the Face ID usage description.
 
-## Use the Codeless Thunderhead SDK for iOS
+## Use the codeless Thunderhead SDK for iOS
 
 Enable your app to automatically recognize **Interactions** by executing the following steps.
 
@@ -171,7 +171,7 @@ Complete the following steps to initialize the SDK.
     @import Thunderhead;
     ```
 
-#### Set up the Framework in User mode
+#### Set up the SDK in User mode
 
 To start tracking, capturing, and receiving optimizations with the Thunderhead SDK in User mode, you must first initialize it with your Thunderhead API parameters. You can find your Thunderhead API parameters on the Thunderhead ONE website or in Salesforce Interaction Studio.
 
@@ -200,7 +200,7 @@ Objective-C:
                hostName:@"eu2.thunderhead.com"];
 ```
 
-#### Set up the Framework in Admin mode
+#### Set up the SDK in Admin mode
 
 To use the framework in Admin mode, simply change the `adminMode` boolean to `true`, as follows:
 
@@ -243,7 +243,7 @@ Objective-C:
 *Note:*
 - By default the SDK will be launched using the Thunderhead ONE theme. You should only use the Interaction Studio theme if you are a Salesforce customer.
 
-#### View controller/view lifecycle overriding rules
+#### `ViewController`/`View` lifecycle overriding rules
 
 The framework listens to a number of UIViewController and UIView methods to provide the desired functionality. Those methods are:
 - `viewWillAppear`
@@ -1155,7 +1155,7 @@ Objective-C:
 - Retrieving the current `tid` can be useful if you want to monitor the current user in Thunderhead ONE or Salesforce Interaction Studio.
 - The tid can also be used if you need to pass the identity of the current user to another system which sends data to Thunderhead ONE or Salesforce Interaction Studio.
 
-### Access Debug Information
+### Access debug information
 
 The Thunderhead SDK for iOS provides 4 distinct debugging levels, that can be enabled in the `didFinishLaunchingWithOptions` method of your project's AppDelegate, as shown below:
 
@@ -1249,13 +1249,13 @@ Objective-C:
 - For instructions on how to completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
 
-## Troubleshooting Guide
-[Troubleshooting Guide](TROUBLESHOOTING-GUIDE.md)
+## Troubleshooting guide
+[Troubleshooting guide](TROUBLESHOOTING-GUIDE.md)
 
 ## Questions or need help
 
-### Salesforce Interaction Studio Support
+### Salesforce Interaction Studio support
 _For Salesforce Marketing Cloud Interaction Studio questions, please submit a support ticket via https://help.salesforce.com/home_
 
-### Thunderhead ONE Support
+### Thunderhead ONE support
 _The Thunderhead team is available 24/7 to answer any questions you have. Just email [onesupport@thunderhead.com](mailto:onesupport@thunderhead.com) or visit our docs page for more detailed installation and usage information._

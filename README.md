@@ -88,7 +88,7 @@ Specify the *Thunderhead SDK* in your podfile
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-    pod 'Thunderhead', '~> 5.1.0'
+    pod 'Thunderhead', '~> 5.1.1'
     end
 ```
 

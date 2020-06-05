@@ -18,7 +18,7 @@
     + [`ViewController`/`View` lifecycle overriding rules](#viewcontrollerview-lifecycle-overriding-rules)
 - [Additional features](#additional-features)
   * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
-  * [Disable In-list Optimization](#disable-in-list-optimization)
+  * [Disable In-list Optimizations](#disable-in-list-optimizations)
   * [Late initialization and reconfiguration of the SDK](#late-initialization-and-reconfiguration-of-the-sdk)
   * [Manually set a specific Interaction path](#manually-set-a-specific-interaction-path)
   * [Exclude an Interaction](#exclude-an-interaction)
@@ -174,7 +174,7 @@ Complete the following steps to initialize the SDK.
 
 #### Set up the SDK in User mode
 
-To start tracking, capturing, and receiving optimizations with the Thunderhead SDK in User mode, you must first initialize it with your Thunderhead API parameters. You can find your Thunderhead API parameters on the Thunderhead ONE website or in Salesforce Interaction Studio.
+To start tracking, capturing, and receiving Optimizations with the Thunderhead SDK in User mode, you must first initialize it with your Thunderhead API parameters. You can find your Thunderhead API parameters on the Thunderhead ONE website or in Salesforce Interaction Studio.
 
 With your parameters ready at hand, add the following lines to the top of the `didFinishLaunchingWithOptions`:
 
@@ -275,9 +275,9 @@ Objective-C:
 - At any point you can opt a user back in by passing `false` into the same method.
 - For instructions on how to completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
-### Disable In-list Optimization
+### Disable In-list Optimizations
 
-To disable in-list optimization, add the following to your app’s Info.plist file and setting `DisableInListOptimization` to `YES` (boolean value).
+To disable in-list Optimizations, add the following to your app’s Info.plist file and setting `DisableInListOptimization` to `YES` (boolean value).
 
 ![Thunderhead Config App's Info.plist file](images/ThunderheadConfigInfoPlistEntry.png)
 
@@ -718,7 +718,7 @@ Objective-C:
 ```
 
 *Note:*
-- This method should be used when displaying optimizations programmatically and you need to capture the user's response.
+- This method should be used when displaying Optimizations programmatically and you need to capture the user's response.
 - This will send a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 

@@ -1,4 +1,4 @@
-![Thunderhead SDK](https://i.imgur.com/gfizURy.png "Thunderhead")
+![Thunderhead SDK](images/Thunderhead_Logo.png)
 
 The Thunderhead SDK for iOS Troubleshooting Guide for Common Implementation Issues.
 
@@ -34,3 +34,41 @@ These are **Apple error logs** logging *all* failed outgoing network connections
 When integrating the Thunderhead SDK manually into your app, you may encounter this compile error.
 
 In **Build Settings**, ensure the **Framework Search Paths** contains the framework filepath. If the framework is placed in your project directory, simply set the framework search path to $(SRCROOT) and set it to recursive.
+
+## How to resolve `UITableView` layout display issues
+
+If you come across issues with how the layout is rendered in your `UITableView`'s, try the following
+
+### Resolve `UITableView` layout issue by implementing `tableView:heightForRowAtIndexPath:`
+- Implement `tableView:heightForRowAtIndexPath:` delegate method in the view controller. The method implementation is required to enable the SDK swizzling implementation to call the original implementation.
+
+Swift:
+```swift
+func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { 
+     return UITableViewAutomaticDimension
+}
+```
+
+Objective-C:
+```objective-c
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewAutomaticDimension;
+}
+```
+
+### Disable the in-list optimization feature via App's Info.plist
+- Disable the in-list optimization feature by adding the following to your app’s Info.plist file and setting `DisableInListOptimization` to `YES` (boolean value).
+
+![Thunderhead Config App's Info.plist file](images/ThunderheadConfigInfoPlistEntry.png)
+
+```xml
+<key>Thunderhead Config</key>
+<dict>
+	<key>Swizzling Options</key>
+	<dict>
+		<key>DisableInListOptimization</key>
+		<true/>
+	</dict>
+</dict>
+```	
+

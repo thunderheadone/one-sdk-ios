@@ -1,4 +1,4 @@
-![Thunderhead SDK](https://i.imgur.com/gfizURy.png "Thunderhead")
+![Thunderhead SDK](images/Thunderhead_Logo.png)
 
 ## Table of Contents
 
@@ -18,6 +18,7 @@
     + [`ViewController`/`View` lifecycle overriding rules](#viewcontrollerview-lifecycle-overriding-rules)
 - [Additional features](#additional-features)
   * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
+  * [Disable in-list Optimizations](#disable-in-list-optimizations)
   * [Late initialization and reconfiguration of the SDK](#late-initialization-and-reconfiguration-of-the-sdk)
   * [Manually set a specific Interaction path](#manually-set-a-specific-interaction-path)
   * [Exclude an Interaction](#exclude-an-interaction)
@@ -39,7 +40,7 @@
   * [Ability to whitelist identity transfer links](#ability-to-whitelist-identity-transfer-links)
   * [Ability to blacklist identity transfer links](#ability-to-blacklist-identity-transfer-links)
   * [Disable automatic identity transfer](#disable-automatic-identity-transfer)
-    + [Send Properties for a `URL`one-tid scheme](#send-properties-for-a-url-scheme)
+    + [Send Properties for a `URL` `one-tid` scheme](#send-properties-for-a-url-scheme)
     + [Append a `one-tid` parameter to a `NSURL` to facilitate identity transfer](#append-a-one-tid-parameter-to-a-nsurl-to-facilitate-identity-transfer)
   * [Disable automatic outbound link tracking](#disable-automatic-outbound-link-tracking)
     + [Programmatically trigger an outbound link tracking Interaction call](#programmatically-trigger-an-outbound-link-tracking-interaction-call)
@@ -88,7 +89,7 @@ Specify the *Thunderhead SDK* in your podfile
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-    pod 'Thunderhead', '~> 5.1.1'
+    pod 'Thunderhead', '~> 5.2.0'
     end
 ```
 
@@ -173,29 +174,29 @@ Complete the following steps to initialize the SDK.
 
 #### Set up the SDK in User mode
 
-To start tracking, capturing, and receiving optimizations with the Thunderhead SDK in User mode, you must first initialize it with your Thunderhead API parameters. You can find your Thunderhead API parameters on the Thunderhead ONE website or in Salesforce Interaction Studio.
+To start tracking, capturing, and receiving Optimizations with the Thunderhead SDK in User mode, you must first initialize it with your Thunderhead API parameters. You can find your Thunderhead API parameters on the Thunderhead ONE website or in Salesforce Interaction Studio.
 
 With your parameters ready at hand, add the following lines to the top of the `didFinishLaunchingWithOptions`:
 
 Swift:
 ```swift
 One.startSessionWithSK("ONE-XXXXXXXXXX-1022",
-    uri:"myAppsNameURI",
-    apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
-    sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx",
-    userId:"api@yourCompanyName",
-    adminMode:false,
-    hostName:"eu2.thunderhead.com")
+                    uri:"myAppsNameURI",
+                 apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
+           sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx",
+                 userId:"api@yourCompanyName",
+              adminMode:false,
+               hostName:"eu2.thunderhead.com")
 ```
 
 
 Objective-C:
 ```objective-c
 [One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
-                uri:@"myAppsNameURI"
-             apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
+                    uri:@"myAppsNameURI"
+                 apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
            sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-             userId:@"api@yourCompanyName"
+                 userId:@"api@yourCompanyName"
               adminMode:NO
                hostName:@"eu2.thunderhead.com"];
 ```
@@ -207,24 +208,24 @@ To use the framework in Admin mode, simply change the `adminMode` boolean to `tr
 Swift:
 ```swift
 One.startSessionWithSK("ONE-XXXXXXXXXX-1022",
-    uri:"myAppsNameURI",
-    apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
-    sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx",
-    userId:"api@yourCompanyName",
-    adminMode:true,
-    hostName:"eu2.thunderhead.com")
+                    uri:"myAppsNameURI",
+                 apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
+           sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx",
+                 userId:"api@yourCompanyName",
+              adminMode:true,
+               hostName:"eu2.thunderhead.com")
 ```
 
 
 Objective-C:
 ```objective-c
 [One startSessionWithSK:@"ONE-XXXXXXXXXX-1022"
-            uri:@"myAppsNameURI"
-         apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
-       sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-         userId:@"api@yourCompanyName"
-          adminMode:YES
-           hostName:@"eu2.thunderhead.com"];
+                    uri:@"myAppsNameURI"
+                 apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
+           sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
+                 userId:@"api@yourCompanyName"
+              adminMode:YES
+               hostName:@"eu2.thunderhead.com"];
 ```
 #### For Salesforce Interaction Studio integrations
 
@@ -234,7 +235,6 @@ Swift:
 ```swift
 One.setTheme(OneTheme.InteractionStudio)
 ```
-
 
 Objective-C:
 ```objective-c
@@ -266,7 +266,6 @@ Swift:
 One.opt(out: true)
 ```
 
-
 Objective-C:
 ```objective-c
 [One optOut:YES];
@@ -275,6 +274,23 @@ Objective-C:
 - When opted out, tracking will stop and locally queued data will be removed.
 - At any point you can opt a user back in by passing `false` into the same method.
 - For instructions on how to completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
+
+### Disable in-list Optimizations
+
+To disable in-list Optimizations, add the following to your app’s Info.plist file and set `DisableInListOptimization` to `YES` (boolean value).
+
+![Thunderhead Config App's Info.plist file](images/ThunderheadConfigInfoPlistEntry.png)
+
+```xml
+<key>Thunderhead Config</key>
+<dict>
+  <key>Swizzling Options</key>
+  <dict>
+    <key>DisableInListOptimization</key>
+    <true/>
+  </dict>
+</dict>
+``` 
 
 ### Late initialization and reconfiguration of the SDK
 
@@ -323,7 +339,6 @@ override func viewDidLoad() {
 }
 ```
 
-
 Objective-C:
 ```objective-c
 - (void)viewDidLoad {    
@@ -343,7 +358,6 @@ Swift:
 ```swift
 One.disableAutomaticInteractionDetection(true)
 ```
-
 
 Objective-C:
 ```objective-c
@@ -366,7 +380,6 @@ Swift:
 ```swift
 One.sendInteraction("/InteractionPath")
 ```
-
 
 Objective-C:
 ```objective-c
@@ -391,7 +404,6 @@ One.sendInteraction("/InteractionPath") { (response, error) -> Void in
     }
 }
 ```
-
 
 Objective-C:
 ```objective-c
@@ -600,9 +612,9 @@ Objective-C:
 NSDictionary *myProperties = @{@"Key1":@"Value1", @"Key2":@"Value2"};
 ```
 
-#### Send Properties to a base touchpoint
+#### Send Properties to a base Touchpoint
 
-To send Properties to a base touchpoint, call the following public method and pass in your dictionary of key/value pair strings:
+To send Properties to a base Touchpoint, call the following public method and pass in your dictionary of key/value pair strings:
 
 Swift:
 ```swift
@@ -617,7 +629,7 @@ Objective-C:
 
 *Note:*
 - This will send a PUT request to Thunderhead ONE or Salesforce Interaction Studio.
-- Properties sent to a base touchpoint will be captured under a base (`/`) or wildcard (`/*`) Interaction in Thunderhead ONE or Salesforce Interaction Studio.
+- Properties sent to a base Touchpoint will be captured under a base (`/`) or wildcard (`/*`) Interaction in Thunderhead ONE or Salesforce Interaction Studio.
 
 #### Send Properties to an Interaction
 
@@ -706,7 +718,7 @@ Objective-C:
 ```
 
 *Note:*
-- This method should be used when displaying optimizations programmatically and you need to capture the user's response.
+- This method should be used when displaying Optimizations programmatically and you need to capture the user's response.
 - This will send a `PUT` request to Thunderhead ONE or Salesforce Interaction Studio.
 - When sending Interaction requests programmatically, please ensure the Interaction starts with a `/` and only contains letters, numbers and/or dashes.
 
@@ -730,9 +742,9 @@ Objective-C:
 *Note:*
 - This functionality only works in iOS 9 and 10.
 
-#### Identity sync with Thunderhead ONE or Salesforce Interaction Studio and your web touchpoint
+#### Identity sync with Thunderhead ONE or Salesforce Interaction Studio and your web Touchpoint
 
-To synchronise the Safari Mobile identity set by the ONE Tag, or Interaction Studio Tag, with the current app identity and your web touchpoint, call:
+To synchronise the Safari Mobile identity set by the ONE Tag, or Interaction Studio Tag, with the current app identity and your web Touchpoint, call:
 
 Swift:
 ```swift
@@ -822,7 +834,7 @@ Objective-C:
 
 ###    Disable automatic identity transfer
 
-By default, the SDK adds ‘one-tid’ as a URL query parameter to outgoing network requests. To disable it, call the method `disableIdentityTransfer` by passing `true` as shown below:
+By default, the SDK adds `one-tid` as a URL query parameter to outgoing network requests. To disable it, call the method `disableIdentityTransfer` by passing `true` as shown below:
 
 Swift:
 ```swift
@@ -836,7 +848,7 @@ Objective-C:
 ```
 
 *Note:*
-- This will also disable the ability to automatically pick up parameters from deep links that open the app, whilst also preventing the SDK from adding a ‘one-tid’ as a URL query parameter to web links opened from the app, resulting in the customer's identity not being transferred as they move across channels.
+- This will also disable the ability to automatically pick up parameters from deep links that open the app, whilst also preventing the SDK from adding a `one-tid` as a URL query parameter to web links opened from the app, resulting in the customer's identity not being transferred as they move across channels.
 
 #### Send Properties for a URL scheme
 
@@ -874,7 +886,7 @@ Objective-C:
 *Note:*
 - This will send a PUT request to Thunderhead ONE or Salesforce Interaction Studio.
 
-#### Append a ‘one-tid’ parameter to a `NSURL` to facilitate identity transfer
+#### Append a `one-tid` parameter to a `NSURL` to facilitate identity transfer
 
 If you have disabled automatic identity transfer, you can still add a `one-tid` parameter to a link opened from the app programmatically, by calling `getURLWithOneTid` as shown below:
 
@@ -889,7 +901,7 @@ Objective-C:
 [One getURLWithOneTid:yourNSURL];
 ```
 
-passing the URL as a parameter, which will return back a the same `NSURL` containing a ‘one-tid’ parameter.
+passing the URL as a parameter, which will return back a the same `NSURL` containing a `one-tid` parameter.
 
 Swift:
 ```swift

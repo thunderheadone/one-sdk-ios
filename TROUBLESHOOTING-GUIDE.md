@@ -40,7 +40,7 @@ In **Build Settings**, ensure the **Framework Search Paths** contains the framew
 If you come across issues with how the layout is rendered in your `UITableView`'s, try the following:
 
 ### Resolve `UITableView` layout issue by implementing `tableView:heightForRowAtIndexPath:`
-- Implement `tableView:heightForRowAtIndexPath:` delegate method in the view controller. The method implementation is required to enable the SDK swizzling implementation to call the original implementation.
+- Implement the `tableView:heightForRowAtIndexPath:` delegate method in the view controller. The method implementation is required to enable the SDK swizzling implementation to call the original implementation in all your view controllers where you are looking to display in-list Optimizations.
 
 Swift:
 ```swift

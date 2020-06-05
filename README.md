@@ -277,7 +277,7 @@ Objective-C:
 
 ### Disable In-list Optimizations
 
-To disable in-list Optimizations, add the following to your app’s Info.plist file and setting `DisableInListOptimization` to `YES` (boolean value).
+To disable in-list Optimizations, add the following to your app’s Info.plist file and set `DisableInListOptimization` to `YES` (boolean value).
 
 ![Thunderhead Config App's Info.plist file](images/ThunderheadConfigInfoPlistEntry.png)
 

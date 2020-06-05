@@ -18,7 +18,7 @@
     + [`ViewController`/`View` lifecycle overriding rules](#viewcontrollerview-lifecycle-overriding-rules)
 - [Additional features](#additional-features)
   * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
-  * [Disable In-list Optimizations](#disable-in-list-optimizations)
+  * [Disable in-list Optimizations](#disable-in-list-optimizations)
   * [Late initialization and reconfiguration of the SDK](#late-initialization-and-reconfiguration-of-the-sdk)
   * [Manually set a specific Interaction path](#manually-set-a-specific-interaction-path)
   * [Exclude an Interaction](#exclude-an-interaction)
@@ -275,7 +275,7 @@ Objective-C:
 - At any point you can opt a user back in by passing `false` into the same method.
 - For instructions on how to completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
-### Disable In-list Optimizations
+### Disable in-list Optimizations
 
 To disable in-list Optimizations, add the following to your app’s Info.plist file and set `DisableInListOptimization` to `YES` (boolean value).
 

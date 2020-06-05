@@ -37,7 +37,7 @@ In **Build Settings**, ensure the **Framework Search Paths** contains the framew
 
 ## How to resolve `UITableView` layout display issues
 
-If you come across issues with how the layout is rendered in your `UITableView`'s, try the following
+If you come across issues with how the layout is rendered in your `UITableView`'s, try the following:
 
 ### Resolve `UITableView` layout issue by implementing `tableView:heightForRowAtIndexPath:`
 - Implement `tableView:heightForRowAtIndexPath:` delegate method in the view controller. The method implementation is required to enable the SDK swizzling implementation to call the original implementation.

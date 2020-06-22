@@ -72,7 +72,7 @@ The Thunderhead SDK for iOS supports iOS 8.0 and above.
 + Xcode minimum version: 11.0
 
 *Note:*
-- Xcode 11+ only supports archiving an application with bitcode enabled.
+- Xcode 11.3.1+ only supports archiving an application with bitcode enabled.
 
 ## Installation
 
@@ -89,7 +89,7 @@ Specify the *Thunderhead SDK* in your podfile
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-    pod 'Thunderhead', '~> 5.2.0'
+    pod 'Thunderhead', '~> 5.2.1'
     end
 ```
 

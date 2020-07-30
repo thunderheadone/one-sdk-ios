@@ -413,7 +413,59 @@ To use the SDK in Admin mode, change the `OneModes` parameter to `ADMIN_MODE`.
 
 #### Additional configuration required for apps configured with push messaging
 
+When the Thunderhead SDK is integrated into an app configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required to ensure push messaging continues to work on all SDKs utilizing FCM.
+You must forward the `onNewToken` and `onMessageReceived` callbacks to *all* SDK message APIs from the service that extends `FirebaseMessagingService`.
 
+If using the Thunderhead SDK for push, forward the callbacks as shown below:
+```java
+// Call when a new FCM token is retrieved:
+One.setMessagingToken(newToken);
+
+// Call when a new message is received from Firebase:
+One.processMessage(message);
+```
+
+An example of a service extending `FirebaseMessagingService` that calls the SDK messaging APIs:
+
+```java
+public final class FirebaseService extends FirebaseMessagingService {
+    private static final String TAG = "FirebaseService";
+    
+    @Override
+    public void onMessageReceived(final RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+        try {
+            One.processMessage(remoteMessage);
+            // Call other Push Message SDKS.
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+    }
+
+    @Override
+    public void onNewToken(final String newToken) {
+        super.onNewToken(newToken);
+        try {
+            One.setMessagingToken(newToken);
+            // Call other Push Message SDKS.
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+    }
+}
+```
+
+Do not forget to register the service in the manifest, if required:
+
+```xml
+<!-- The priority should be set to a high value in order to ensure this service receives the intent vs the other push provider SDKs -->
+ <service
+    android:name="com.example.FirebaseService">
+        <intent-filter android:priority="100">
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        </intent-filter>
+</service>
+```
 
 ## Additional features
 
@@ -1404,11 +1456,8 @@ One.setMessagingConfiguration(oneMessagingConfiguration);
 
 #### Configure push notifications with multiple push message SDKs
 
-When the Thunderhead SDK is integrated into an app that already supports Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required.
+When the Thunderhead SDK is integrated into an app configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required.
 You must forward the `onNewToken` and `onMessageReceived` callbacks to the Thunderhead SDK message APIs from the service that extends `FirebaseMessagingService`.
-
-*Note*
-
 
 ```java
 // Call when a new FCM token is retrieved:

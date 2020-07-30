@@ -21,8 +21,8 @@ on updating your existing SDK configuration.**
         * [SDK initialization not required](#sdk-initialization-not-required)
         * [Set up the SDK in User mode](#set-up-the-sdk-in-user-mode)
         * [Set up the SDK in Admin mode](#set-up-the-sdk-in-admin-mode)
-	* [Considerations](#considerations) 
-		* [Additional configuration required for apps configured with push messaging](#additional-configuration-required-for-apps-configured-with-push-messaging)
+* [Considerations](#considerations) 
+	* [Additional configuration required for apps configured with push messaging](#additional-configuration-required-for-apps-configured-with-push-messaging)
 * [Additional features](#additional-features)
     * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
     * [Exclude an Interaction](#exclude-an-interaction)
@@ -409,9 +409,9 @@ To use the SDK in Admin mode, change the `OneModes` parameter to `ADMIN_MODE`.
 
 **You have now successfully integrated the codeless Thunderhead SDK for Android.**
 
-### Considerations
+## Considerations
 
-#### Additional configuration required for apps configured with push messaging
+### Additional configuration required for apps configured with push messaging
 
 When the Thunderhead SDK is integrated into an app configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required to ensure push messaging continues to work on all SDKs utilizing FCM.
 You must forward the `onNewToken` and `onMessageReceived` callbacks to *all* SDK message APIs from the service that extends `FirebaseMessagingService`.
@@ -1396,7 +1396,7 @@ Pass the `URL` or `Uri`, to send an Interaction request to `/one-click` using th
 
 To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, configure Firebase Cloud Messaging (FCM) by following the FCM setup instructions. At a minimum the app must be configured in Firebase and the `google-services.json` needs to be in the root of the app project.
 
-**Important:** For apps already configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required.  See more [here](#additional-configuration-required-for-apps-configured-with-push-messaging).
+**Important:** For apps configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required.  See more [here](#additional-configuration-required-for-apps-configured-with-push-messaging).
 
 #### Minimum Gradle configuration 
 

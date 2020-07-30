@@ -406,6 +406,7 @@ To use the SDK in Admin mode, change the `OneModes` parameter to `ADMIN_MODE`.
 *Note:* 
 - If you are running in Admin mode on Android 6.0+, you must enable the “draw over other apps” permission through your OS settings. 
 - Dynamic configuration of both Admin and User mode is supported.
+- **Important:** For apps configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required.  See more [here](#additional-configuration-required-for-apps-configured-with-push-messaging).
 
 **You have now successfully integrated the codeless Thunderhead SDK for Android.**
 

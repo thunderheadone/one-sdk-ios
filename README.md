@@ -312,7 +312,7 @@ The following permissions are included in the Thunderhead SDK's `AndroidManifest
 You can configure and reconfigure the SDK as many times as necessary. 
 * The SDK does not support partial, or piecemeal, configuration. You must provide all parameters, either all valid or invalid (`empty string` or `null`).  
 * When configured with invalid parameters, the SDK is set in an *unconfigured* state.
-* **Important:** For apps configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required.  See more [here](#configure-push-notifications-with-multiple-push-message-sdks).  
+* **Important:** For apps configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required.  See more [here](#additional-configuration-required-for-apps-configured-with-push-messaging).
 
 See [here](https://github.com/thunderheadone/one-sdk-android/tree/master/examples/dynamic-configuration-example) for an example app that demonstrates dynamic configuration.
 
@@ -416,7 +416,7 @@ To use the SDK in Admin mode, change the `OneModes` parameter to `ADMIN_MODE`.
 When the Thunderhead SDK is integrated into an app configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required to ensure push messaging continues to work on all SDKs utilizing FCM.
 You must forward the `onNewToken` and `onMessageReceived` callbacks to *all* SDK message APIs from the service that extends `FirebaseMessagingService`.
 
-If using the Thunderhead SDK for push, forward the callbacks as shown below:
+If app utilizes the Thunderhead SDK for push messaging, forward the callbacks as shown below:
 ```java
 // Call when a new FCM token is retrieved:
 One.setMessagingToken(newToken);
@@ -1396,6 +1396,8 @@ Pass the `URL` or `Uri`, to send an Interaction request to `/one-click` using th
 
 To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, configure Firebase Cloud Messaging (FCM) by following the FCM setup instructions. At a minimum the app must be configured in Firebase and the `google-services.json` needs to be in the root of the app project.
 
+**Important:** For apps already configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required.  See more [here](#additional-configuration-required-for-apps-configured-with-push-messaging).
+
 #### Minimum Gradle configuration 
 
 To use the codeless push notifications functionality without using FCM directly, you must at least have the `google-services` plugin applied to your app build.gradle. 
@@ -1453,61 +1455,6 @@ One.setMessagingConfiguration(oneMessagingConfiguration);
 
 *Note:* 
 - When the Thunderhead SDK is the only push message provider in your application and you enable codeless push notification support, the SDK automatically gets the push token and handles the receiving of push notifications on behalf of your app.
-
-#### Configure push notifications with multiple push message SDKs
-
-When the Thunderhead SDK is integrated into an app configured with Firebase Cloud Messaging (FCM), or utilizes a third-party library using FCM, additional configuration is required.
-You must forward the `onNewToken` and `onMessageReceived` callbacks to the Thunderhead SDK message APIs from the service that extends `FirebaseMessagingService`.
-
-```java
-// Call when a new FCM token is retrieved:
-One.setMessagingToken(newToken);
-
-// Call when a new message is received from Firebase:
-One.processMessage(message);
-```
-
-An example of a service extending `FirebaseMessagingService` that calls the Thunderhead SDK messaging APIs:
-
-```java
-public final class FirebaseService extends FirebaseMessagingService {
-    private static final String TAG = "FirebaseService";
-    
-    @Override
-    public void onMessageReceived(final RemoteMessage remoteMessage) {
-        super.onMessageReceived(remoteMessage);
-        try {
-            One.processMessage(remoteMessage);
-            // Call other Push Message SDKS.
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-        }
-    }
-
-    @Override
-    public void onNewToken(final String newToken) {
-        super.onNewToken(newToken);
-        try {
-            One.setMessagingToken(newToken);
-            // Call other Push Message SDKS.
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-        }
-    }
-}
-```
-
-Do not forget to register the service in the manifest, if required:
-
-```xml
-<!-- The priority should be set to a high value in order to ensure this service receives the intent vs the other push provider SDKs -->
- <service
-    android:name="com.example.FirebaseService">
-        <intent-filter android:priority="100">
-            <action android:name="com.google.firebase.MESSAGING_EVENT" />
-        </intent-filter>
-</service>
-```
 
 #### Set a non adaptive fallback
 

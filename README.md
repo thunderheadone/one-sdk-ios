@@ -1372,18 +1372,18 @@ The Thunderhead SDK for iOS provides 5 distinct debugging levels, that can be en
     [One setLogLevel:kOneLogLevelFramework];
     ```
     
-    5. `kOneLogLevelDebug` - if set, only debug logs will be displayed in the console.
+5. `kOneLogLevelDebug` - if set, only debug logs will be displayed in the console.
 
-        Swift:
-        ```swift
-        One.setLogLevel(.Debug)
-        ```
+    Swift:
+    ```swift
+    One.setLogLevel(.Debug)
+    ```
 
 
-        Objective-C:
-        ```objective-c
-        [One setLogLevel:kOneLogLevelDebug];
-        ```
+    Objective-C:
+    ```objective-c
+    [One setLogLevel:kOneLogLevelDebug];
+    ```
 
 *Note:*
 - By default, the Thunderhead SDK for iOS does not display any debug log messages. However, exception messages are printed in the console, when these occur.

@@ -9,6 +9,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
 
+#define ONE_API_DEPRECATED(__VA_ARGS__) __attribute__((deprecated(__VA_ARGS__)));
+
 /*!
  @typedef OneLogLevel
  @brief This is an enum which specifies the log level output which will be printed to console.
@@ -16,12 +18,14 @@
  @field kOneLogLevelAll  This log level prints everything to console.
  @field kOneLogLevelWebService This log level prints everything relating to web services (requests, responses etc.) only.
  @field kOneLogLevelFramework This log level prints framework events which occur whilst running the app.
+ @field kOneLogLevelDebug This log level prints debug logs to console.
  */
 typedef NS_ENUM(NSInteger, OneLogLevel) {
     kOneLogLevelNone NS_SWIFT_NAME(None),
     kOneLogLevelAll NS_SWIFT_NAME(All),
     kOneLogLevelWebService NS_SWIFT_NAME(WebService),
-    kOneLogLevelFramework NS_SWIFT_NAME(Framework)
+    kOneLogLevelFramework NS_SWIFT_NAME(Framework),
+    kOneLogLevelDebug NS_SWIFT_NAME(Debug)
 };
 
 /*!
@@ -36,8 +40,34 @@ typedef NS_ENUM(NSInteger, OneTheme) {
 };
 
 /*!
+ @typedef OneOpt
+ @brief This is an enum which specifies the type used when opting in/out.
+ @field Out Configure Thunderhead SDK to opt out of all tracking, keychain tid storage, pasteboard tid storage, and/or city/country level tracking.
+ @field In Configure Thunderhead SDK to opt in for all tracking, keychain tid storage, pasteboard tid storage, and/or city/country level tracking.
+*/
+typedef NS_OPTIONS(NSUInteger, OneOpt) {
+    Out NS_SWIFT_NAME(out),
+    In NS_SWIFT_NAME(in)
+};
+
+/*!
+ @typedef OneOptOptions
+ @brief This is an enum which specifies the configurations used in design time.
+ @field AllTracking Opt out/in from all tracking.
+ @field KeychainTidStorage Opt out/in from keychain Tid storage.
+ @field PasteboardTidStorage Opt out/in from pasteboard Tid storage.
+ @field CityCountryDetection Opt out/in from city/country level tracking.
+*/
+typedef NS_OPTIONS(NSUInteger, OneOptOptions) {
+    AllTracking NS_SWIFT_NAME(allTracking)                      = 1,
+    KeychainTidStorage NS_SWIFT_NAME(keychainTidStorage)        = 1 << 1,
+    PasteboardTidStorage NS_SWIFT_NAME(pasteboardTidStorage)    = 1 << 2,
+    CityCountryDetection NS_SWIFT_NAME(cityCountryDetection)    = 1 << 3,
+};
+
+/*!
  @brief This delegate can be used to retrieve interaction responses from automatically triggered interactions. 
- @discussion Using this delegate is optional. See the ONE SDK for iOS integration document for further details.
+ @discussion Using this delegate is optional. See the Thunderhead SDK for iOS integration document for further details.
  */
 @protocol OneInteractionResponseDelegate <NSObject>
 
@@ -76,7 +106,6 @@ typedef NS_ENUM(NSInteger, OneTheme) {
  */
 + (void)sendProperties:(NSDictionary *)properties
     forInteractionPath:(NSString *)interactionPath NS_SWIFT_NAME(sendProperties(_:forInteractionPath:));
-;
 
 /*!
  @brief Sends an interaction request with properties for a given path to ONE via a POST request.
@@ -263,21 +292,26 @@ typedef NS_ENUM(NSInteger, OneTheme) {
 + (void)removeInteractionResponseDelegate:(id)delegate NS_SWIFT_NAME(removeInteractionResponseDelegate(_:));
 
 /*!
- @brief Configure ONE SDK to opt in/out from all interactions.
- @param optOut YES, if ONE SDK should be configured to opt out from all interactions or NO otherwise.
+ @brief Configure Thunderhead SDK to opt in/out from all interactions.
+ @param optOut YES, if Thunderhead SDK should be configured to opt out from all interactions or NO otherwise.
  */
-+ (void)optOut:(BOOL)optOut NS_SWIFT_NAME(opt(out:));
++ (void)optOut:(BOOL)optOut NS_SWIFT_NAME(opt(out:)) ONE_API_DEPRECATED("Use Thunderhead Framework's +[One opt:forOptions:]");
+
+/*!
+ @brief Configure Thunderhead SDK to opt out/in from all tracking, or keychain tid storage, or pasteboard tid storage and/or city/country level tracking. By default, the Thunderhead SDK is opted in for all settings.
+ @param oneOpt A OneOpt enum that determines if the configurations are opted in or out. For a list of possible values, see the constants for the OneOpt type.
+ @param options An integer bit mask that determines which configurations to opt out/in. For a list of possible values, see the constants for the OneOptOut type.
+*/
++ (void)opt:(OneOpt)oneOpt forOptions:(OneOptOptions)options NS_SWIFT_NAME(opt(_:forOptions:));
 
 /*!
  @brief Sets the framework's UI theme.
- @param theme A OneTheme enum. Possible values are OneThemeDefault, OneThemeInteractionStudio.
+ @param theme A OneTheme enum. For a list of possible values, see the constants for the OneTheme type.
  @discussion Set specific themes to update the framework's UI in design time. By default, the theme is set to kOneThemeDefault.
  */
 + (void)setTheme:(OneTheme)theme NS_SWIFT_NAME(setTheme(_:));
 
 @end
-
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - Interaction ID

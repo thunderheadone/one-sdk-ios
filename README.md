@@ -1,4 +1,4 @@
-![Thunderhead SDK](images/Thunderhead_Logo.png)
+![Thunderhead SDK](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/Thunderhead_Logo.png)
 
 ## Table of Contents
 
@@ -17,7 +17,20 @@
     + [For Salesforce Interaction Studio integrations](#for-salesforce-interaction-studio-integrations)
     + [`ViewController`/`View` lifecycle overriding rules](#viewcontrollerview-lifecycle-overriding-rules)
 - [Additional features](#additional-features)
-  * [Opt an end-user out of tracking](#opt-an-end-user-out-of-tracking)
+  * [Opt an end-user out of or into tracking](#opt-an-end-user-out-of-or-into-tracking)
+    * [Opt an end-user out/in of all tracking](#opt-an-end-user-outin-of-all-tracking)
+      + [Opt an end-user out of all tracking](#opt-an-end-user-out-of-all-tracking)
+      + [Opt an end-user in for all tracking](#opt-an-end-user-in-for-all-tracking)
+    * [Opt an end-user out/in of all keychain Tid storage](#opt-an-end-user-outin-of-all-keychain-tid-storage)
+      + [Opt an end-user out of all keychain Tid storage](#opt-an-end-user-out-of-all-keychain-tid-storage)
+      + [Opt an end-user in for all keychain Tid storage](#opt-an-end-user-in-for-all-keychain-tid-storage)
+    * [Opt an end-user out/in of all pasteboard Tid storage](#opt-an-end-user-outin-of-all-pasteboard-tid-storage)
+      + [Opt an end-user out of all pasteboard Tid storage](#opt-an-end-user-out-of-all-pasteboard-tid-storage)
+      + [Opt an end-user in for all pasteboard Tid storage](#opt-an-end-user-in-for-all-pasteboard-tid-storage)
+    * [Opt an end-user out/in of city/country level tracking](#opt-an-end-user-outin-of-citycountry-level-tracking)
+      + [Opt an end-user out of all city/country level tracking](#opt-an-end-user-out-of-all-citycountry-level-tracking)
+      + [Opt an end-user in for all city/country level tracking](#opt-an-end-user-in-for-all-citycountry-level-tracking)   
+    * [Partial opt out/in example](#partial-opt-outin-example)
   * [Disable in-list Optimizations](#disable-in-list-optimizations)
   * [Late initialization and reconfiguration of the SDK](#late-initialization-and-reconfiguration-of-the-sdk)
   * [Manually set a specific Interaction path](#manually-set-a-specific-interaction-path)
@@ -71,9 +84,6 @@ The Thunderhead SDK for iOS supports iOS 8.0 and above.
 + iOS base SDK version: iOS 13.0
 + Xcode minimum version: 11.0
 
-*Note:*
-- Xcode 11.3.1+ only supports archiving an application with bitcode enabled.
-
 ## Installation
 
 ### CocoaPods
@@ -89,7 +99,7 @@ Specify the *Thunderhead SDK* in your podfile
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-    pod 'Thunderhead', '~> 5.2.1'
+    pod 'Thunderhead', '~> 5.3.0'
     end
 ```
 
@@ -258,21 +268,158 @@ If you use these methods in your code, please ensure to call super when implemen
 ## Additional features
 Follow any of the steps below to access further functions of the SDK.
 
-### Opt an end-user out of tracking
-To opt an end-user out of tracking when the end-user does not give permission to be tracked in the client app, call the opt out method as shown below:
+### Opt an end-user out of or into tracking
+The following methods allow you to opt a user out of various levels of tracking and also opt them back in based on your app's privacy configuration.
+
+*Note:*
+- By default all `opt` options are set to `opt:In`.
+
+#### Opt an end-user out/in of all tracking
+Use this option to opt an end-user out or in of all tracking.
+
+##### Opt an end-user out of all tracking
+To opt out an end-user from all tracking when the end-user does not give permission to be tracked in the client app, call the opt out method as shown below:
 
 Swift:
 ```swift
-One.opt(out: true)
+One.opt(.out, forOptions: .allTracking)
 ```
 
 Objective-C:
 ```objective-c
-[One optOut:YES];
+[One opt:Out forOptions:AllTracking];
 ```
+
+*Note:*
+- When you opt out a user from all tracking all of the other opt out options will be also opted out, tracking will stop and locally queued data will be removed.
+- For instructions on how to completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
+
+##### Opt an end-user in for all tracking
+To opt in an end-user for all tracking when the end-user gives permission to be tracked in the client app, call the opt in method as shown below:
+
+Swift:
+```swift
+One.opt(.in, forOptions: .allTracking)
+```
+
+Objective-C:
+```objective-c
+[One opt:In forOptions:AllTracking];
+```
+
+#### Opt an end-user out/in of all keychain Tid storage
+Use this option to opt an end-user out or in of all keychain Tid storage.
+
+##### Opt an end-user out of all keychain Tid storage
+To opt out an end-user of all keychain Tid storage, call the opt method as shown below:
+
+Swift:
+```swift
+One.opt(.out, forOptions: .keychainTidStorage)
+```
+
+Objective-C:
+```objective-c
+[One opt:Out forOptions:KeychainTidStorage];
+```
+
+##### Opt an end-user in for all keychain Tid storage
+To opt in an end-user for all keychain Tid storage, call the opt method as shown below:
+
+Swift:
+```swift
+One.opt(.in, forOptions: .keychainTidStorage)
+```
+
+Objective-C:
+```objective-c
+[One opt:In forOptions:KeychainTidStorage];
+```
+
+#### Opt an end-user out/in of all pasteboard Tid storage
+Use this option to opt an end-user out or in of all pasteboard Tid storage.
+
+##### Opt an end-user out of all pasteboard Tid storage
+To opt out an end-user of all pasteboard Tid storage, call the opt method as shown below:
+
+Swift:
+```swift
+One.opt(.out, forOptions: .pasteboardTidStorage)
+```
+
+Objective-C:
+```objective-c
+[One opt:Out forOptions:PasteboardTidStorage];
+```
+
+##### Opt an end-user in for all pasteboard Tid storage
+To opt in an end-user for all pasteboard Tid storage, call the opt method as shown below:
+
+Swift:
+```swift
+One.opt(.in, forOptions: .pasteboardTidStorage)
+```
+
+Objective-C:
+```objective-c
+[One opt:In forOptions:PasteboardTidStorage];
+```
+
+#### Opt an end-user out/in of city/country level tracking
+Use this option to opt an end-user out or in of all city/country level tracking.
+
+##### Opt an end-user out of all city/country level tracking
+To opt out an end-user of all city/country level tracking, call the opt method as shown below:
+
+Swift:
+```swift
+One.opt(.out, forOptions: .cityCountryDetection)
+```
+
+Objective-C:
+```objective-c
+[One opt:Out forOptions:CityCountryDetection];
+```
+
+##### Opt an end-user in for all city/country level tracking
+To opt in an end-user for all city/country level tracking, call the opt method as shown below:
+
+Swift:
+```swift
+One.opt(.in, forOptions: .cityCountryDetection)
+```
+
+Objective-C:
+```objective-c
+[One opt:In forOptions:CityCountryDetection];
+```
+
+#### Partial opt out/in example
+To opt out an end-user of keychain Tid storage, pasteboard Tid storage and city/country level tracking but not of all tracking, use the following example:
+
+Swift:
+```swift
+One.opt(.out, forOptions: .keychainTidStorage, .pasteboardTidStorage, .cityCountryDetection)
+```
+
+Objective-C:
+```objective-c
+[One opt:Out forOptions:KeychainTidStorage | PasteboardTidStorage | CityCountryDetection];
+```
+
+To opt in an end-user for all tracking, keychain Tid storage and city/country level tracking but not `pasteboardTidStorage`, use the following example:
+
+Swift:
+```swift
+One.opt(.in, forOptions: .allTracking, .keychainTidStorage, .cityCountryDetection)
+```
+Objective-C:
+```objective-c
+[One opt:In forOptions:AllTracking | KeychainTidStorage | CityCountryDetection];
+```
+
 *Note:*
 - When opted out, tracking will stop and locally queued data will be removed.
-- At any point you can opt a user back in by passing `false` into the same method.
 - For instructions on how to completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
 ### Disable in-list Optimizations
@@ -1169,7 +1316,9 @@ Objective-C:
 
 ### Access debug information
 
-The Thunderhead SDK for iOS provides 4 distinct debugging levels, that can be enabled in the `didFinishLaunchingWithOptions` method of your project's AppDelegate, as shown below:
+The Thunderhead SDK for iOS provides 5 distinct debugging levels, that can be enabled in the `didFinishLaunchingWithOptions` method of your project's AppDelegate, as shown below:
+
+*Note:* All Thunderhead SDK log messages will be prefixed with `[Thunderhead]` in the console.
 
 1. `kOneLogLevelNone` - if set, no messages will be displayed in the console.
 
@@ -1222,6 +1371,19 @@ The Thunderhead SDK for iOS provides 4 distinct debugging levels, that can be en
     ```objective-c
     [One setLogLevel:kOneLogLevelFramework];
     ```
+    
+    5. `kOneLogLevelDebug` - if set, only debug logs will be displayed in the console.
+
+        Swift:
+        ```swift
+        One.setLogLevel(.Debug)
+        ```
+
+
+        Objective-C:
+        ```objective-c
+        [One setLogLevel:kOneLogLevelDebug];
+        ```
 
 *Note:*
 - By default, the Thunderhead SDK for iOS does not display any debug log messages. However, exception messages are printed in the console, when these occur.

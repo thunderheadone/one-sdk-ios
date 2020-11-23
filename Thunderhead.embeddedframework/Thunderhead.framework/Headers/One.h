@@ -163,17 +163,6 @@ typedef NS_OPTIONS(NSUInteger, OneOptOptions) {
  */
 + (void)sendInteractionForOutboundLink:(NSURL *)link NS_SWIFT_NAME(sendInteractionForOutboundLink(_:));
 
-/*!
- @brief Sends push token to ONE.
- @param pushToken A push token.
- */
-+ (void)sendPushToken:(NSData *)pushToken NS_SWIFT_NAME(sendPushToken(_:));
-
-/*!
- @return A device token delivered by Apple.
- */
-+ (NSString *)getPushToken NS_SWIFT_NAME(getPushToken());
-
 /**
  *  Disables automatic interaction detection.
  *
@@ -189,15 +178,6 @@ typedef NS_OPTIONS(NSUInteger, OneOptOptions) {
  *  and NO otherwise.
  */
 + (void)disableAutomaticOutboundLinkTracking:(BOOL)disable NS_SWIFT_NAME(disableAutomaticOutboundLinkTracking(_:));
-
-/**
- *  Enables push notifications.
- *
- *  @param enable YES, if receiving push notifications should be enabled,
- *  and NO otherwise.
- *  @discussion Disabled by default.
- */
-+ (void)enablePushNotifications:(BOOL)enable;
 
 /*!
  @brief Erases the user profile from the app user preferences.

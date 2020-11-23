@@ -1,20 +1,20 @@
-### Version 6.0.0-beta
+#### Version 6.0.0-beta
 
 * [UPDATE] Beta test for release automation.
 
-### Version 5.3.3
+#### Version 5.3.3
 
 * [BUGFIX] Fixed an issue where tapping on cells could stop navigation to target view, in apps that use RxSwift.
 
-### Version 5.3.2
+#### Version 5.3.2
 
 * [UPDATE] Xcode 11.3.1 compatible SDK.
 
-### Version 5.3.1
+#### Version 5.3.1
 
 * [UPDATE] Xcode 11.4.1 compatible SDK.
 
-### Version 5.3.0
+#### Version 5.3.0
 
 * [NEW] Added ability to send `one-appInstall` and `one-appReinstall` Interactions in Preview mode.
 * [NEW] Added ability to control Data Adapter location sharing.
@@ -25,38 +25,38 @@
 * [BUGFIX] Fixed an issue where configuring the SDK in Admin mode was overriding an app's status bar color. 
 * [BUGFIX] Updated the developer documentation to remove build time warnings.
 
-### Version 5.2.1
+#### Version 5.2.1
 
 * [UPDATE] Xcode 11.3.1 compatible SDK.
 
-### Version 5.2.0
+#### Version 5.2.0
 
 * [NEW] Added ability to disable in-list mini optimizations.
 
-### Version 5.1.1
+#### Version 5.1.1
 
 * [BUGFIX] Fixed a crash related to scrolling observed in some apps.
 
-### Version 5.1.0
+#### Version 5.1.0
 
 * [NEW] Thunderhead SDK can now be integrated directly via [Cocoapods](https://cocoapods.org/pods/Thunderhead). For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-ios#cocoapods).
 * [BUGFIX] Fixed a crash that was occuring when Thunderhead SDK is integrated into a RxSwift app using `UIScrollViewDelegate` [RxSwift](https://github.com/ReactiveX/RxSwift).
 
-### Version 5.0.0
+#### Version 5.0.0
 
 * [NEW] Added ability to initialize the SDK and set the parameters later for different regions and spaces. For further details on this [see our sample app on how to initialize the SDK and set the parameters later](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/dynamic-initialization-example#thunderhead-sdk-late-initialization).
 * [NEW] Added ability to change the SDK initialization parameters on the fly. For further details on this [see our sample app on how to reconfigure the SDK](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/dynamic-initialization-example#reconfiguring-the-thunderhead-sdk).
 * [BUGFIX] Fixed an issue where multiple 401s were sent when the token expires on an interaction with multiple regions.
 
-### Version 4.0.2
+#### Version 4.0.2
 
 * [BUGFIX] Fixed a crash that was occurring when libraries with multiple `UIWindow`s are used in an application.
 
-### Version 4.0.1
+#### Version 4.0.1
 
 * [BUGFIX] Fixed an issue where the `UNUserNotificationCenter.delegate` was incorrectly set to nil by the SDK when calling `UIApplication.shared.registerForRemoteNotifications()`.
 
-### Version 4.0.0
+#### Version 4.0.0
 
 * [BREAKING] iOS 13 ready SDK, built with Xcode 11.0. If you are using a lower version of Xcode, 10.2 or 10.3, you will only be able to archive your app with bitcode disabled.
 * [NEW] Added support for `UIWindowScene` to support integrations with apps built with Xcode 11.0 and iOS 13.
@@ -71,23 +71,23 @@
 * [BUGFIX] Fixed an issue where a customer attribute name was not updated in the SDK when edited in ONE.
 * [BUGFIX] Fixed an issue where mini inline notifications were not displayed correctly in table cells which reside inside a `UIControl`.
 
-### Version 3.0.2
+#### Version 3.0.2
 
 * [UPDATE] Removed `UIWebView` references and use from our SDK, in line with Apple’s ITMS-90809 -deprecated API Usage notification. See https://developer.apple.com/documentation/uikit/uiwebview for more information.
 
-### Version 3.0.1
+#### Version 3.0.1
 
 * [BUGFIX] Improved the `UNUserNotificationCenter` implementation to handle situations where the `bundleProxy` might be null.
 
-### Version 3.0.0
+#### Version 3.0.0
 
 * [BREAKING] Updated minimum deployment target to iOS 8.0.
 
-### Version 2.24.1
+#### Version 2.24.1
 
 * [BUGFIX] Rebuilt the SDK to support Xcode 10.1.
 
-### Version 2.24.0
+#### Version 2.24.0
 
 * [NEW] Added iPhone XR and XS Max support.
 * [NEW] Added the ability to use Face ID at login.
@@ -101,11 +101,11 @@
 * [BUGFIX] Fixed a crash that was occurring when scrolling a `UITableView` where an inline mini notification was injected.
 * [BUGFIX] Fixed a crash that was occurring when cancelling deletion of a capture point on iOS 8.
 
-### Version 2.23.1
+#### Version 2.23.1
 
 * [BUGFIX] Fixed an issue where a 'Missing Push Notification Entitlement' warning was shown when the app didn't have push notifications enabled.
 
-### Version 2.23.0
+#### Version 2.23.0
 
 * [NEW] Added support for Interaction Studio Theme.
 * [NEW] Updated Admin mode Entity Names to match the naming in the web application.
@@ -113,37 +113,37 @@
 * [BUGFIX] Fixed an issue where pressing the poker chip in airplane mode resulted in unresponsive behaviour.
 * [BUGFIX] Fixed an issue where one-appInstall interaction and follow-up interaction were using different tids.
 
-### Version 2.22.2
+#### Version 2.22.2
 
 * [BUGFIX] Resolved an issue where existing deeplinks do not work after integrating ONE SDK.
 
-### Version 2.22.1
+#### Version 2.22.1
 
 * [BUGFIX] Resolved an issue where the push token was not being sent programmatically when enable push was not switched on.
 
-### Version 2.22.0
+#### Version 2.22.0
 
 * [NEW] Switched from a cookie based login in Admin mode to OAuth 2.
 * [NEW] Ability to opt an end-user out of tracking, if the end-user does not give permission to be tracked in the client app.
 * [BUGFIX] Fixed an issue where the preview panel in Admin mode would blink when switching snapshot versions.
 * [BUGFIX] Fixed an issue where implementing `tableView:performAction:forIndexPath:sender` caused exceptions to be thrown.
 
-#### Version 2.21.1
+##### Version 2.21.1
 
 * [BUGFIX] Fixed an issue where a stack overflow would occur when navigating to a view that contains multiple view controllers.
 
-#### Version 2.21.0
+##### Version 2.21.0
 
 * [NEW] Ability to codelessly optimize table view cells using mini notifications.
 * [BUGFIX] Fixed an issue where the `UIToolbar` path was different between iOS 11.2 and iOS versions < iOS 11.2.
 * [BUGFIX] Resolved an issue where optimizations were not always presented and capture points are not always sent in Preview mode.
 * [BUGFIX] Fixed an issue where the Admin popover was not moving to its correct position after the keyboard is appeared in iOS 11.
 
-#### Version 2.20.1
+##### Version 2.20.1
 
 * [BUGFIX] Resolved an issue where the SDK was interfering with implementations of `UILabel`.
 
-#### Version 2.20.0
+##### Version 2.20.0
 
 * [NEW] Added iPhone X support for Admin mode and User mode notifications.
 * [NEW] Added the ability to display a mini notification from the top.
@@ -153,17 +153,17 @@
 * [BUGFIX] Resolved an issue where response codes were sent repeatably in some circumstances where a network error would occur.
 * [BUGFIX] Resolved an issue where the list items were not presented under the proposition screen when trying to link a proposition to an attribute.
 
-#### Version 2.19.2
+##### Version 2.19.2
 
 * [BUGFIX] Fixed an issue where URL query string encoding is removed when recreating the URL.
 
-#### Version 2.19.1
+##### Version 2.19.1
 
 * [UPDATE] Updated the FMDB implementation to avoid possible App Store rejections (see:https://github.com/ccgus/fmdb/issues/610).
 * [BUGFIX] Resolved an issue where the SDK removed url query parameters without a value when adding a one-tid.
 * [BUGFIX] Fixed an issue where one-click interactions were being sent twice.
 
-#### Version 2.19.0
+##### Version 2.19.0
 
 * [NEW] Ability to store interactions when a connection cannot be establish or ONE is down, and send these interactions when the service has been restored.
 * [UPDATE] Added the SDK version to every request header.
@@ -175,7 +175,7 @@
 * [BUGFIX] Improved the proposition screen to avoid UI freezes when searching long lists.
 * [BUGFIX] Resolved an issue where an app would crash when tapping the push notification if the app was terminated prior to the push being received.
 
-#### Version 2.18.0
+##### Version 2.18.0
 
 * [NEW] Added ability to send interaction paths which contain UTF8 characters.
 * [UPDATE] Improved touchpoint uri validation.
@@ -186,7 +186,7 @@
 * [BUGFIX] Resolved a crash that was occurring when navigating back from a WKWebView.
 * [BUGFIX] Resolved an issue where identity sync was not being performed in apps built with Swift.
 
-#### Version 2.17.0
+##### Version 2.17.0
 
 * [NEW] Ability to codelessly sync identity with a web touchpoint on any interaction using an identity sync asset.
 * [UPDATE] Updated our Runtime APIs logic to cache tids received after the 5 seconds timeout and link them with requests as they are sent.
@@ -196,7 +196,7 @@
 * [BUGFIX] Resolved an issue where a dynamic proposition name would change its length when being selection in the Admin mode interface.
 * [BUGFIX] Added the UserNotifications framework to our framework module.modulemap to ensure users don't experience compile errors when integrating the SDK in their app.
 
-#### Version 2.16.0
+##### Version 2.16.0
 
 * [NEW] Ability to capture text from a Button.
 * [NEW] Ability to track list items where the label matches the list item width and height.
@@ -208,7 +208,7 @@
 * [BUGFIX] Resolved an issue where an empty region name would sometimes be shown against interactions when running the SDK in Admin mode.
 * [BUGFIX] Resolved an issue where PUT requests were being sent twice when running the SDK in iOS 7.
 
-#### Version 2.15.0
+##### Version 2.15.0
 
 * [NEW] Improve install/identity tracking to allow identity sync with web touchpoints programmatically.
 * [BUGFIX] Resolved an issues where sometimes requests were sent twice when tapping a collection or table view cell which was tracked.
@@ -217,14 +217,14 @@
 * [BUGFIX] Resolved an issue where the username was sometimes cleared in Admin mode.
 * [BUGFIX] Resolved an issue where the one-tid was not always appended to requests.
 
-#### Version 2.14.0
+##### Version 2.14.0
 
 * [NEW] Install tracking capability when using the Redirect Tracking API.
 * [UPDATE] Updated the login email text field to use an email input.
 * [BUGFIX] Resolved an issue where the full screen optimization is presented incorrectly on top of a UIAlertController.
 * [BUGFIX] Resolved an issue where the neutral code was resent once the app was terminated and reopened by tapping on the notification.
 
-#### Version 2.13.0
+##### Version 2.13.0
 
 * [NEW] Improved the push notification support to use alert base push in combination with background push.
 * [NEW] Ability to whitelist links eligible for identity transfer.
@@ -238,14 +238,14 @@
 * [BUGFIX] Resolved an issue where the Admin popover UX was not behaving correctly when adding group tracking or capture points.
 * [BUGFIX] Fixed an issue where the Admin popover was reappearing on screen once an error occurred.  
 
-#### Version 2.12.0
+##### Version 2.12.0
 
 * [NEW] Ability to programmatically retrieve a push token.
 * [NEW] Ability to open a url received in a ONE push notification message.
 * [NEW] Ability to automatically send response codes for a push message received from ONE.
 * [BUGFIX] Resolved an issue where business users were unable to select some elements using the Admin mode interface.
 
-#### Version 2.11.0
+##### Version 2.11.0
 
 * [NEW] Ability to enable push notifications and codelessly receive a push message from ONE.
 * [BUGFIX] Resolved attributes list incompatibility with the new design time api.
@@ -258,7 +258,7 @@
 * [BUGFIX] Resolved an issue where the Apply button in one of the Admin mode views was not presented correctly once an error has occurred.
 * [BUGFIX] Resolved an issue where tracking and capture points were only triggered every second time in certain apps.  
 
-#### Version 2.10.0
+##### Version 2.10.0
 
 * [NEW] Given that you declare a specific app group as part of your app the SDK can now share the anonymous identifier between apps in the same app group.
 * [UPDATE] The SDK now stores the thunderhead anonymous identifier depending on the space to which an app belongs to.
@@ -267,7 +267,7 @@
 * [BUGFIX] Resolved a crash which was occurring whilst propositions where refreshed in Admin mode.
 * [BUGFIX] Resolved an issue where the SDK would get into an incorrect state if the user was to tap the screen whilst preview was in a loading state.  
 
-#### Version 2.9.0
+##### Version 2.9.0
 
 * [NEW] Cross-channel and install tracking using SafariViewController in apps running on iOS 9+.
 * [NEW] Ability to automatically share the tid between apps from the same vendor on apps running on iOS 7, 8 and 9.
@@ -293,7 +293,7 @@
 * [BUGFIX] Resolved an issue where WKWebView tracking points were not correctly triggered in some apps.
 * [BUGFIX] Updated the interaction recognition algorithm to recognise MFMailComposeViewController, MFMessageComposeViewController and SLComposeViewController again.
 
-#### Version 2.8.4
+##### Version 2.8.4
 
 * [NEW] Ability to send a push token to ONE. This feature simply exposes the ability to programmatically pass the push token to ONE and will become available as an engagement feature in future ONE releases.
 * [UPDATE] Support for identifying interactions across windows.
@@ -304,35 +304,35 @@
 * [UPDATE] Updated the ONE SDK public method documentation.
 * [BUGFIX] Resolved an issue where the SDK could not handle subclassed split view controllers using a similar name to the UISplitViewController.
 
-#### Version 2.8.3
+##### Version 2.8.3
 
 * [UPDATE] Removed the need to pass error by reference when calling getURLWithOneTid.
 * [BUGFIX] Resolved an issue where the tid was not shown, in preview mode, even though a response was received.
 
-#### Version 2.8.2
+##### Version 2.8.2
 
 * [NEW] Ability to automatically send a 'one-click' interaction to ONE for all outbound links opened from an app.
 * [UPDATE] Contained iOS 10 update - Added support for Safari View Controller’s 'initWithURL with configuration' to automatically send a 'one-click' interaction to ONE for all outbound links opened from an app.
 * [UPDATE] Contained iOS 10: Added support for Safari View Controller’s 'initWithURL with configuration' to automatically add one-tid parameter for identity transfer on all links opened using this method. 	
 * [UPDATE] Updated the ONE SDK public method documentation.
 
-#### Version 2.8.1
+##### Version 2.8.1
 
 * [BUGFIX] Resolved an issue where poker chip was not correctly displayed in apps which create their window programmatically.
 * [BUGFIX] Resolved an issue where the Admin mode highlighting disappeared after an alert was shown on screen.
 
-#### Version 2.8.0
+##### Version 2.8.0
 
 * [NEW] Ability to filter attribute list in Admin mode.
 * [NEW] Support outgoing one tid parameter for identity transfer in WKWebViews.
 * [UPDATE] Improve the send interaction with properties method to fall back on the send interaction method if no properties are passed.
 * [BUGFIX] Fixed a UI bug in preview mode where releases were incorrectly aligned on the screen.
 
-#### Version 2.7.1
+##### Version 2.7.1
 
 * [UPDATE] Reverted the algorithm which places the Thunderhead Admin mode window above other application windows automatically.
 
-#### Version 2.7.0
+##### Version 2.7.0
 
 * [NEW] Add support for CSRF headers to all design time APIs.
 * [NEW] Ability to enter username and password when using touch ID.
@@ -346,7 +346,7 @@
 * [BUGFIX] Resolved a crash which was occurring when searching for dynamic propositions and using the pull to refresh feature.
 * [BUGIFX] Resolved a crash which was occurring if the response delegate object was removed in callback method of an automatically triggered interaction.
 
-#### Version 2.6.0
+##### Version 2.6.0
 
 * [NEW] Removed single customer key and added support for capturing into key attributes.
 * [NEW] Added support for UTF-8 in mobile assets.
@@ -356,15 +356,15 @@
 * [UPDATE] Improved automatic text capturing support for text fields, text views and search bars.
 * [UPDATE] Updated the ability to retrieve a response from an automatically triggered interaction call using delegate pattern implementation.
 
-#### Version 2.5.2
+##### Version 2.5.2
 
 * [BUGFIX] Resolved issue with html encoded characters not being displayed properly in the SDK.
 
-#### Version 2.5.1
+##### Version 2.5.1
 
 * [BUGFIX] Added CFBundleSupportedPlatforms to the Thunderhead bundle and set it as iPhoneOS.
 
-#### Version 2.5.0
+##### Version 2.5.0
 
 * [NEW] Ability to set a mini notification background colour.
 * [NEW] Ability to set a mini notification timer.
@@ -380,11 +380,11 @@
 * [BUGFIX] Resolved an issue where poker chip appeared on top of the login screen.
 * [BUGFIX] Resolved an issue where the SDK could crash if too many mapping requests where being created at the same time.
 
-#### Version 2.4.1
+##### Version 2.4.1
 
 * [BUGFIX] Fixed an issue where user is in process of entering text into text field and premature request with captured text might be sent to ONE before user finishes entering.
 
-#### Version 2.4.0
+##### Version 2.4.0
 
 * [NEW] Ability to track and capture data from repeating cells in Admin mode.
 * [NEW] Ability to send a response code programmatically.
@@ -400,7 +400,7 @@
 * [BUGFIX] Resolved an issue where the Admin popover showed the attribute name instead of hardcoded <Proposition set dynamically> when using a dynamic proposition.
 * [BUGFIX] Resolved an issue where the preview point counts was overlapped by status bar.
 
-#### Version 2.3.0
+##### Version 2.3.0
 
 * [NEW] Extended the SDKs programmatic support to allow response retrieval, from manually triggered interactions.
 * [NEW] Added support for programmatically triggering interaction requests, for another space, from within a current mobile touchpoint.
@@ -410,29 +410,29 @@
 * [UPDATE] Updated Edit mode highlighting to align with new Tagger.
 * [BUGFIX] Fixed an issue where the Preview mode poker chip would disappear when an alert was presented in iOS 7.
 
-#### Version 2.2.0
+##### Version 2.2.0
 
 * [NEW] Ability to select attributes for dynamic propositions using the Admin mode interface.
 * [NEW] Ability to track and capture data from repeating Table View cells and cell elements.
 * [NEW] Ability to track and capture data from repeating Collection View cells and cell elements.
 * [BUGFIX] Fixed an issue where the capture points where being sent twice for the same element.
 
-#### Version 2.1.6
+##### Version 2.1.6
 
 * [BUGFIX] Fixed an issue where the session was being invalidated where no regions could be found for a view controller.
 * [BUGFIX] Fixed an issue where a tracking point could be added to text field, search bar or text view.
 
-#### Version 2.1.5
+##### Version 2.1.5
 
 * [UPDATE] Added bitcode support
 * [BUGFIX] Resolved an issue where passwords containing special characters weren’t parsed correctly by the network controller
 
 
-#### Version 2.1.4
+##### Version 2.1.4
 
 * [UPDATE] Updated the public method comments
 
-#### Version 2.1.3
+##### Version 2.1.3
 
 * [UPDATE] Ensure captured data is not sent multiple times
 * [UPDATE] Improved implementation to support building the SDK under Xcode 6.x

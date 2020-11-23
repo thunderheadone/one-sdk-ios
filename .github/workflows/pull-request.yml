@@ -19,7 +19,7 @@ jobs:
       
       - name: Check Readme Modified
         id: check_readme_modified
-        uses: trilom/file-changes-action@v1.2.3
+        uses: trilom/file-changes-action@v1.2.4
         with:
           fileOutput: ''
       
@@ -32,7 +32,7 @@ jobs:
       
       - name: Check Changelog Modified
         id: check_changelog_modified
-        uses: trilom/file-changes-action@v1.2.3
+        uses: trilom/file-changes-action@v1.2.4
         with:
           fileOutput: ''
        

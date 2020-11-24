@@ -57,6 +57,12 @@
     + [Append a `one-tid` parameter to a `NSURL` to facilitate identity transfer](#append-a-one-tid-parameter-to-a-nsurl-to-facilitate-identity-transfer)
   * [Disable automatic outbound link tracking](#disable-automatic-outbound-link-tracking)
     + [Programmatically trigger an outbound link tracking Interaction call](#programmatically-trigger-an-outbound-link-tracking-interaction-call)
+  * [Enable push notifications](#enable-push-notifications)
+  * [Get a push token](#get-a-push-token)
+  * [Send a push token](#send-a-push-token)
+  * [Handle notifications received through the ONE APNs interface](#handle-notifications-received-through-the-one-apns-interface)
+      - [Handling notifications while the app in foreground or background](#handling-notifications-while-the-app-in-foreground-or-background)
+      - [Displaying notifications while the app in foreground](#displaying-notifications-while-the-app-in-foreground)
   * [Send a location object](#send-a-location-object)
   * [Get a structure data](#get-a-structure-data)
   * [Get Tid](#get-tid)
@@ -93,7 +99,7 @@ Specify the *Thunderhead SDK* in your podfile
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-    pod 'Thunderhead', '~> 6.0.0-beta'
+    pod 'Thunderhead', '~> 5.3.3'
     end
 ```
 
@@ -1035,6 +1041,146 @@ passing the URL which will send an Interaction request ‘/one-click’ using th
 
 *Note:*
 - This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio.
+
+### Enable push notifications
+
+To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, take the following steps:
+
+1.    Enable Push Notifications in Capabilities pane
+2.    Enable Background Modes in Capabilities pane
+3.    Select Remote Notifications under Background Modes section
+4.    Call the method `enablePushNotifications` by passing `true` as shown below:
+
+    Swift:
+    ```swift
+    One.enablePushNotifications(true)
+    ```
+
+
+    Objective-C:
+    ```objective-c
+    [One enablePushNotifications:YES];
+    ```
+
+*Note:*
+- To disable this feature if it once was enabled, simply call the same method and pass `false`.   
+
+### Get a push token
+
+To get the push token codelessly retrieved by the SDK, call the `getPushToken` method as shown below:
+
+Swift:
+```swift
+let pushToken =  One.getPushToken()
+// work with the push token
+```
+
+
+Objective-C:
+```objective-c
+NSString *pushToken = [One getPushToken];
+// work with the push token
+```
+
+*Note:*
+- This can be useful for testing and debugging, or to retrieve the token and pass it to another push notification provider.
+
+### Send a push token
+
+To send a push token, call `sendPushToken` method by passing a push token:
+
+Swift:
+```swift
+One.sendPushToken(pushToken)
+```
+
+
+Objective-C:
+```objective-c
+[One sendPushToken:pushToken];
+```
+
+The push token can be obtained and sent from the app delegate’s method `didRegisterForRemoteNotificationsWithDeviceToken` as shown below:
+
+Swift:
+```swift
+func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    One.sendPushToken(deviceToken)
+    // work with the push token
+}
+```
+
+
+Objective-C:
+```objective-c
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [One sendPushToken:deviceToken];
+    // work with the push token
+}
+```
+
+*Note:*
+- If you haven't enabled push notification support, you can use this function to programmatically store the push token in Thunderhead ONE or Salesforce Interaction Studio.
+
+### Handle notifications received through the ONE APNs interface
+
+##### Handling notifications while the app in foreground or background
+
+Swift:
+```swift
+func application(_ application: UIApplication, 
+     didReceiveRemoteNotification userInfo: [AnyHashable : Any], 
+        fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+     // Handle notification 
+     // Call `completionHandler` with the appropriate `UIBackgroundFetchResult`. For example:
+     completionHandler(.newData)
+}
+```
+
+
+Objective-C:
+```objective-c
+- (void)application:(UIApplication *)application 
+    didReceiveRemoteNotification:(NSDictionary *)userInfo 
+    fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
+{
+    // Handle notification 
+    // Call `completionHandler` with the appropriate `UIBackgroundFetchResult`. For example:
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+```
+
+
+##### Displaying notifications while the app in foreground
+
+Notifications received while the app is running in the foreground will not generate the standard system alert. Instead, they are passed to the `application:didReceiveRemoteNotification:fetchCompletionHandler:` callback on your app delegate. To display a standard system alert, implement `userNotificationCenter:willPresentNotification:withCompletionHandler:` method. 
+
+For example, to show a standard alert view, do the following:
+
+**iOS 10+**
+
+Swift:
+```swift
+func userNotificationCenter(_ center: UNUserNotificationCenter, 
+                         willPresent notification: UNNotification, 
+               withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    // Handle notification
+    completionHandler([.alert, .badge, .sound])
+}
+```
+
+
+Objective-C:
+```objective-c
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center 
+       willPresentNotification:(UNNotification *)notification 
+         withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
+{
+    // Handle notification
+    completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound);
+}
+```
 
 
 ### Send a location object

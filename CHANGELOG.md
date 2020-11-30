@@ -1,4 +1,4 @@
-#### Version 6.0.0-beta
+#### Version 5.3.4-beta
 * [UPDATE] Beta test for release automation.
 
 #### Version 5.3.3

@@ -72,3 +72,8 @@ Objective-C:
 </dict>
 ```	
 
+### Resolve `Undefined symbols for architecture arm64` compile time error
+
+When integrating the Thunderhead SDK via cocoapods, you may encounter this compile time error.
+
+To resolve this error, go to **Build Settings**, add **$(inherited)** to **Other Linker Flags**, which will add linker flags generated in pods.

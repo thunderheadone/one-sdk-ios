@@ -96,19 +96,19 @@ Adding a binary Swift package into your project can be done directly in Xcode in
 https://github.com/thunderheadone/one-sdk-ios
 ```
 
-![Thunderhead Add Package](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/SPM/ThunderheadAddPackageURL.png)
+![Thunderhead Add Package](images/SPM/ThunderheadAddPackageURL.png)
 
 2. Select additional options such as a specific version number, branch or commit identifier. By default, Up to Next Major version is selected. We highly recommend using the latest version of the [Thunderhead SDK for iOS](https://github.com/thunderheadone/one-sdk-ios/releases). To integrate a specific version of the Thunderhead SDK, simply specify a version number you need. For example, to integrate v6.0.0 of Thunderhead SDK, specify the version number like below
 
-![Thunderhead Choose Package Version](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/SPM/ThunderheadChoosePackage.png)
+![Thunderhead Choose Package Version](images/SPM/ThunderheadChoosePackage.png)
 
 3. Wait for Xcode to finish downloading and resolving the Swift package into your project.
 
-![Thunderhead Cloning Package](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/SPM/ThunderheadFetchPackage.png)
+![Thunderhead Cloning Package](images/SPM/ThunderheadFetchPackage.png)
 
 4. Choose the package products and targets.
 
-![Thunderhead Select Target](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/SPM/ThunderheadSelectTarget.png)
+![Thunderhead Select Target](images/SPM/ThunderheadSelectTarget.png)
 
 5. Drag and drop the **_ThunderheadBundle.bundle_** to **Copy Bundle Resources** section in your targets.
 

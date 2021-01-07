@@ -1,4 +1,4 @@
-![Thunderhead SDK](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/Thunderhead_Logo.png)
+![Thunderhead SDK](images/Thunderhead_Logo.png)
 
 ## Table of Contents
 
@@ -71,13 +71,16 @@
 
 ## Requirements
 
-The Thunderhead SDK for iOS supports iOS 8.0 and above.
+The Thunderhead SDK for iOS supports iOS 9.0 and above.
 
 ### iOS version requirements
 
-+ iOS minimum version (deployment target): iOS 8.0
-+ iOS base SDK version: iOS 13.0
-+ Xcode minimum version: 11.0
++ iOS minimum version (deployment target): iOS 9.0
++ iOS base SDK version: iOS 14.3
++ Xcode minimum version: 12.0
+
+*Note:*
+Xcode versions < 12.0 only support archiving an application with bitcode disabled.
 
 ## Installation
 
@@ -87,10 +90,7 @@ The Thunderhead SDK can be integrated via [Swift Package Manager](#swift-package
 
 Adding a binary Swift package into your project can be done directly in Xcode in a few simple steps:
 
-1. Add the package dependency into your Xcode project. To do so, you can pick any of the following approaches:
-    + In the Xcode Navigation Bar, go to File > Swift Packages > Add Package Dependency… You might need to select your project in the next window if there are multiple projects in your workspace. Enter the package repository URL provided below to the search field and hit Next.
-    + In your project's settings, navigate to the "Swift Packages" tab, and click the + button. Enter the package repository URL provided below to the search field and hit Next.
-    + In your project target’s settings, navigate to the “General” tab, and in the “Frameworks, Libraries, and Embedded Content” section, click the + button. Select Add Other, and choose Add Package Dependency… Enter the package repository URL provided below to the search field and hit Next.
+1. Add the package dependency into your Xcode project. To do so, in the Xcode Navigation Bar, go to File > Swift Packages > Add Package Dependency… You might need to select your project in the next window if there are multiple projects in your workspace. Enter the package repository URL provided below to the search field and hit Next.
 
 ```sh
 https://github.com/thunderheadone/one-sdk-ios
@@ -98,7 +98,7 @@ https://github.com/thunderheadone/one-sdk-ios
 
 ![Thunderhead Add Package](images/SPM/ThunderheadAddPackageURL.png)
 
-2. Select additional options such as a specific version number, branch or commit identifier. By default, Up to Next Major version is selected. We highly recommend using the latest version of the [Thunderhead SDK for iOS](https://github.com/thunderheadone/one-sdk-ios/releases). To integrate a specific version of the Thunderhead SDK, simply specify a version number you need. For example, to integrate v6.0.0 of Thunderhead SDK, specify the version number like below
+2. Select additional options such as a specific version number, branch or commit identifier. By default, Up to Next Major version is selected. We highly recommend using the latest version of the [Thunderhead SDK for iOS](https://github.com/thunderheadone/one-sdk-ios/releases). To integrate a specific version of the Thunderhead SDK, simply specify a version number you need. For example, to integrate v6.0.0 of the Thunderhead SDK, specify the version number like on the screenshot below:
 
 ![Thunderhead Choose Package Version](images/SPM/ThunderheadChoosePackage.png)
 
@@ -135,7 +135,7 @@ Install using the following command:
 $ pod install
 ```
 
-See example project for pod installation [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/dynamic-initialization-example).
+See example project for pod installation [here](examples/dynamic-initialization-example).
 
 ### Manual installation
 
@@ -150,7 +150,7 @@ See example project for pod installation [here](https://github.com/thunderheadon
     + Confirm **_ThunderheadBundle.bundle_** is located in the **Copy Bundle Resources** section.
 5. Ensure your project enables modules by going to **Build Settings** tab and setting the flag for **Enable Modules (C and Objective-C)** to **Yes**. Check out **_Adding the SDK dependencies for manual installation_** if you need modules to be disabled.
 
-See example project for manual installation [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/optimizing-programmatically-using-json-example).
+See example project for manual installation [here](examples/optimizing-programmatically-using-json-example).
 
 *Note:*
 - If you encounter the `No such module 'Thunderhead'` compile error, see our [Troubleshooting Guide](TROUBLESHOOTING-GUIDE.md#no-such-module-thunderhead-xcode-compile-error).
@@ -461,7 +461,7 @@ Objective-C:
 
 To disable in-list Optimizations, add the following to your app’s Info.plist file and set `DisableInListOptimization` to `YES` (boolean value).
 
-![Thunderhead Config App's Info.plist file](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/ThunderheadConfigInfoPlistEntry.png)
+![Thunderhead Config App's Info.plist file](images/ThunderheadConfigInfoPlistEntry.png)
 
 ```xml
 <key>Thunderhead Config</key>
@@ -476,7 +476,7 @@ To disable in-list Optimizations, add the following to your app’s Info.plist f
 
 ### Late initialization and reconfiguration of the SDK
 
-Need to late initialize or reconfigure the SDK to support multiple regions in your app? - see details [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/dynamic-initialization-example).
+Need to late initialize or reconfigure the SDK to support multiple regions in your app? - see details [here](examples/dynamic-initialization-example).
 
 ### Manually set a specific Interaction path
 

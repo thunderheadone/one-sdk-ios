@@ -38,9 +38,13 @@ To resolve this error, add the following to the scheme's Build Post-Action:
 rm -rf "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Frameworks/Thunderhead.framework"
 ```
 
-*Note:* Make sure to select `Provide build settings` from the app.
+*Note:* 
+
+- Make sure to select `Provide build settings` from the app.
 
 ![Thunderhead Unexpected Mach-O via SPM](images/ThunderheadUnexpectedMachOViaSPM.png)
+
+- Please note this issue is has already been reported to Apple's Swift Team. To track this bug [click here](https://bugs.swift.org/browse/SR-13343).
 
 ## How to resolve `UITableView` layout display issues
 

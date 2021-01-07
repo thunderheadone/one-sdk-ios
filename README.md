@@ -147,6 +147,21 @@ $ pod install
 
 See example project for pod installation [here](examples/dynamic-initialization-example).
 
+*Note:*
+While running `pod install`, if you get the following warnings 
+
+```txt
+[!] The `ThunderheadSampleApp [Debug]` target overrides the `OTHER_LDFLAGS` build setting defined in `Pods/Target Support Files/Pods-ThunderheadSampleApp/Pods-ThunderheadSampleApp.debug.xcconfig'. This can lead to problems with the CocoaPods installation
+    - Use the `$(inherited)` flag, or
+    - Remove the build settings from the target.
+[!] The `ThunderheadSampleApp [Release]` target overrides the `OTHER_LDFLAGS` build setting defined in `Pods/Target Support Files/Pods-ThunderheadSampleApp/Pods-ThunderheadSampleApp.release.xcconfig'. This can lead to problems with the CocoaPods installation
+    - Use the `$(inherited)` flag, or
+    - Remove the build settings from the target.
+```
+
+Go to app target's **Build Settings**, add **$(inherited)** to **Other Linker Flags**, which will add linker flags generated in pods or see our [Troubleshooting Guide](TROUBLESHOOTING-GUIDE.md#resolve-undefined-symbols-for-architecture-arm64-compile-time-error).
+
+
 ### Manual installation
 
 1. [Download the latest Thunderhead SDK for iOS](https://github.com/thunderheadone/one-sdk-ios/releases) and extract the zip.

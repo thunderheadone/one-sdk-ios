@@ -76,4 +76,6 @@ Objective-C:
 
 When integrating the Thunderhead SDK via cocoapods, you may encounter this compile time error.
 
-To resolve this error, go to **Build Settings**, add **$(inherited)** to **Other Linker Flags**, which will add linker flags generated in pods.
+To resolve this error, go to app target's **Build Settings**, add **$(inherited)** to **Other Linker Flags**, which will add linker flags generated in pods.
+
+![Thunderhead Other Linker Flag](images/ThunderheadOtherLinkerFlag.png)

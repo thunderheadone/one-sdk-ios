@@ -122,6 +122,8 @@ Adding a binary Swift package into your project can be done directly in Xcode in
 
 5. Drag and drop the **_ThunderheadBundle.bundle_** to **Copy Bundle Resources** section in your targets.
 
+  ![Thunderhead Copy Thunderhead Bundle](images/SPM/ThunderheadAddBundleResource.gif)
+
 ### CocoaPods
 
 Make sure you have the [CocoaPods](https://cocoapods.org) dependency manager installed. You can do so by executing the following command:
@@ -171,7 +173,7 @@ Go to app target's **Build Settings**, add **$(inherited)** to **Other Linker Fl
     + Navigate to your project build settings by selecting your project's Project File in the Project Navigator.
     + Select the main build target for your app.
     + Select the **Build Phases** tab.
-    + Confirm **_Thunderhead.framework_** is located in the **Link Binary With Libraries** section.
+    + Confirm **_Thunderhead.xcframework_** is located in the **Link Binary With Libraries** section.
     + Confirm **_ThunderheadBundle.bundle_** is located in the **Copy Bundle Resources** section.
 5. Ensure your project enables modules by going to **Build Settings** tab and setting the flag for **Enable Modules (C and Objective-C)** to **Yes**. Check out **_Adding the SDK dependencies for manual installation_** if you need modules to be disabled.
 

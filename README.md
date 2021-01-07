@@ -92,15 +92,15 @@ Adding a binary Swift package into your project can be done directly in Xcode in
 
 1. Add the package dependency into your Xcode project. 
 
-To do so, in the Xcode Navigation Bar, go to File > Swift Packages > Add Package Dependency… You might need to select your project in the next window if there are multiple projects in your workspace. 
+   To do so, in the Xcode Navigation Bar, go to File > Swift Packages > Add Package Dependency… You might need to select your project in the next window if there    are multiple projects in your workspace. 
+ 
+   Now enter the package repository URL provided below into the search field and hit Next.
 
-Now enter the package repository URL provided below into the search field and hit Next.
+   ```sh
+   https://github.com/thunderheadone/one-sdk-ios
+   ```
 
-```sh
-https://github.com/thunderheadone/one-sdk-ios
-```
-
-![Thunderhead Add Package](images/SPM/ThunderheadAddPackageURL.png)
+   ![Thunderhead Add Package](images/SPM/ThunderheadAddPackageURL.png)
 
 2. Select additional options such as a specific version number, branch or commit identifier. 
 

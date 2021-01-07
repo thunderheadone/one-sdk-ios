@@ -18,11 +18,11 @@ The Thunderhead SDK for iOS Troubleshooting Guide for Common Implementation Issu
 
 When integrating the Thunderhead SDK manually into your app, you may encounter this compile error.
 
-In **Build Settings**, ensure the **Framework Search Paths** contains the framework filepath. If the framework is placed in your project directory, simply set the framework search path to $(SRCROOT) and set it to recursive.
+In **Build Settings**, ensure the **Framework Search Paths** contains the framework filepath. If the framework is placed in your project directory, simply set the framework search path to `$(SRCROOT)` and set it to recursive.
 
 ### Resolve `Undefined symbols for architecture arm64` compile time error
 
-When integrating the Thunderhead SDK via cocoapods, you may encounter this compile time error.
+When integrating the Thunderhead SDK via [CocoaPods](https://github.com/thunderheadone/one-sdk-ios#cocoapods), you may encounter this compile time error.
 
 To resolve this error, go to app target's **Build Settings**, add **$(inherited)** to **Other Linker Flags**, which will add linker flags generated in pods.
 
@@ -30,9 +30,9 @@ To resolve this error, go to app target's **Build Settings**, add **$(inherited)
 
 ### Archive Error SPM - Found an unexpected Mach-O header code: 0x72613c21
 
-When try to upload/distribute an archive, you may encounter this error, if Thunderhead SDK was integrated via SPM
+When try to upload/distribute an archive, you may encounter this error, if Thunderhead SDK was integrated via [SPM](https://github.com/thunderheadone/one-sdk-ios/#swift-package-manager)
 
-To resolve thie error, Add the following to the Scheme's Build Post-Action:
+To resolve this error, add the following to the scheme's Build Post-Action:
 
 ```sh
 rm -rf "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Frameworks/Thunderhead.framework"
@@ -78,6 +78,7 @@ Objective-C:
 	</dict>
 </dict>
 ```	
+
 ## Deny/Block Network Connections in Xcode Simulator
 ### How to reduce Console connection failure messages in Xcode
 For developers that use an external tool (i.e. Little Snitch) to deny/block network connections coming from the Simulator, you may find that Xcode spams the debug area console with a large amount of network log errors, like below: 
@@ -102,7 +103,5 @@ rt/api/2.0/interaction/offline?sk=SITE_KEY, NSErrorFailingURLKey=https://servern
 These are **Apple error logs** logging *all* failed outgoing network connections configured with an external tool (i.e. Little Snitch) to block outgoing network calls in the Xcode Simulator. Below are potential solutions to help filter the Apple error logs that you see: 
 - Disable the OS (Operating System) Logs by setting `OS_ACTIVITY_MODE` = `disable` in your App Scheme Configuration. 
     - See [here](https://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-logs)
-- Or, if you require to see the OS logs and only want to filter Thunderhead SDK's network calls, you can temporarily set the SDK's `optOut` setting to `true`.  
-	- See [here](https://github.com/thunderheadone/one-sdk-ios#opt-an-end-user-out-of-tracking)
-
-
+- Or, if you require to see the OS logs and only want to filter Thunderhead SDK's network calls, you can temporarily opt out an end-user from all tracking.  
+	- See [here](https://github.com/thunderheadone/one-sdk-ios#opt-an-end-user-outin-of-all-tracking)

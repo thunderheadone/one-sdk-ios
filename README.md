@@ -104,21 +104,21 @@ Adding a binary Swift package into your project can be done directly in Xcode in
 
 2. Select additional options such as a specific version number, branch or commit identifier. 
 
-By default, Up to Next Major version is selected. We recommend using the latest version of the Thunderhead SDK for iOS, which you can find [here](https://github.com/thunderheadone/one-sdk-ios/releases). 
+   By default, Up to Next Major version is selected. We recommend using the latest version of the Thunderhead SDK for iOS, which you can find [here]  (https://github.com/thunderheadone/one-sdk-ios/releases). 
 
-To integrate a specific version of the Thunderhead SDK, simply specify a version number you need. 
+   To integrate a specific version of the Thunderhead SDK, simply specify a version number you need. 
 
-For example, to integrate v6.0.0 of the Thunderhead SDK, specify the version number like on the screenshot below:
+   For example, to integrate v6.0.0 of the Thunderhead SDK, specify the version number like on the screenshot below:
 
-![Thunderhead Choose Package Version](images/SPM/ThunderheadChoosePackage.png)
+   ![Thunderhead Choose Package Version](images/SPM/ThunderheadChoosePackage.png)
 
 3. Wait for Xcode to finish downloading and resolving the Swift package into your project.
 
-![Thunderhead Cloning Package](images/SPM/ThunderheadFetchPackage.png)
+   ![Thunderhead Cloning Package](images/SPM/ThunderheadFetchPackage.png)
 
 4. Choose the package products and targets.
 
-![Thunderhead Select Target](images/SPM/ThunderheadSelectTarget.png)
+   ![Thunderhead Select Target](images/SPM/ThunderheadSelectTarget.png)
 
 5. Drag and drop the **_ThunderheadBundle.bundle_** to **Copy Bundle Resources** section in your targets.
 

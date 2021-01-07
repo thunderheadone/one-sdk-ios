@@ -2,14 +2,15 @@
 
 The Thunderhead SDK for iOS Troubleshooting Guide for Common Implementation Issues.
 
-- [Deny/Block Network Connections in Xcode Simulator](#deny-block-network-connections-in-xcode-simulator)
-  * [How to reduce Console connection failure messages in Xcode](#how-to-reduce-console-connection-failure-messages-in-xcode)
-- [No such module 'Thunderhead' Xcode compile error](#no-such-module--thunderhead--xcode-compile-error)
+- [Installation and archiving troubleshooting](#installation-and-archiving-troubleshooting)
+  * [No such module 'Thunderhead' Xcode compile error](#no-such-module--thunderhead--xcode-compile-error)
+  * [Resolve `Undefined symbols for architecture arm64` compile time error](#resolve--undefined-symbols-for-architecture-arm64--compile-time-error)
+  * [Archive Error SPM - Found an unexpected Mach-O header code: 0x72613c21](#archive-error-spm---found-an-unexpected-mach-o-header-code--0x72613c21)
 - [How to resolve `UITableView` layout display issues](#how-to-resolve--uitableview--layout-display-issues)
   * [Resolve `UITableView` layout issue by implementing `tableView:heightForRowAtIndexPath:`](#resolve--uitableview--layout-issue-by-implementing--tableview-heightforrowatindexpath--)
   * [Disable the in-list Optimizations feature via App's Info.plist](#disable-the-in-list-optimizations-feature-via-app-s-infoplist)
-  * [Resolve `Undefined symbols for architecture arm64` compile time error](#resolve--undefined-symbols-for-architecture-arm64--compile-time-error)
-  * [Archive Error SPM - Found an unexpected Mach-O header code: 0x72613c21](#archive-error-spm---found-an-unexpected-mach-o-header-code--0x72613c21)
+- [Deny/Block Network Connections in Xcode Simulator](#deny-block-network-connections-in-xcode-simulator)
+  * [How to reduce Console connection failure messages in Xcode](#how-to-reduce-console-connection-failure-messages-in-xcode)
 
 
 ## Installation and archiving troubleshooting 

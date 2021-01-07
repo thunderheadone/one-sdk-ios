@@ -2,6 +2,16 @@
 
 The Thunderhead SDK for iOS Troubleshooting Guide for Common Implementation Issues.
 
+- [Deny/Block Network Connections in Xcode Simulator](#deny-block-network-connections-in-xcode-simulator)
+  * [How to reduce Console connection failure messages in Xcode](#how-to-reduce-console-connection-failure-messages-in-xcode)
+- [No such module 'Thunderhead' Xcode compile error](#no-such-module--thunderhead--xcode-compile-error)
+- [How to resolve `UITableView` layout display issues](#how-to-resolve--uitableview--layout-display-issues)
+  * [Resolve `UITableView` layout issue by implementing `tableView:heightForRowAtIndexPath:`](#resolve--uitableview--layout-issue-by-implementing--tableview-heightforrowatindexpath--)
+  * [Disable the in-list Optimizations feature via App's Info.plist](#disable-the-in-list-optimizations-feature-via-app-s-infoplist)
+  * [Resolve `Undefined symbols for architecture arm64` compile time error](#resolve--undefined-symbols-for-architecture-arm64--compile-time-error)
+  * [Archive Error SPM - Found an unexpected Mach-O header code: 0x72613c21](#archive-error-spm---found-an-unexpected-mach-o-header-code--0x72613c21)
+
+
 ## Deny/Block Network Connections in Xcode Simulator
 ### How to reduce Console connection failure messages in Xcode
 For developers that use an external tool (i.e. Little Snitch) to deny/block network connections coming from the Simulator, you may find that Xcode spams the debug area console with a large amount of network log errors, like below: 
@@ -79,3 +89,17 @@ When integrating the Thunderhead SDK via cocoapods, you may encounter this compi
 To resolve this error, go to app target's **Build Settings**, add **$(inherited)** to **Other Linker Flags**, which will add linker flags generated in pods.
 
 ![Thunderhead Other Linker Flag](images/ThunderheadOtherLinkerFlag.png)
+
+### Archive Error SPM - Found an unexpected Mach-O header code: 0x72613c21
+
+When try to upload/distribute an archive, you may encounter this error, if Thunderhead SDK was integrated via SPM
+
+To resolve thie error, Add the following to the Scheme's Build Post-Action:
+
+```sh
+rm -rf "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Frameworks/Thunderhead.framework"
+```
+
+*Note:* Make sure to select `Provide build settings` from the app.
+
+![Thunderhead Unexpected Mach-O via SPM](images/ThunderheadUnexpectedMachOViaSPM.png)

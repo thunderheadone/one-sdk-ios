@@ -323,7 +323,7 @@ Objective-C:
 
 #### `ViewController`/`View` lifecycle overriding rules
 
-The framework listens to a number of UIViewController and UIView methods to provide the desired functionality. Those methods are:
+The framework listens to a number of `UIViewController` and `UIView` methods to provide the desired functionality. Those methods are:
 - `viewWillAppear`
 - `viewDidAppear`
 - `viewWillDisappear`
@@ -338,7 +338,7 @@ In order to reduce the number of unnecessary Interaction requests sent automatic
 *Note:*
 - The SDK will only send codeless Interactions if they have been created under a Touchpoint and/or if they match wildcard rules defined under a Touchpoint.
 - For a codeless Interaction to be sent by the SDK this Interaction needs to contain at least one Activity Capture Point, Attribute Capture Point, and/or Optimization Point.
-- If you are running the SDK in [User mode](#set-up-the-sdk-in-user-mode), you need to ensure that all Interactions and related points have been fully published, before the SDK will trigger a request.
+- If you are running the SDK in [User mode](#set-up-the-sdk-in-user-mode-for-app-store-builds), you need to ensure that all Interactions and related points have been fully published, before the SDK will trigger a request.
 
 
 

@@ -1,6 +1,6 @@
 ![Thunderhead SDK](images/Thunderhead_Logo.png)
 
-The Thunderhead SDK for iOS Troubleshooting Guide for Common Implementation Issues.
+The Thunderhead SDK for iOS Troubleshooting Guide for common implementation issues.
 
 - [Installation and archiving troubleshooting](#installation-and-archiving-troubleshooting)
   * [No such module 'Thunderhead' Xcode compile error](#no-such-module--thunderhead--xcode-compile-error)

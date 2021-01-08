@@ -4,6 +4,7 @@
 
 - [Requirements](#requirements)
   * [iOS version requirements](#ios-version-requirements)
+  * [Xcode version requirements](#xcode-version-requirements)
 - [Installation](#installation)
   * [Swift Package Manager](#swift-package-manager)
   * [CocoaPods](#cocoapods)

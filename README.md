@@ -16,6 +16,7 @@
     + [Import the SDK’s module](#import-the-sdks-module)
     + [Set up the SDK in User mode](#set-up-the-sdk-in-user-mode)
     + [Set up the SDK in Admin mode](#set-up-the-sdk-in-admin-mode)
+  * [Further codeless integration considerations](##further-codeless-integration-considerations)
     + [For Salesforce Interaction Studio integrations](#for-salesforce-interaction-studio-integrations)
     + [`ViewController`/`View` lifecycle overriding rules](#viewcontrollerview-lifecycle-overriding-rules)
     + [Sending codeless Interactions based on the list of Interactions created under a Touchpoint](#sending-codeless-Interactions-based-on-the-list-of-Interactions-created-under-a-touchpoint)
@@ -302,7 +303,7 @@ Objective-C:
 
 **You have now successfully integrated the codeless Thunderhead SDK for iOS.**
 
-### Further codeless intergation considerations
+### Further codeless integration considerations
 
 #### For Salesforce Interaction Studio integrations
 

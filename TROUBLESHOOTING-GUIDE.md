@@ -18,13 +18,13 @@ The Thunderhead SDK for iOS Troubleshooting Guide for Common Implementation Issu
 
 When integrating the Thunderhead SDK manually into your app, you may encounter this compile error.
 
-In **Build Settings**, ensure the **Framework Search Paths** contains the framework filepath. If the framework is placed in your project directory, simply set the framework search path to `$(SRCROOT)` and set it to recursive.
+To resolve this, navigate to **Build Settings**, ensure the **Framework Search Paths** contains the framework filepath. If the framework is placed in your project directory, simply set the framework search path to `$(SRCROOT)` and set it to recursive.
 
 ### Resolve `Undefined symbols for architecture arm64` compile time error
 
 When integrating the Thunderhead SDK via [CocoaPods](https://github.com/thunderheadone/one-sdk-ios#cocoapods), you may encounter this compile time error.
 
-To resolve this error, go to app target's **Build Settings**, add **$(inherited)** to **Other Linker Flags**, which will add linker flags generated in pods.
+To resolve this error, go to app target's **Build Settings**, add `**$(inherited)**` to **Other Linker Flags**, which will add linker flags generated in pods.
 
 ![Thunderhead Other Linker Flag](images/ThunderheadOtherLinkerFlag.png)
 

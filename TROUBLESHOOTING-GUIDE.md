@@ -30,9 +30,9 @@ To resolve this error, go to app target's **Build Settings**, add `$(inherited)`
 
 ### Archive Error SPM - Found an unexpected Mach-O header code: 0x72613c21
 
-When try to upload/distribute an archive, you may encounter this error, if Thunderhead SDK was integrated via [SPM](https://github.com/thunderheadone/one-sdk-ios/#swift-package-manager)
+When try to upload/distribute an archive, you may encounter this error, if Thunderhead SDK was integrated via [SPM](https://github.com/thunderheadone/one-sdk-ios/#swift-package-manager).
 
-To resolve this error, add the following to the scheme's Build Post-Action:
+To resolve this error, add the following **Run Script** to the scheme's **Build Post-actions**:
 
 ```sh
 rm -rf "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Frameworks/Thunderhead.framework"

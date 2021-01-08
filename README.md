@@ -151,7 +151,7 @@ Install using the following command:
 $ pod install
 ```
 
-See example project for pod installation [here](examples/dynamic-initialization-example).
+You can find an example project for pod installation [here](examples/dynamic-initialization-example).
 
 *Note:*
 While running `pod install`, if you get the following warnings 

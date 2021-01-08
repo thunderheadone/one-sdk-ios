@@ -77,6 +77,9 @@ The Thunderhead SDK for iOS supports iOS 9.0 and above.
 
 + iOS minimum version (deployment target): iOS 9.0
 + iOS base SDK version: iOS 14.3
+
+### Xcode version requirements
+
 + Xcode minimum version: 12.0
 
 *Note:*

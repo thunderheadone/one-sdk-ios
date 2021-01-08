@@ -11,7 +11,7 @@
   * [Manual installation](#manual-installation)
     + [Adding the SDK dependencies for manual installation](#adding-the-sdk-dependencies-for-manual-installation)
     + [Biometric authentication](#biometric-authentication)
-- [Use the codeless Thunderhead SDK for iOS](#use-the-codeless-thunderhead-sdk-for-ios)
+- [Configure the codeless Thunderhead SDK for iOS](#configure-the-codeless-thunderhead-sdk-for-ios)
   * [Initialize the SDK](#initialize-the-sdk)
     + [Import the SDK’s module](#import-the-sdks-module)
     + [Set up the SDK in User mode](#set-up-the-sdk-in-user-mode)
@@ -69,6 +69,8 @@
 - [Questions or need help](#questions-or-need-help)
   * [Salesforce Interaction Studio support](#salesforce-interaction-studio-support)
   * [Thunderhead ONE support](#thunderhead-one-support)
+
+For native integration, simply follow the steps outlined under the installation and configuration section to quickly integrate the SDK into your app. 
 
 ## Requirements
 
@@ -190,15 +192,18 @@ See example project for manual installation [here](examples/optimizing-programma
 
 The SDK requires modules to be enabled. If you require modules to be disabled, you may need to include the following frameworks to the **Link Binary With Libraries**:
 
-+ *Foundation.framework*
-+ *UIKit.framework*
-+ *CoreGraphics.framework*
-+ *SystemConfiguration.framework*
-+ *MessageUI.framework*
 + *Accelerate.framework*
++ *CoreLocation.framework*
++ *Foundation.framework*
 + *LocalAuthentication.framework*
++ *CoreGraphics.framework*
++ *MessageUI.framework*
 + *SafariServices.framework*
++ *Security.framework*
++ *SystemConfiguration.framework*
++ *UIKit.framework*
 + *WebKit.framework*
++ *libsqlite3.tbd*
 
 *Note:*
 - If any of the frameworks are missing from your app, select the +icon in the lower-left corner of the **Link Binary With Libraries** section and add each framework, as needed, using the popup window.
@@ -217,9 +222,9 @@ The SDK supports biometric authentication (Touch ID / Face ID) in Admin mode
 
 to your `Info.plist` file. Failure to do so results in a dialog that tells the user your app has not provided the Face ID usage description.
 
-## Use the codeless Thunderhead SDK for iOS
+## Configure the codeless Thunderhead SDK for iOS
 
-Enable your app to automatically recognize **Interactions** by executing the following steps.
+Enable your app to automatically recognize **Interactions** in your app, by executing the following steps:
 
 ### Initialize the SDK
 
@@ -239,7 +244,7 @@ Complete the following steps to initialize the SDK.
     @import Thunderhead;
     ```
 
-#### Set up the SDK in User mode
+#### Set up the SDK in User mode for App Store builds
 
 To start tracking, capturing, and receiving Optimizations with the Thunderhead SDK in User mode, you must first initialize it with your Thunderhead API parameters. You can find your Thunderhead API parameters on the Thunderhead ONE website or in Salesforce Interaction Studio.
 
@@ -268,7 +273,7 @@ Objective-C:
                hostName:@"eu2.thunderhead.com"];
 ```
 
-#### Set up the SDK in Admin mode
+#### Set up the SDK in Admin mode for internal distribution
 
 To use the framework in Admin mode, simply change the `adminMode` boolean to `true`, as follows:
 
@@ -294,6 +299,11 @@ Objective-C:
               adminMode:YES
                hostName:@"eu2.thunderhead.com"];
 ```
+
+**You have now successfully integrated the codeless Thunderhead SDK for iOS.**
+
+### Further codeless intergation considerations
+
 #### For Salesforce Interaction Studio integrations
 
 When integrating with Salesforce Interaction Studio you can set the Admin mode theme to match the Interaction Studio look and feel, as follows:
@@ -329,10 +339,12 @@ In order to reduce the number of unnecessary Interaction requests sent automatic
 - For a codeless Interaction to be sent by the SDK this Interaction needs to contain at least one Activity Capture Point, Attribute Capture Point, and/or Optimization Point.
 - If you are running the SDK in [User mode](#set-up-the-sdk-in-user-mode), you need to ensure that all Interactions and related points have been fully published, before the SDK will trigger a request.
 
-**You have now successfully integrated the codeless Thunderhead SDK for iOS.**
+
 
 ## Additional features
-Follow any of the steps below to access further functions of the SDK.
+Follow any of the steps below to access further functions of the SDK. 
+
+You will typically use these functions to extend the codeless functionality, turn off specific codeless functions or if you are adopting a pure programmatic integration. 
 
 ### Opt an end-user out of or into tracking
 The following methods allow you to opt a user out of various levels of tracking and also opt them back in based on your app's privacy configuration.

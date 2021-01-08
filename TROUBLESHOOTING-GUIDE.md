@@ -24,7 +24,7 @@ To resolve this, navigate to **Build Settings**, ensure the **Framework Search P
 
 When integrating the Thunderhead SDK via [CocoaPods](https://github.com/thunderheadone/one-sdk-ios#cocoapods), you may encounter this compile time error.
 
-To resolve this error, go to app target's **Build Settings**, add `$(inherited)` to **Other Linker Flags**, which will add linker flags generated in pods.
+To resolve this error, go to app target's **Build Settings**, add `$(inherited)` to **Other Linker Flags**, which will add the linker flags generated in pods.
 
 ![Thunderhead Other Linker Flag](images/ThunderheadOtherLinkerFlag.png)
 
@@ -42,7 +42,7 @@ rm -rf "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Frameworks/Thunderhead.framework
 
 - Make sure to select `Provide build settings` from the app.
 
-![Thunderhead Unexpected Mach-O via SPM](images/ThunderheadUnexpectedMachOViaSPM.png)
+  ![Thunderhead Unexpected Mach-O via SPM](images/ThunderheadUnexpectedMachOViaSPM.png)
 
 - Please note this issue has already been reported to Apple's Swift Team. To track this bug [click here](https://bugs.swift.org/browse/SR-13343).
 

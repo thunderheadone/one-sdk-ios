@@ -126,7 +126,7 @@ Adding a binary Swift package into your project can be done directly in Xcode in
 
 5. Drag and drop the **_ThunderheadBundle.bundle_** to **Copy Bundle Resources** section in your targets.
 
-  ![Thunderhead Copy Thunderhead Bundle](images/SPM/ThunderheadAddBundleResource.gif)
+   ![Thunderhead Copy Thunderhead Bundle](images/SPM/ThunderheadAddBundleResource.gif)
 
 ### CocoaPods
 

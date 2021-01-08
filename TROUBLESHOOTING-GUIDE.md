@@ -24,7 +24,7 @@ To resolve this, navigate to **Build Settings**, ensure the **Framework Search P
 
 When integrating the Thunderhead SDK via [CocoaPods](https://github.com/thunderheadone/one-sdk-ios#cocoapods), you may encounter this compile time error.
 
-To resolve this error, go to app target's **Build Settings**, add `$(inherited)` to **Other Linker Flags**, which will add the linker flags generated in pods.
+To resolve this error, go to app target's **Build Settings**, add `$(inherited)` to **Other Linker Flags**, which will add the linker flags generated to your Pods.
 
 ![Thunderhead Other Linker Flag](images/ThunderheadOtherLinkerFlag.png)
 
@@ -40,7 +40,7 @@ rm -rf "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Frameworks/Thunderhead.framework
 
 *Note:* 
 
-- Make sure to select `Provide build settings` from the app.
+- Make sure to select **Provide build settings** from the app.
 
   ![Thunderhead Unexpected Mach-O via SPM](images/ThunderheadUnexpectedMachOViaSPM.png)
 
@@ -68,7 +68,7 @@ Objective-C:
 ```
 
 ### Disable the in-list Optimizations feature via App's Info.plist
-- Disable the in-list Optimizations feature by adding the following to your app’s Info.plist file and set `DisableInListOptimization` to `YES` (boolean value).
+- Disable the in-list Optimizations feature by adding the following config to your app’s `Info.plist` file and set `DisableInListOptimization` to `YES` (boolean value).
 
 ![Thunderhead Config App's Info.plist file](images/ThunderheadConfigInfoPlistEntry.png)
 

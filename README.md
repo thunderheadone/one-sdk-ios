@@ -4,16 +4,19 @@
 
 - [Requirements](#requirements)
   * [iOS version requirements](#ios-version-requirements)
+  * [Xcode version requirements](#xcode-version-requirements)
 - [Installation](#installation)
+  * [Swift Package Manager](#swift-package-manager)
   * [CocoaPods](#cocoapods)
   * [Manual installation](#manual-installation)
     + [Adding the SDK dependencies for manual installation](#adding-the-sdk-dependencies-for-manual-installation)
     + [Biometric authentication](#biometric-authentication)
-- [Use the codeless Thunderhead SDK for iOS](#use-the-codeless-thunderhead-sdk-for-ios)
+- [Configure the codeless Thunderhead SDK for iOS](#configure-the-codeless-thunderhead-sdk-for-ios)
   * [Initialize the SDK](#initialize-the-sdk)
     + [Import the SDK’s module](#import-the-sdks-module)
-    + [Set up the SDK in User mode](#set-up-the-sdk-in-user-mode)
-    + [Set up the SDK in Admin mode](#set-up-the-sdk-in-admin-mode)
+    + [Set up the SDK in User mode for App Store builds](#set-up-the-sdk-in-user-mode-for-app-store-builds)
+    + [Set up the SDK in Admin mode for internal distribution](#set-up-the-sdk-in-admin-mode-for-internal-distribution)
+  * [Further codeless integration considerations](#further-codeless-integration-considerations)
     + [For Salesforce Interaction Studio integrations](#for-salesforce-interaction-studio-integrations)
     + [`ViewController`/`View` lifecycle overriding rules](#viewcontrollerview-lifecycle-overriding-rules)
     + [Sending codeless Interactions based on the list of Interactions created under a Touchpoint](#sending-codeless-Interactions-based-on-the-list-of-Interactions-created-under-a-touchpoint)
@@ -57,12 +60,6 @@
     + [Append a `one-tid` parameter to a `NSURL` to facilitate identity transfer](#append-a-one-tid-parameter-to-a-nsurl-to-facilitate-identity-transfer)
   * [Disable automatic outbound link tracking](#disable-automatic-outbound-link-tracking)
     + [Programmatically trigger an outbound link tracking Interaction call](#programmatically-trigger-an-outbound-link-tracking-interaction-call)
-  * [Enable push notifications](#enable-push-notifications)
-  * [Get a push token](#get-a-push-token)
-  * [Send a push token](#send-a-push-token)
-  * [Handle notifications received through the ONE APNs interface](#handle-notifications-received-through-the-one-apns-interface)
-      - [Handling notifications while the app in foreground or background](#handling-notifications-while-the-app-in-foreground-or-background)
-      - [Displaying notifications while the app in foreground](#displaying-notifications-while-the-app-in-foreground)
   * [Send a location object](#send-a-location-object)
   * [Get a structure data](#get-a-structure-data)
   * [Get Tid](#get-tid)
@@ -74,32 +71,80 @@
   * [Salesforce Interaction Studio support](#salesforce-interaction-studio-support)
   * [Thunderhead ONE support](#thunderhead-one-support)
 
+For native integration, simply follow the steps outlined under the installation and configuration section to quickly integrate the SDK into your app. 
+
 ## Requirements
 
-The Thunderhead SDK for iOS supports iOS 8.0 and above.
+The Thunderhead SDK for iOS supports iOS 9.0 and above.
 
 ### iOS version requirements
 
-+ iOS minimum version (deployment target): iOS 8.0
-+ iOS base SDK version: iOS 13.0
-+ Xcode minimum version: 11.0
++ iOS minimum version (deployment target): iOS 9.0
++ iOS base SDK version: iOS 14.3
+
+### Xcode version requirements
+
++ Xcode minimum version: 12.0
+
+*Note:*
+- Xcode versions < 12.0 only support archiving an application with bitcode disabled.
 
 ## Installation
 
+The Thunderhead SDK can be integrated via [Swift Package Manager](#swift-package-manager), [CocoaPods](#cocoapods) or [by manually adding it to your project](#manual-installation).
+
+### Swift Package Manager
+
+Adding a binary Swift package into your project can be done directly in Xcode in a few simple steps:
+
+1. Add the package dependency into your Xcode project. 
+
+   To do so, in the Xcode Navigation Bar, go to File > Swift Packages > Add Package Dependency… You might need to select your project in the next window if there are multiple projects in your workspace. 
+ 
+   Now enter the package repository URL provided below into the search field and hit Next.
+
+   ```sh
+   https://github.com/thunderheadone/one-sdk-ios
+   ```
+
+   ![Thunderhead Add Package](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/SPM/ThunderheadAddPackageURL.png)
+
+2. Select additional options such as a specific version number, branch or commit identifier. 
+
+   By default, Up to Next Major version is selected. We recommend using the latest version of the Thunderhead SDK for iOS, which you can find [here](https://github.com/thunderheadone/one-sdk-ios/releases). 
+
+   To integrate a specific version of the Thunderhead SDK, simply specify a version number you need. 
+
+   For example, to integrate version 6.0.0 of the Thunderhead SDK, specify the version number like on the screenshot below:
+
+   ![Thunderhead Choose Package Version](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/SPM/ThunderheadChoosePackage.png)
+
+3. Wait for Xcode to finish downloading and resolving the Swift package into your project.
+
+   ![Thunderhead Cloning Package](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/SPM/ThunderheadFetchPackage.png)
+
+4. Choose the package products and targets.
+
+   ![Thunderhead Select Target](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/SPM/ThunderheadSelectTarget.png)
+
+5. Drag and drop the **_ThunderheadBundle.bundle_** to **Copy Bundle Resources** section in your targets.
+
+   ![Thunderhead Copy Thunderhead Bundle](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/SPM/ThunderheadAddBundleResource.gif)
+
 ### CocoaPods
 
-Make sure you have the [CocoaPods](http://cocoapods.org) dependency manager installed. You can do so by executing the following command:
+Make sure you have the [CocoaPods](https://cocoapods.org) dependency manager installed. You can do so by executing the following command:
 
 ```sh
 $ gem install cocoapods
 ```
 
-Specify the *Thunderhead SDK* in your podfile
+Specify the *Thunderhead SDK* in your podfile.
 
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-    pod 'Thunderhead', '~> 5.3.3'
+    pod 'Thunderhead', '~> 6.0.0-beta1-3-g207f0c8'
     end
 ```
 
@@ -109,7 +154,22 @@ Install using the following command:
 $ pod install
 ```
 
-See example project for pod installation [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/dynamic-initialization-example).
+You can find an example project for pod installation [here](https://github.com/thunderheadone/one-sdk-ios/tree/master/examples/dynamic-initialization-example).
+
+*Note:*
+- While running `pod install`, if you get the following warnings:
+
+```txt
+[!] The `ThunderheadSampleApp [Debug]` target overrides the `OTHER_LDFLAGS` build setting defined in `Pods/Target Support Files/Pods-ThunderheadSampleApp/Pods-ThunderheadSampleApp.debug.xcconfig'. This can lead to problems with the CocoaPods installation
+    - Use the `$(inherited)` flag, or
+    - Remove the build settings from the target.
+[!] The `ThunderheadSampleApp [Release]` target overrides the `OTHER_LDFLAGS` build setting defined in `Pods/Target Support Files/Pods-ThunderheadSampleApp/Pods-ThunderheadSampleApp.release.xcconfig'. This can lead to problems with the CocoaPods installation
+    - Use the `$(inherited)` flag, or
+    - Remove the build settings from the target.
+```
+
+Go to app target's **Build Settings**, add **$(inherited)** to **Other Linker Flags**, which will add linker flags generated in pods or see our [Troubleshooting Guide](TROUBLESHOOTING-GUIDE.md#resolve-undefined-symbols-for-architecture-arm64-compile-time-error).
+
 
 ### Manual installation
 
@@ -120,7 +180,7 @@ See example project for pod installation [here](https://github.com/thunderheadon
     + Navigate to your project build settings by selecting your project's Project File in the Project Navigator.
     + Select the main build target for your app.
     + Select the **Build Phases** tab.
-    + Confirm **_Thunderhead.framework_** is located in the **Link Binary With Libraries** section.
+    + Confirm **_Thunderhead.xcframework_** is located in the **Link Binary With Libraries** section.
     + Confirm **_ThunderheadBundle.bundle_** is located in the **Copy Bundle Resources** section.
 5. Ensure your project enables modules by going to **Build Settings** tab and setting the flag for **Enable Modules (C and Objective-C)** to **Yes**. Check out **_Adding the SDK dependencies for manual installation_** if you need modules to be disabled.
 
@@ -133,15 +193,18 @@ See example project for manual installation [here](https://github.com/thunderhea
 
 The SDK requires modules to be enabled. If you require modules to be disabled, you may need to include the following frameworks to the **Link Binary With Libraries**:
 
-+ *Foundation.framework*
-+ *UIKit.framework*
-+ *CoreGraphics.framework*
-+ *SystemConfiguration.framework*
-+ *MessageUI.framework*
 + *Accelerate.framework*
++ *CoreLocation.framework*
++ *Foundation.framework*
 + *LocalAuthentication.framework*
++ *CoreGraphics.framework*
++ *MessageUI.framework*
 + *SafariServices.framework*
++ *Security.framework*
++ *SystemConfiguration.framework*
++ *UIKit.framework*
 + *WebKit.framework*
++ *libsqlite3.tbd*
 
 *Note:*
 - If any of the frameworks are missing from your app, select the +icon in the lower-left corner of the **Link Binary With Libraries** section and add each framework, as needed, using the popup window.
@@ -160,9 +223,9 @@ The SDK supports biometric authentication (Touch ID / Face ID) in Admin mode
 
 to your `Info.plist` file. Failure to do so results in a dialog that tells the user your app has not provided the Face ID usage description.
 
-## Use the codeless Thunderhead SDK for iOS
+## Configure the codeless Thunderhead SDK for iOS
 
-Enable your app to automatically recognize **Interactions** by executing the following steps.
+Enable your app to automatically recognize **Interactions** in your app, by executing the following steps:
 
 ### Initialize the SDK
 
@@ -182,7 +245,7 @@ Complete the following steps to initialize the SDK.
     @import Thunderhead;
     ```
 
-#### Set up the SDK in User mode
+#### Set up the SDK in User mode for App Store builds
 
 To start tracking, capturing, and receiving Optimizations with the Thunderhead SDK in User mode, you must first initialize it with your Thunderhead API parameters. You can find your Thunderhead API parameters on the Thunderhead ONE website or in Salesforce Interaction Studio.
 
@@ -211,7 +274,7 @@ Objective-C:
                hostName:@"eu2.thunderhead.com"];
 ```
 
-#### Set up the SDK in Admin mode
+#### Set up the SDK in Admin mode for internal distribution
 
 To use the framework in Admin mode, simply change the `adminMode` boolean to `true`, as follows:
 
@@ -237,6 +300,11 @@ Objective-C:
               adminMode:YES
                hostName:@"eu2.thunderhead.com"];
 ```
+
+**You have now successfully integrated the codeless Thunderhead SDK for iOS.**
+
+### Further codeless integration considerations
+
 #### For Salesforce Interaction Studio integrations
 
 When integrating with Salesforce Interaction Studio you can set the Admin mode theme to match the Interaction Studio look and feel, as follows:
@@ -255,7 +323,7 @@ Objective-C:
 
 #### `ViewController`/`View` lifecycle overriding rules
 
-The framework listens to a number of UIViewController and UIView methods to provide the desired functionality. Those methods are:
+The framework listens to a number of `UIViewController` and `UIView` methods to provide the desired functionality. Those methods are:
 - `viewWillAppear`
 - `viewDidAppear`
 - `viewWillDisappear`
@@ -270,12 +338,12 @@ In order to reduce the number of unnecessary Interaction requests sent automatic
 *Note:*
 - The SDK will only send codeless Interactions if they have been created under a Touchpoint and/or if they match wildcard rules defined under a Touchpoint.
 - For a codeless Interaction to be sent by the SDK this Interaction needs to contain at least one Activity Capture Point, Attribute Capture Point, and/or Optimization Point.
-- If you are running the SDK in [User mode](#set-up-the-sdk-in-user-mode), you need to ensure that all Interactions and related points have been fully published, before the SDK will trigger a request.
-
-**You have now successfully integrated the codeless Thunderhead SDK for iOS.**
+- If you are running the SDK in [User mode](#set-up-the-sdk-in-user-mode-for-app-store-builds), you need to ensure that all Interactions and related points have been fully published, before the SDK will trigger a request.
 
 ## Additional features
-Follow any of the steps below to access further functions of the SDK.
+Follow any of the steps below to access further functions of the SDK. 
+
+You will typically use these functions to extend the codeless functionality, turn off specific codeless functions or if you are adopting a pure programmatic integration. 
 
 ### Opt an end-user out of or into tracking
 The following methods allow you to opt a user out of various levels of tracking and also opt them back in based on your app's privacy configuration.
@@ -435,7 +503,7 @@ Objective-C:
 
 To disable in-list Optimizations, add the following to your app’s Info.plist file and set `DisableInListOptimization` to `YES` (boolean value).
 
-![Thunderhead Config App's Info.plist file](images/ThunderheadConfigInfoPlistEntry.png)
+![Thunderhead Config App's Info.plist file](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/ThunderheadConfigInfoPlistEntry.png)
 
 ```xml
 <key>Thunderhead Config</key>
@@ -1041,146 +1109,6 @@ passing the URL which will send an Interaction request ‘/one-click’ using th
 
 *Note:*
 - This will send a POST request to Thunderhead ONE or Salesforce Interaction Studio.
-
-### Enable push notifications
-
-To receive push notifications from Thunderhead ONE or Salesforce Interaction Studio, take the following steps:
-
-1.    Enable Push Notifications in Capabilities pane
-2.    Enable Background Modes in Capabilities pane
-3.    Select Remote Notifications under Background Modes section
-4.    Call the method `enablePushNotifications` by passing `true` as shown below:
-
-    Swift:
-    ```swift
-    One.enablePushNotifications(true)
-    ```
-
-
-    Objective-C:
-    ```objective-c
-    [One enablePushNotifications:YES];
-    ```
-
-*Note:*
-- To disable this feature if it once was enabled, simply call the same method and pass `false`.   
-
-### Get a push token
-
-To get the push token codelessly retrieved by the SDK, call the `getPushToken` method as shown below:
-
-Swift:
-```swift
-let pushToken =  One.getPushToken()
-// work with the push token
-```
-
-
-Objective-C:
-```objective-c
-NSString *pushToken = [One getPushToken];
-// work with the push token
-```
-
-*Note:*
-- This can be useful for testing and debugging, or to retrieve the token and pass it to another push notification provider.
-
-### Send a push token
-
-To send a push token, call `sendPushToken` method by passing a push token:
-
-Swift:
-```swift
-One.sendPushToken(pushToken)
-```
-
-
-Objective-C:
-```objective-c
-[One sendPushToken:pushToken];
-```
-
-The push token can be obtained and sent from the app delegate’s method `didRegisterForRemoteNotificationsWithDeviceToken` as shown below:
-
-Swift:
-```swift
-func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-    One.sendPushToken(deviceToken)
-    // work with the push token
-}
-```
-
-
-Objective-C:
-```objective-c
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-    [One sendPushToken:deviceToken];
-    // work with the push token
-}
-```
-
-*Note:*
-- If you haven't enabled push notification support, you can use this function to programmatically store the push token in Thunderhead ONE or Salesforce Interaction Studio.
-
-### Handle notifications received through the ONE APNs interface
-
-##### Handling notifications while the app in foreground or background
-
-Swift:
-```swift
-func application(_ application: UIApplication, 
-     didReceiveRemoteNotification userInfo: [AnyHashable : Any], 
-        fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-     // Handle notification 
-     // Call `completionHandler` with the appropriate `UIBackgroundFetchResult`. For example:
-     completionHandler(.newData)
-}
-```
-
-
-Objective-C:
-```objective-c
-- (void)application:(UIApplication *)application 
-    didReceiveRemoteNotification:(NSDictionary *)userInfo 
-    fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
-{
-    // Handle notification 
-    // Call `completionHandler` with the appropriate `UIBackgroundFetchResult`. For example:
-    completionHandler(UIBackgroundFetchResultNewData);
-}
-```
-
-
-##### Displaying notifications while the app in foreground
-
-Notifications received while the app is running in the foreground will not generate the standard system alert. Instead, they are passed to the `application:didReceiveRemoteNotification:fetchCompletionHandler:` callback on your app delegate. To display a standard system alert, implement `userNotificationCenter:willPresentNotification:withCompletionHandler:` method. 
-
-For example, to show a standard alert view, do the following:
-
-**iOS 10+**
-
-Swift:
-```swift
-func userNotificationCenter(_ center: UNUserNotificationCenter, 
-                         willPresent notification: UNNotification, 
-               withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    // Handle notification
-    completionHandler([.alert, .badge, .sound])
-}
-```
-
-
-Objective-C:
-```objective-c
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center 
-       willPresentNotification:(UNNotification *)notification 
-         withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
-{
-    // Handle notification
-    completionHandler(UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound);
-}
-```
 
 
 ### Send a location object

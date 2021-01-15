@@ -45,4 +45,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH_PREFIX: "release/"
           PULL_REQUEST_BRANCH: "master"
-          PULL_REQUEST_REVIEWERS: "th-apop th-anguyen th-skhozin thmzacharias"
+          PULL_REQUEST_REVIEWERS: "th-anguyen th-skhozin thmzacharias"

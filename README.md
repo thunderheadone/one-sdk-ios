@@ -36,6 +36,7 @@
       + [Opt an end-user in for all city/country level tracking](#opt-an-end-user-in-for-all-citycountry-level-tracking)   
     * [Partial opt out/in example](#partial-opt-outin-example)
   * [Disable in-list Optimizations](#disable-in-list-optimizations)
+  * [Disable `WKWebView` tracking](#disable-wkwebview-tracking)
   * [Late initialization and reconfiguration of the SDK](#late-initialization-and-reconfiguration-of-the-sdk)
   * [Manually set a specific Interaction path](#manually-set-a-specific-interaction-path)
   * [Exclude an Interaction](#exclude-an-interaction)
@@ -144,7 +145,7 @@ Specify the *Thunderhead SDK* in your podfile.
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-    pod 'Thunderhead', '~> 6.0.0'
+    pod 'Thunderhead', '~> 6.1.0'
     end
 ```
 
@@ -511,6 +512,23 @@ To disable in-list Optimizations, add the following to your app’s Info.plist f
   <key>Swizzling Options</key>
   <dict>
     <key>DisableInListOptimization</key>
+    <true/>
+  </dict>
+</dict>
+```
+
+### Disable `WKWebView` tracking
+
+To disable `WKWebView` codeless tracking, add the following to your app’s Info.plist file and set `DisableWKWebViewTracking` to `YES` (boolean value).
+
+![Thunderhead Config WKWebView Disable App's Info.plist file](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/ThunderheadConfigWKWebViewInfoPlistEntry.png)
+
+```xml
+<key>Thunderhead Config</key>
+<dict>
+  <key>Swizzling Options</key>
+  <dict>
+    <key>DisableWKWebViewTracking</key>
     <true/>
   </dict>
 </dict>

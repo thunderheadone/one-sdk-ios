@@ -1,3 +1,6 @@
+#### Version 6.1.0
+* [NEW] Added ability to automatically track `WKWebView` Interactions based on the URL loaded. The Interaction for the `ViewController` containing the `WKWebView` will also automatically be sent. To disable this automatic tracking - [see our readme](https://github.com/thunderheadone/one-sdk-ios#disable-wkwebview-tracking).
+
 #### Version 6.0.0
 * [BREAKING] The Thunderhead SDK is now distributed as an XCFramework bundle. The binary contains architecture slices for `arm64`, `armv7` for iOS and `arm64`, `i386, x86_64` for the simulator. For further details on this [see our migration guide](https://github.com/thunderheadone/one-sdk-ios/blob/master/migration-guides/THUNDERHEAD-6.0.0-MIGRATION-GUIDE.md#xcframework-integration).
 * [BREAKING] Updated minimum deployment target to iOS 9.0.

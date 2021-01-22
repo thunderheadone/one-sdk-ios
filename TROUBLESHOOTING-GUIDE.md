@@ -8,7 +8,8 @@ The Thunderhead SDK for iOS Troubleshooting Guide for common implementation issu
   * [Archive Error SPM - Found an unexpected Mach-O header code: 0x72613c21](#archive-error-spm---found-an-unexpected-mach-o-header-code--0x72613c21)
 - [How to resolve `UITableView` layout display issues](#how-to-resolve--uitableview--layout-display-issues)
   * [Resolve `UITableView` layout issue by implementing `tableView:heightForRowAtIndexPath:`](#resolve--uitableview--layout-issue-by-implementing--tableview-heightforrowatindexpath--)
-  * [Disable the in-list Optimizations feature via App's Info.plist](#disable-the-in-list-optimizations-feature-via-app-s-infoplist)
+  * [Disable the in-list Optimizations feature via App's Info.plist](#disable-the-in-list-optimizations-feature-via-apps-infoplist)
+  * [Disable `WKWebView` tracking via App's Info.plist](#disable-wkwebview-tracking-via-apps-infoplist)
 - [Deny/Block Network Connections in Xcode Simulator](#deny-block-network-connections-in-xcode-simulator)
   * [How to reduce Console connection failure messages in Xcode](#how-to-reduce-console-connection-failure-messages-in-xcode)
 
@@ -81,7 +82,23 @@ Objective-C:
 		<true/>
 	</dict>
 </dict>
-```	
+```
+
+### Disable `WKWebView` tracking via App's Info.plist
+- Disable `WKWebView` codeless tracking by adding the following to your app’s Info.plist file and set `DisableWKWebViewTracking` to `YES` (boolean value).
+
+![Thunderhead Config WKWebView Disable App's Info.plist file](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/ThunderheadConfigWKWebViewInfoPlistEntry.png)
+
+```xml
+<key>Thunderhead Config</key>
+<dict>
+  <key>Swizzling Options</key>
+  <dict>
+    <key>DisableWKWebViewTracking</key>
+    <true/>
+  </dict>
+</dict>
+``` 
 
 ## Deny/Block Network Connections in Xcode Simulator
 ### How to reduce Console connection failure messages in Xcode

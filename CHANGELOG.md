@@ -1,3 +1,11 @@
+#### Version 6.2.0
+* [NEW] Added ability to create `WKWebView` URL Interaction paths in ONE directly through the Admin mode interface.
+* [UPDATE] Aligned `disableAutomaticInteractionDetection` with `excludeInteractionPath` to fully disable the ONE SDK from interacting with the View Controller when the method is called.
+* [UPDATE] Added more granular framework logging to facilitate better customer support when tracking Interactions.
+* [BUGFIX] Addressed an issue that was occurring when checking [the list of Interactions created under a Touchpoint](https://github.com/thunderheadone/one-sdk-ios#sending-codeless-interactions-based-on-the-list-of-interactions-created-under-a-touchpoint), which could’ve led to some offline Interactions not being sent.
+* [BUGFIX] Fixed a crash that was occuring when reconfiguring the SDK while the device was offline.
+* [BUGFIX] Fixed an issue where Modals were not triggering Interactions in Preview mode.
+
 #### Version 6.1.0
 * [NEW] Added ability to automatically track `WKWebView` Interactions based on the URL loaded. The Interaction for the `ViewController` containing the `WKWebView` will also automatically be sent. To disable this automatic tracking - [see our readme](https://github.com/thunderheadone/one-sdk-ios#disable-wkwebview-tracking).
 

@@ -9,10 +9,13 @@ The Thunderhead SDK for iOS Troubleshooting Guide for common implementation issu
 - [How to resolve `UITableView` layout display issues](#how-to-resolve--uitableview--layout-display-issues)
   * [Resolve `UITableView` layout issue by implementing `tableView:heightForRowAtIndexPath:`](#resolve--uitableview--layout-issue-by-implementing--tableview-heightforrowatindexpath--)
   * [Disable the in-list Optimizations feature via App's Info.plist](#disable-the-in-list-optimizations-feature-via-apps-infoplist)
-  * [Disable `WKWebView` tracking via App's Info.plist](#disable-wkwebview-tracking-via-apps-infoplist)
+  * [Disable `WKWebView` tracking via App's Info.plist](#disable--wkwebview--tracking-via-apps-infoplist)
+- [Identify why automatic Interaction requests may not be triggered for a View Controller](#identify-why-automatic-interaction-requests-may-not-be-triggered-for-a-view-controller)
+  * [Ensure you are calling `super` when overriding View Controller lifecycle methods](#ensure-you-are-calling--super--when-overriding-view-controller-lifecycle-methods)
+    + [How to identify when this is the issue](#how-to-identify-when-this-is-the-issue)
+    + [How to resolve this issue](#how-to-resolve-this-issue)
 - [Deny/Block Network Connections in Xcode Simulator](#deny-block-network-connections-in-xcode-simulator)
   * [How to reduce Console connection failure messages in Xcode](#how-to-reduce-console-connection-failure-messages-in-xcode)
-
 
 ## Installation and archiving troubleshooting 
 ### No such module 'Thunderhead' Xcode compile error
@@ -99,6 +102,38 @@ Objective-C:
   </dict>
 </dict>
 ``` 
+## Identify why automatic Interaction requests may not be triggered for a View Controller
+### Ensure you are calling `super` when overriding View Controller lifecycle methods 
+The SDK relies on the [View Controller lifecycle methods](https://www.github.com/thunderheadone/one-sdk-ios#viewcontrollerview-lifecycle-overriding-rules) being called to automatically capture Interaction events. Therefore it is required for the client app to call `super`, when lifecycle methods are overridden, to notify the OS of the method call.  
+
+#### How to identify when this is the issue
+If the lifecycle methods are not configured correctly you may only see the interaction path being configured, for example:
+```
+ [Thunderhead] Thunderhead SDK assigned interaction path AAPLWorkingWithURLViewController based on class name to the view controller <AAPLWorkingWithURLViewController: 0x7ffd0f811b10>
+```
+
+In other cases you may only see the View Controller dissapearing being logged, for example:
+```
+Thunderhead] handleViewWillDisappear for : <AAPLWorkingWithURLViewController: 0x7ffd0f811b10>
+```
+#### How to resolve this issue 
+Ensure you are calling `super` when overriding any of the methods outlined [here](https://www.github.com/thunderheadone/one-sdk-ios#viewcontrollerview-lifecycle-overriding-rules).
+
+Example of an automatic Interaction being triggered correctly:
+```
+2021-01-28 11:51:30 +0000 : [Thunderhead] handleViewWillAppear for : <AAPLWorkingWithURLViewController: 0x7fcb74634870>
+2021-01-28 11:51:30 +0000 : [Thunderhead] Thunderhead SDK assigned interaction path AAPLWorkingWithURLViewController based on class name to the view controller <AAPLWorkingWithURLViewController: 0x7fcb74634870>
+2021-01-28 11:51:31 +0000 : [Thunderhead] handleViewDidAppear for : <AAPLWorkingWithURLViewController: 0x7fcb74634870>
+2021-01-28 11:51:31 +0000 : [Thunderhead] The interaction /AAPLWorkingWithURLViewController has a trackable navigation bar's title
+[Thunderhead]  Task OneAutomaticInteractionOperation: /AAPLWorkingWithURLViewController: has started
+[Thunderhead] Task OneAutomaticInteractionOperation: /AAPLWorkingWithURLViewController: URL request string: https://server.thunderhead.com/one/oauth1/rt/api/2.0/interaction?sk=ONE-AT7BTSA1HJ-7422&tid=b4bc40d0-5718-6676-18b4-1f59ecb040ca&pv=LTE2MTAwNTI2Mjg2Mzc
+2021-01-28 11:51:31 +0000 : [Thunderhead] The HTTP request for the task OneAutomaticInteractionOperation: /AAPLWorkingWithURLViewController: ---REQUEST------------------
+BODY: {"uri":"ios://sdkSampleApp/AAPLWorkingWithURLViewController","device":{"locale":"en_US","osName":"IOS","devMfr":"Apple","appVer":"0.47.0","appName":"com.thunderhead.UICatalog.admin","ipAddress":"detect","devType":"SMARTPHONE","devModel":"x86_64","osVer":"14.3"}}
+2021-01-28 11:51:31 +0000 : [Thunderhead] The HTTP response for the task OneAutomaticInteractionOperation: /AAPLWorkingWithURLViewController:
+2021-01-28 11:51:31 +0000 : [Thunderhead] View controller not mapped for interaction path /AAPLWorkingWithURLViewController due to the Interaction response data object having no trackers, captures or optimizations
+[Thunderhead] Task OneAutomaticInteractionOperation: /AAPLWorkingWithURLViewController: has finished
+2021-01-28 11:51:32 +0000 : [Thunderhead] View controller not mapped for interaction path /AAPLWorkingWithURLViewController due to the Interaction response data object having no trackers, captures or optimizations
+```
 
 ## Deny/Block Network Connections in Xcode Simulator
 ### How to reduce Console connection failure messages in Xcode
@@ -126,3 +161,11 @@ These are **Apple error logs** logging *all* failed outgoing network connections
     - See [here](https://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-logs)
 - Or, if you require to see the OS logs and only want to filter Thunderhead SDK's network calls, you can temporarily opt out an end-user from all tracking.  
 	- See [here](https://github.com/thunderheadone/one-sdk-ios#opt-an-end-user-outin-of-all-tracking)
+
+## RxSwift 
+
+### `UITableView` and/or `UICollectionView` cells no longer clickable or tappable
+
+For apps using RxSwift `UITableView` and `UICollectionView` delegate methods with our SDK integrated, you may encounter an issue where the `UITableViewCell` or `UICollectionViewCell` is no longer clickable or tappable.  In which case you may be using the Reactive wrapper method `rx.modelSelected` or `rx.itemSelected` for delegate message `collectionView(_:didSelectItemAtIndexPath:)`, and these methods no longer trigger.
+
+If you are encountering this or other delegate related issues, please ensure that you are setting the `UICollectionView` or `UITableView` delegate using the Reactive wrapper method `rx.setDelegate()` and **not** directly i.e. `collection.delegate = self`.  Setting the delegate directly results in unexpected behavior in delegate callbacks.  We are investigating the root cause and looking to fix this in a future version.  

@@ -1,3 +1,7 @@
+#### Version 6.3.0
+* [NEW] Added ability to dynamically switch between Admin and User mode without restarting the app.
+* [UPDATE] Improved `optOut` method to ensure no Interactions are sent when a user is opted out of all tracking.
+
 #### Version 6.2.0
 * [NEW] Added ability to create `WKWebView` URL Interaction paths in ONE directly through the Admin mode interface.
 * [UPDATE] Aligned `disableAutomaticInteractionDetection` with `excludeInteractionPath` to fully disable the ONE SDK from interacting with the View Controller when the method is called.

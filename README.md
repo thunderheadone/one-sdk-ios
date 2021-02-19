@@ -1,5 +1,9 @@
 ![Thunderhead SDK](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/Thunderhead_Logo.png)
 
+## Resources
+
+* [Migration Guides](https://github.com/thunderheadone/one-sdk-ios/tree/master/migration-guides)
+
 ## Table of Contents
 
 - [Requirements](#requirements)
@@ -145,7 +149,7 @@ Specify the *Thunderhead SDK* in your podfile.
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-    pod 'Thunderhead', '~> 6.2.0'
+    pod 'Thunderhead', '~> 6.3.0'
     end
 ```
 
@@ -301,6 +305,9 @@ Objective-C:
               adminMode:YES
                hostName:@"eu2.thunderhead.com"];
 ```
+
+*Note:*
+- Dynamic configuration of both Admin and User mode is supported.
 
 **You have now successfully integrated the codeless Thunderhead SDK for iOS.**
 

@@ -1,3 +1,7 @@
+#### Version 6.3.1
+* [BUGFIX] Fixed a crash that was occurring when tracking WKWebView interactions.
+* [BUGFIX] Fixed a crash that was occurring when dismissing `View Controllers` that are presented modally.
+
 #### Version 6.3.0
 * [NEW] Added ability to dynamically switch between Admin and User mode without restarting the app.
 * [UPDATE] Improved `optOut` method to ensure no Interactions are sent when a user is opted out of all tracking.

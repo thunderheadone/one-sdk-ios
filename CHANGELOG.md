@@ -1,3 +1,6 @@
+#### Version 6.3.3
+* [BUGFIX] Fixed a crash related to handling a deallocated `View Controller` hosting `WKWebView`.
+
 #### Version 6.3.2
 * [BUGFIX] Fixed a crash related to handling `View Controllers` that are deallocated.
 * [BUGFIX] Fixed an issue where codeless Interactions may not be sent after dismissing a `View Controller` that was presented modally.

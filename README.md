@@ -149,7 +149,7 @@ Specify the *Thunderhead SDK* in your podfile.
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-    pod 'Thunderhead', '~> 6.3.2'
+    pod 'Thunderhead', '~> 6.3.3'
     end
 ```
 

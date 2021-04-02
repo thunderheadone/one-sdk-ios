@@ -155,7 +155,7 @@ typedef NS_OPTIONS(NSUInteger, OneOptOptions) {
  @param block A completion block containing the structure.
  */
 + (void)getStructureData:(NSString *)structureName
-               withBlock:(void(^)(NSDictionary *response, NSError *error))block NS_SWIFT_NAME(getStructureData(_:withBlock:));
+               withBlock:(void(^)(NSDictionary *response, NSError *error))block NS_SWIFT_NAME(getStructureData(_:withBlock:)) ONE_API_DEPRECATED("Please contact support@thunderhead.com if you require access to this API");
 
 /*!
  @brief Sends an '/one-click' interaction call to ONE passing the link URL, host, path and parameters as properties to enable link attribution tracking.
@@ -270,12 +270,6 @@ typedef NS_OPTIONS(NSUInteger, OneOptOptions) {
  @param delegate An object you added by using addInteractionResponseDelegate: method.
  */
 + (void)removeInteractionResponseDelegate:(id)delegate NS_SWIFT_NAME(removeInteractionResponseDelegate(_:));
-
-/*!
- @brief Configure Thunderhead SDK to opt in/out from all interactions.
- @param optOut YES, if Thunderhead SDK should be configured to opt out from all interactions or NO otherwise.
- */
-+ (void)optOut:(BOOL)optOut NS_SWIFT_NAME(opt(out:)) ONE_API_DEPRECATED("Use Thunderhead Framework's +[One opt:forOptions:]");
 
 /*!
  @brief Configure Thunderhead SDK to opt out/in from all tracking, or keychain tid storage, or pasteboard tid storage and/or city/country level tracking. By default, the Thunderhead SDK is opted in for all settings.

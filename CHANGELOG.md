@@ -1,3 +1,6 @@
+#### Version 7.0.0
+* [BREAKING] Removed deprecated `optOut` method from Thunderhead SDK.
+
 #### Version 6.3.3
 * [BUGFIX] Fixed a crash related to handling a deallocated `View Controller` hosting `WKWebView`.
 

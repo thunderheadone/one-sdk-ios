@@ -1,0 +1,36 @@
+workflows:
+    dynamic-configuration-example:
+        name: Dynamic Configuration App
+        environment:
+            xcode: latest
+        triggering: &triggering
+          events:
+            - push
+            - pull_request
+          branch_patterns:
+            - pattern: '*'
+              include: true
+              source: true
+        scripts:
+            - cd examples/dynamic-initialization-example/Dynamic\ Initialization\ Example && pod install && xcodebuild build -workspace "Dynamic Initialization Example.xcworkspace" -scheme "Dynamic Initialization Example" CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+        publishing:
+            email:
+                recipients:
+                    - 7014c61c.thunderhead.com@emea.teams.ms
+        artifacts:
+            - build/ios/ipa/*.ipa
+            - /tmp/xcodebuild_logs/*.log
+            - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+    optimization-example:
+        name: Optimization App
+        triggering: *triggering
+        scripts:
+            - cd examples/optimizing-programmatically-using-json-example/Content\ Orchestration\ Example && xcodebuild build -workspace "Content Orchestration Example.xcworkspace" -scheme "Content Orchestration Example" CODE_SIGN_INDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+        publishing:
+            email:
+                recipients:
+                    - 7014c61c.thunderhead.com@emea.teams.ms
+        artifacts:
+            - build/ios/ipa/*.ipa
+            - /tmp/xcodebuild_logs/*.log
+            - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM

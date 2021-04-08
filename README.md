@@ -1170,6 +1170,8 @@ Objective-C:
 
 ### Get a structure data
 
+*Please note this API has been deprecated and will be removed in an upcoming release. If you require this API please contact [support@thunderhead.com](mailto:support@thunderhead.com).*
+
 To get a structure data, call `getStructureData` method by passing a structure’s name and a completion block as shown below:
 
 Swift:

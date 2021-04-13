@@ -1,4 +1,4 @@
-![Nevercode build status](https://app.nevercode.io/api/projects/4714447b-05e5-45ff-921e-ea60c07e6ef2/workflows/b09232cf-8cac-453c-b9db-b08c7d96428e/status_badge.svg?branch=master&style=shields)
+![App Center build status](https://build.appcenter.ms/v0.1/apps/df31716a-e3f2-49b0-b94e-acfe702d21b1/branches/master/badge)
 
 # Optimizing Programatically Using JSON Example 
 

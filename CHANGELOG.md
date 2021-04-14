@@ -1,3 +1,6 @@
+#### Version 6.3.4
+* [BUGFIX] Fixed an issue where in some cases a `View Controller` presented modally caused a memory leak.
+
 #### Version 6.3.3
 * [BUGFIX] Fixed a crash related to handling a deallocated `View Controller` hosting `WKWebView`.
 

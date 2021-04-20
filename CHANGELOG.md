@@ -1,3 +1,6 @@
+#### Version 6.3.5
+* [BUGFIX] Fixed an issue where `SFSafariViewController` could crash with a URL containing encoded characters.
+
 #### Version 6.3.4
 * [BUGFIX] Fixed an issue where in some cases a `View Controller` presented modally caused a memory leak.
 

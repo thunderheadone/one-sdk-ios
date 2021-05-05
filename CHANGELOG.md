@@ -1,3 +1,6 @@
+#### Version 6.3.6
+* [BUGFIX] Fixed a crash related to a callout menu view presented from `UIDatePickerView` or long pressing on `UINavigationBar` back button.
+
 #### Version 6.3.5
 * [BUGFIX] Fixed an issue where `SFSafariViewController` could crash with a URL containing encoded characters.
 

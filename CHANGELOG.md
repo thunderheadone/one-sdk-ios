@@ -1,3 +1,6 @@
+#### Version 6.3.7
+* [BUGFIX] Fixed a crash related to long pressing an embedded link when previewing web URLs.
+
 #### Version 6.3.6
 * [BUGFIX] Fixed a crash related to a callout menu view presented from `UIDatePickerView` or long pressing on `UINavigationBar` back button.
 

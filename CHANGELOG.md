@@ -1,3 +1,6 @@
+#### Version 6.3.8
+* [UPDATE] Disabled mini in-list optimizations by default. To continue using this feature you will need to specifically enable this as outlined in [our readme](https://github.com/thunderheadone/one-sdk-ios#enable-in-list-optimizations).
+
 #### Version 6.3.7
 * [BUGFIX] Fixed a crash related to long pressing an embedded link when previewing web URLs.
 

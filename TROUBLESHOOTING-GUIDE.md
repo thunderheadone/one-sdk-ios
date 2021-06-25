@@ -72,7 +72,7 @@ Objective-C:
 ```
 
 ### Disable the in-list Optimizations feature via App's Info.plist
-- Disable the in-list Optimizations feature by adding the following config to your app’s `Info.plist` file and set `DisableInListOptimization` to `YES` (boolean value).
+- Disable the in-list Optimizations feature by adding the following config to your app’s `Info.plist` file and set `DisableInListOptimization` to `true` (boolean value).
 
 ![Thunderhead Config App's Info.plist file](images/ThunderheadConfigInfoPlistEntry.png)
 

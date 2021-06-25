@@ -39,7 +39,7 @@
       + [Opt an end-user out of all city/country level tracking](#opt-an-end-user-out-of-all-citycountry-level-tracking)
       + [Opt an end-user in for all city/country level tracking](#opt-an-end-user-in-for-all-citycountry-level-tracking)   
     * [Partial opt out/in example](#partial-opt-outin-example)
-  * [Disable in-list Optimizations](#disable-in-list-optimizations)
+  * [Enable in-list Optimizations](#enable-in-list-optimizations)
   * [Disable `WKWebView` tracking](#disable-wkwebview-tracking)
   * [Late initialization and reconfiguration of the SDK](#late-initialization-and-reconfiguration-of-the-sdk)
   * [Manually set a specific Interaction path](#manually-set-a-specific-interaction-path)
@@ -149,7 +149,7 @@ Specify the *Thunderhead SDK* in your podfile.
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-    pod 'Thunderhead', '~> 6.3.7'
+    pod 'Thunderhead', '~> 6.3.8'
     end
 ```
 
@@ -507,9 +507,9 @@ Objective-C:
 - When opted out, tracking will stop and locally queued data will be removed.
 - For instructions on how to completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
-### Disable in-list Optimizations
+### Enable in-list Optimizations
 
-To disable in-list Optimizations, add the following to your app’s Info.plist file and set `DisableInListOptimization` to `YES` (boolean value).
+In-list Optimizations are disabled by default. To enable in-list Optimizations, add the following to your app’s Info.plist file and set `DisableInListOptimization` to `false` (boolean value).
 
 ![Thunderhead Config App's Info.plist file](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/ThunderheadConfigInfoPlistEntry.png)
 
@@ -519,7 +519,7 @@ To disable in-list Optimizations, add the following to your app’s Info.plist f
   <key>Swizzling Options</key>
   <dict>
     <key>DisableInListOptimization</key>
-    <true/>
+    <false/>
   </dict>
 </dict>
 ```

@@ -1,3 +1,14 @@
+#### Version 7.0.0
+* [BREAKING] Added support for using the Thunderhead SDK with Xcode 12.5. If you are using a lower version of Xcode, you will only be able to archive your app with bitcode disabled.
+* [BREAKING] JSON Assets no longer contain HTML encoded entities and the SDK no longer attempts to remove HTML encoded entities. If you still require the old encoding to be returned, please reach out to our [support team](https://github.com/thunderheadone/one-sdk-ios#thunderhead-one-support).
+* [BREAKING] Removed deprecated `optOut` method from Thunderhead SDK. For further details on this [see our migration guide](https://github.com/thunderheadone/one-sdk-ios/blob/master/migration-guides/THUNDERHEAD-7.0.0-MIGRATION-GUIDE.md#optout-method).
+* [UPDATE] Deprecated `getStructure` SDK API. For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-ios#get-a-structure-data).
+* [UPDATE] Improved codeless Interactions tracking when presenting or dismissing (with or without swipe gestures) `View Controller`s modally.
+* [UPDATE] Device data is now sent with all runtime requests.
+* [BUGFIX] Fixed an issue where regions were not highlighted properly in Edit mode for `View Contrioller`s presented modally.
+* [BUGFIX] Fixed an issue where optimizations were not shown after dismissing a Modal.
+* [BUGFIX] Fixed an issue where a wrong optimization could have been shown on a Modal.
+
 #### Version 6.3.8
 * [UPDATE] Disabled mini in-list optimizations by default. To continue using this feature you will need to specifically enable this as outlined in [our readme](https://github.com/thunderheadone/one-sdk-ios#enable-in-list-optimizations).
 

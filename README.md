@@ -92,7 +92,7 @@ The Thunderhead SDK for iOS supports iOS 9.0 and above.
 + Xcode minimum version: 12.0
 
 *Note:*
-- Xcode versions < 12.0 only support archiving an application with bitcode disabled.
+- Xcode versions < 12.5 only support archiving an application with bitcode disabled.
 
 ## Installation
 
@@ -149,7 +149,7 @@ Specify the *Thunderhead SDK* in your podfile.
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-    pod 'Thunderhead', '~> 6.3.8'
+    pod 'Thunderhead', '~> 7.0.0'
     end
 ```
 
@@ -1169,6 +1169,8 @@ Objective-C:
 ```
 
 ### Get a structure data
+
+*Please note this API has been deprecated in version 7.0.0 of the iOS SDK. If you require this API please contact [support@thunderhead.com](mailto:support@thunderhead.com).*
 
 To get a structure data, call `getStructureData` method by passing a structure’s name and a completion block as shown below:
 

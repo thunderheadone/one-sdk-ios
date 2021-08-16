@@ -15,13 +15,9 @@ Thunderhead SDK 6.+ for iOS is bundled as .xcframework file (XCFramework) instea
 
 Support for push notifications from Thunderhead ONE or Salesforce Interaction Studio has been removed starting with Thunderhead SDK 6.0.0. If you're using any of the following ONE API's, you need to remove them from your codebase when you are integrating Thunderhead SDK 6.+.
 
-<style>
-rm { color: white; background-color: red; padding: 7px; font-weight: bold; font-size: 12px; border-radius: 10px; }
-</style>
+```diff
+- enablePushNotifications
+- getPushToken
+- sendPushToken
 
-
-<rm>Removed</rm> `enablePushNotifications`
-
-<rm>Removed</rm> `getPushToken`
-
-<rm>Removed</rm> `sendPushToken`
+```

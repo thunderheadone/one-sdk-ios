@@ -16,3 +16,4 @@ FOUNDATION_EXPORT const unsigned char ThunderheadVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <Thunderhead/PublicHeader.h>
 
 #import <Thunderhead/One.h>
+#import <Thunderhead/OneConfiguration.h>

@@ -68,6 +68,7 @@
   * [Send a location object](#send-a-location-object)
   * [Get a structure data](#get-a-structure-data)
   * [Get Tid](#get-tid)
+  * [Get current configuration](#get-current-configuration)
   * [Access debug information](#access-debug-information)
   * [Identify the framework version](#identify-the-framework-version)
   * [Clear the user profile](#clear-the-user-profile)
@@ -149,7 +150,7 @@ Specify the *Thunderhead SDK* in your podfile.
 ```txt
 # Thunderhead SDK
     target :YourTargetName do
-    pod 'Thunderhead', '~> 7.0.0'
+    pod 'Thunderhead', '~> 7.1.0'
     end
 ```
 
@@ -1212,6 +1213,31 @@ Objective-C:
 - This will return the `tid` assigned to the current user as a `NSString`.
 - Retrieving the current `tid` can be useful if you want to monitor the current user in Thunderhead ONE or Salesforce Interaction Studio.
 - The tid can also be used if you need to pass the identity of the current user to another system which sends data to Thunderhead ONE or Salesforce Interaction Studio.
+
+### Get current configuration
+
+To get the current configuration of the SDK, call:
+
+Swift: 
+```swift
+let currentConfiguration = OneConfiguration.currentConfiguration()
+let siteKey = currentConfiguration?.siteKey
+
+// To access configuration properties, you can also call:
+let siteKey = OneConfiguration.shared().siteKey
+```
+
+Objective-C:
+```objective-c
+OneConfiguration *currentConfiguration = [OneConfiguration currentConfiguration];
+NSString *siteKey = currentConfiguration.siteKey;
+
+// To access configuration properties, you can also call:
+NSString *siteKey = [OneConfiguration shared].siteKey;
+```
+
+*Note:*
+- Retrieving the current configuration can be useful to validate your setup, especially if you have multiple configurations in an app.  
 
 ### Access debug information
 

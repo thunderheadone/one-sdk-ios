@@ -160,7 +160,7 @@ These are **Apple error logs** logging *all* failed outgoing network connections
 - Disable the OS (Operating System) Logs by setting `OS_ACTIVITY_MODE` = `disable` in your App Scheme Configuration. 
     - See [here](https://stackoverflow.com/questions/37800790/hide-strange-unwanted-xcode-logs)
 - Or, if you require to see the OS logs and only want to filter Thunderhead SDK's network calls, you can temporarily opt out an end-user from all tracking.  
-	- See [here](https://github.com/thunderheadone/one-sdk-ios#opt-an-end-user-outin-of-all-tracking)
+	- See [here](docs/additional-features-guide.md#opt-an-end-user-outin-of-all-tracking)
 
 ## RxSwift 
 

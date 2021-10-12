@@ -212,4 +212,4 @@ Having trouble with Thunderhead and your iOS project? Visit the [Troubleshooting
 _For Salesforce Marketing Cloud Interaction Studio questions, please submit a support ticket via https://help.salesforce.com/home_.
 
 ### Thunderhead ONE support
-_For Thunderhead ONE questions, please submit a support ticket via https://support.thunderhead.com.
+_For Thunderhead ONE questions, please submit a support ticket via https://support.thunderhead.com_.

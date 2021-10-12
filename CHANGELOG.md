@@ -1,3 +1,9 @@
+#### Version 8.0.0
+* [BREAKING] Added support for using the Thunderhead SDK with Xcode 13.0. The Thunderhead SDK now requires Xcode 13+ (iOS 15). For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-ios#prerequisites).
+* [NEW] Added ability to create entities in Admin mode and codelessly send app preference data for a region to ONE based on configuration.
+* [NEW] Added support for Navigation Bars in Admin mode to address iOS 15 changes.
+* [UPDATE] Improved codeless tracking to only send outbound link requests based on the Interaction Points specifically configured under the Touchpoint.
+
 #### Version 7.1.0
 * [NEW] Added ability to get the current SDK configuration.  For more info, see [our readme](https://github.com/thunderheadone/one-sdk-ios#get-current-configuration).
 

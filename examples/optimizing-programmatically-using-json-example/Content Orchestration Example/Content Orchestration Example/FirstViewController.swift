@@ -2,7 +2,6 @@
 //  FirstViewController.swift
 //  Content Orchestration Example
 //
-//  Created by Andrei Pop on 25/03/2019.
 //  Copyright © 2019 Thunderhead. All rights reserved.
 //
 
@@ -10,7 +9,7 @@ import UIKit
 import Thunderhead
 
 //
-// Declared the OneInteractionResponseDelegate which will notify us when a response is received for this view controller
+// Declared the OneInteractionResponseDelegate which will notify us when a response is received for this View Controller
 //
 class FirstViewController: UITableViewController, OneInteractionResponseDelegate {
     
@@ -38,7 +37,7 @@ class FirstViewController: UITableViewController, OneInteractionResponseDelegate
     }
     
     //
-    // Delegate fucntion which returns the response from an interaction
+    // Delegate function which returns the response from an interaction
     //
     func interaction(_ interactionPath: String!, didReceiveResponse response: [AnyHashable : Any]!) {
         if(response != nil) {
@@ -74,26 +73,21 @@ class FirstViewController: UITableViewController, OneInteractionResponseDelegate
                                 let content = asset.content,
                                 let responses = asset.responses
                             {
-                                //
-                                // Escape the HTML tags to retrieve the decoded asset content
-                                //
-                                let decodedContent = content.stringByEscapingHTMLTags()
-                                
-                                if let decodedContentData = decodedContent.data(using: .utf8) {
-                                    let decodedContentDataResponse = try decoder.decode(OneAssetContentResponse.self, from:decodedContentData)
+                                if let contentData = content.data(using: .utf8) {
+                                    let contentDataResponse = try decoder.decode(OneAssetContentResponse.self, from:contentData)
                                     //
                                     // Fot the purposes of this demo we retrieve the image and path
                                     // The optimization path will determine where the asset will be displayed in the table view
                                     //
-                                    if let contentImage = decodedContentDataResponse.image,
+                                    if let contentImage = contentDataResponse.image,
                                         let optimizationPath = optimization.path {
                                         if (optimizationPath == topBannerIdentifier) {
-                                            print(decodedContentDataResponse)
+                                            print(contentDataResponse)
                                             myTableViewData[0] = contentImage
                                         }
                                         
                                         if (optimizationPath == cardItemIdentifier) {
-                                            print(decodedContentDataResponse)
+                                            print(contentDataResponse)
                                             myTableViewData[1] = contentImage
                                         }
                                         
@@ -111,9 +105,9 @@ class FirstViewController: UITableViewController, OneInteractionResponseDelegate
                     }
                 }
             }
-            
+
             //
-            // Pass on the reponse to ONE SDK. This method returns the response to
+            // Pass on the response to ONE SDK. This method returns the response to
             // the SDK to process - attaching any capture, track or optimize
             // instructions to the Interaction.
             //
@@ -195,21 +189,4 @@ extension FirstViewController {
     }
     
     
-}
-
-//
-// String extension to escape HTML Tags
-//
-extension String {
-    
-    func stringByEscapingHTMLTags() -> String {
-        var target = self
-        target =  target.replacingOccurrences(of: "&quot;", with: "\"")
-        target =  target.replacingOccurrences(of: "&nbsp;", with: " ")
-        target =  target.replacingOccurrences(of: "&lt;", with: "<")
-        target =  target.replacingOccurrences(of: "&gt;", with: ">")
-        target =  target.replacingOccurrences(of: "&amp;", with: "&")
-        
-        return target
-    }
 }

@@ -31,13 +31,13 @@ class FirstViewController: UITableViewController, OneInteractionResponseDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //
-        // Added the delegate to the view controller
+        // Set View Controller as Interaction response delegate
         //
         One.addInteractionResponseDelegate(self)
     }
     
     //
-    // Delegate function which returns the response from an interaction
+    // Delegate function which returns the response from an Interaction
     //
     func interaction(_ interactionPath: String!, didReceiveResponse response: [AnyHashable : Any]!) {
         if(response != nil) {
@@ -117,7 +117,7 @@ class FirstViewController: UITableViewController, OneInteractionResponseDelegate
     
     override func viewWillDisappear(_ animated: Bool) {
         One.removeInteractionResponseDelegate(self)
-        
+
         //
         // reset the table view data to the original array
         //
@@ -132,7 +132,6 @@ extension FirstViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellIdentifier) as! FirstTableViewCell
         
         //
@@ -167,7 +166,6 @@ extension FirstViewController {
         
         if indexPath.row == 0 {
             optimizationPath = topBannerIdentifier
-            
         }
         else if indexPath.row == 1 {
             optimizationPath = cardItemIdentifier
@@ -187,6 +185,5 @@ extension FirstViewController {
             return 400
         }
     }
-    
     
 }

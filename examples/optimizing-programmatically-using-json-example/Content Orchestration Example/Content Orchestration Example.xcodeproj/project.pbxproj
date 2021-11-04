@@ -3,12 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4671CCC3240D63E40035F3A4 /* Thunderhead.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4671CCC1240D63E40035F3A4 /* Thunderhead.framework */; };
 		4671CCC4240D63E40035F3A4 /* ThunderheadBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4671CCC2240D63E40035F3A4 /* ThunderheadBundle.bundle */; };
+		C6F63D0527340DD300F93023 /* Thunderhead.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6F63D0427340DD300F93023 /* Thunderhead.xcframework */; };
 		C988473A2248E60100CA48F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98847392248E60100CA48F9 /* AppDelegate.swift */; };
 		C988473C2248E60100CA48F9 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988473B2248E60100CA48F9 /* FirstViewController.swift */; };
 		C988473E2248E60100CA48F9 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988473D2248E60100CA48F9 /* SecondViewController.swift */; };
@@ -22,8 +22,8 @@
 
 /* Begin PBXFileReference section */
 		4671CCBE240D63AE0035F3A4 /* Thunderhead.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Thunderhead.framework; path = ../../../Thunderhead.embeddedframework/Thunderhead.framework; sourceTree = "<group>"; };
-		4671CCC1240D63E40035F3A4 /* Thunderhead.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Thunderhead.framework; sourceTree = "<group>"; };
 		4671CCC2240D63E40035F3A4 /* ThunderheadBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ThunderheadBundle.bundle; sourceTree = "<group>"; };
+		C6F63D0427340DD300F93023 /* Thunderhead.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Thunderhead.xcframework; sourceTree = "<group>"; };
 		C98847362248E60100CA48F9 /* Content Orchestration Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Content Orchestration Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98847392248E60100CA48F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C988473B2248E60100CA48F9 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -42,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4671CCC3240D63E40035F3A4 /* Thunderhead.framework in Frameworks */,
+				C6F63D0527340DD300F93023 /* Thunderhead.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +60,7 @@
 		4671CCC0240D63E40035F3A4 /* Thunderhead.embeddedframework */ = {
 			isa = PBXGroup;
 			children = (
-				4671CCC1240D63E40035F3A4 /* Thunderhead.framework */,
+				C6F63D0427340DD300F93023 /* Thunderhead.xcframework */,
 				4671CCC2240D63E40035F3A4 /* ThunderheadBundle.bundle */,
 			);
 			name = Thunderhead.embeddedframework;

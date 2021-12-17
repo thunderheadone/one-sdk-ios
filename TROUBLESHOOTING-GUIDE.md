@@ -6,10 +6,8 @@ The Thunderhead SDK for iOS Troubleshooting Guide for common implementation issu
   * [No such module 'Thunderhead' Xcode compile error](#no-such-module--thunderhead--xcode-compile-error)
   * [Resolve `Undefined symbols for architecture arm64` compile time error](#resolve--undefined-symbols-for-architecture-arm64--compile-time-error)
   * [Archive Error SPM - Found an unexpected Mach-O header code: 0x72613c21](#archive-error-spm---found-an-unexpected-mach-o-header-code--0x72613c21)
-- [How to resolve `UITableView` layout display issues](#how-to-resolve--uitableview--layout-display-issues)
-  * [Resolve `UITableView` layout issue by implementing `tableView:heightForRowAtIndexPath:`](#resolve--uitableview--layout-issue-by-implementing--tableview-heightforrowatindexpath--)
-  * [Disable the in-list Optimizations feature via App's Info.plist](#disable-the-in-list-optimizations-feature-via-apps-infoplist)
-  * [Disable `WKWebView` tracking via App's Info.plist](#disable--wkwebview--tracking-via-apps-infoplist)
+- [How to resolve `WKWebView` tracking issues](#how-to-resolve-wkwebview-tracking-issues)
+  * [Disable `WKWebView` tracking via App's Info.plist](#disable-wkwebview-tracking-via-apps-infoplist)
 - [Identify why automatic Interaction requests may not be triggered for a View Controller](#identify-why-automatic-interaction-requests-may-not-be-triggered-for-a-view-controller)
   * [Ensure you are calling `super` when overriding View Controller lifecycle methods](#ensure-you-are-calling--super--when-overriding-view-controller-lifecycle-methods)
     + [How to identify when this is the issue](#how-to-identify-when-this-is-the-issue)
@@ -50,42 +48,9 @@ rm -rf "${TARGET_BUILD_DIR}/${PRODUCT_NAME}.app/Frameworks/Thunderhead.framework
 
 - Please note this issue has already been reported to Apple's Swift Team. To track this bug [click here](https://bugs.swift.org/browse/SR-13343).
 
-## How to resolve `UITableView` layout display issues
+## How to resolve `WKWebView` tracking issues
 
-If you come across issues with how the layout is rendered in your `UITableView`'s, try the following:
-
-### Resolve `UITableView` layout issue by implementing `tableView:heightForRowAtIndexPath:`
-- Implement the `tableView:heightForRowAtIndexPath:` delegate method in the view controller. The method implementation is required to enable the SDK swizzling implementation to call the original implementation in all your view controllers where you are looking to display in-list Optimizations.
-
-Swift:
-```swift
-func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { 
-     return UITableViewAutomaticDimension
-}
-```
-
-Objective-C:
-```objective-c
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewAutomaticDimension;
-}
-```
-
-### Disable the in-list Optimizations feature via App's Info.plist
-- Disable the in-list Optimizations feature by adding the following config to your app’s `Info.plist` file and set `DisableInListOptimization` to `true` (boolean value).
-
-![Thunderhead Config App's Info.plist file](images/ThunderheadConfigInfoPlistEntry.png)
-
-```xml
-<key>Thunderhead Config</key>
-<dict>
-	<key>Swizzling Options</key>
-	<dict>
-		<key>DisableInListOptimization</key>
-		<true/>
-	</dict>
-</dict>
-```
+If you come across issues with `WKWebView` tracking, try the following:
 
 ### Disable `WKWebView` tracking via App's Info.plist
 - Disable `WKWebView` codeless tracking by adding the following to your app’s Info.plist file and set `DisableWKWebViewTracking` to `YES` (boolean value).

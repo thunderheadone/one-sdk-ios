@@ -100,7 +100,12 @@ Complete the following steps to initialize the SDK.
 
 #### Set up the SDK in User mode for App Store builds
 
-To start tracking, capturing, and receiving Optimizations with the Thunderhead SDK in User mode, you must first initialize it with your Thunderhead API parameters. You can find your Thunderhead API parameters on the [Thunderhead ONE website](https://eu2.thunderhead.com/one/help/conversations/how-do-i/mobile/one_integrate_mobile_find_integration_info/) or in [Salesforce Interaction Studio](https://eu2.thunderhead.com/one/help/interaction-studio/how-do-i/mobile/one_integrate_mobile_find_integration_info/).
+To start tracking, capturing, and receiving Optimizations with the Thunderhead SDK in User mode, you must first initialize it with your Thunderhead API parameters. 
+You can find your Thunderhead API parameters on the _API Credentials_ page in Thunderhead ONE or Salesforce Interaction Studio.
+
+For more information on finding these parameters: 
+* For **Thunderhead ONE** integrations, see [Find the Information required when Integrating ONE with your Mobile Solutions](https://permalink.thunderhead.com/mobile-docs/one-mobile-integration-info) 
+* For **Salesforce Interaction Studio** integrations, see [Find the Information required when Integrating Interaction Studio with your Mobile App](https://permalink.thunderhead.com/mobile-docs/is-mobile-integration-info) 
 
 With your parameters ready at hand, add the following lines to the top of the `didFinishLaunchingWithOptions`:
 
@@ -110,7 +115,7 @@ One.startSessionWithSK("ONE-XXXXXXXXXX-1022",
                     uri:"myAppsNameURI",
                  apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
            sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx",
-                 userId:"api@yourCompanyName",
+                 userId:"api@yourCompanyName", // For Interaction Studio integrations use a numeric user id - see https://permalink.thunderhead.com/mobile-docs/is-mobile-integration-info-credentials
               adminMode:false,
                hostName:"eu2.thunderhead.com")
 ```
@@ -122,7 +127,7 @@ Objective-C:
                     uri:@"myAppsNameURI"
                  apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
            sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-                 userId:@"api@yourCompanyName"
+                 userId:@"api@yourCompanyName" // For Interaction Studio integrations use a numeric user id - see https://permalink.thunderhead.com/mobile-docs/is-mobile-integration-info-credentials
               adminMode:NO
                hostName:@"eu2.thunderhead.com"];
 ```
@@ -139,7 +144,7 @@ One.startSessionWithSK("ONE-XXXXXXXXXX-1022",
                     uri:"myAppsNameURI",
                  apiKey:"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx",
            sharedSecret:"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx",
-                 userId:"api@yourCompanyName",
+                 userId:"api@yourCompanyName", // For Interaction Studio integrations use a numeric user id - see https://permalink.thunderhead.com/mobile-docs/is-mobile-integration-info-credentials
               adminMode:true,
                hostName:"eu2.thunderhead.com")
 ```
@@ -151,7 +156,7 @@ Objective-C:
                     uri:@"myAppsNameURI"
                  apiKey:@"f713d44a-8af0-4e79-ba7e-xxxxxxxxxxxxxxxx"
            sharedSecret:@"bb8bacb2-ffc2-4c52-aaf4-xxxxxxxxxxxxxxxx"
-                 userId:@"api@yourCompanyName"
+                 userId:@"api@yourCompanyName" // For Interaction Studio integrations use a numeric user id - see https://permalink.thunderhead.com/mobile-docs/is-mobile-integration-info-credentials
               adminMode:YES
                hostName:@"eu2.thunderhead.com"];
 ```

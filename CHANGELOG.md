@@ -1,3 +1,8 @@
+#### Version 9.0.0
+* [BREAKING] Removed the in-list optimization functionality from the SDK.
+* [NEW] Added ability to dynamically switch Workspace configuration while in Admin mode. You can now switch to other spaces easily by simply navigating to the Preview panel in Admin mode and pointing the SDK configuration to another space.
+* [NEW] Added ability to send SDK logs to a file while in Admin mode for easy sharing without needing developer support. You can now switch on SDK logging by navigating to the Preview panel in Admin mode. Once you’ve reproduced the issue, return to the same screen to share the logs.
+
 #### Version 8.0.0
 * [BREAKING] Added support for using the Thunderhead SDK with Xcode 13.0. The Thunderhead SDK now requires Xcode 13+ (iOS 15). For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-ios#prerequisites).
 * [NEW] Added ability to create entities in Admin mode and codelessly send app preference data for a region to ONE based on configuration.

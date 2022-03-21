@@ -17,7 +17,8 @@
     + [Opt an end-user out of all city/country level tracking](#opt-an-end-user-out-of-all-citycountry-level-tracking)
     + [Opt an end-user in for all city/country level tracking](#opt-an-end-user-in-for-all-citycountry-level-tracking)   
   * [Partial opt out/in example](#partial-opt-outin-example)
-* [Enable in-list Optimizations](#enable-in-list-optimizations)
+* [Capture data from other SDKs](#capture-data-from-other-sdks)
+  * [Capture data from other SDKs feature compatibility table](#capture-data-from-other-sdks-feature-compatibility-table)
 * [Disable `WKWebView` tracking](#disable-wkwebview-tracking)
 * [Late initialization and reconfiguration of the SDK](#late-initialization-and-reconfiguration-of-the-sdk)
 * [Manually set a specific Interaction path](#manually-set-a-specific-interaction-path)
@@ -210,22 +211,62 @@ Objective-C:
 - When opted out, tracking will stop and locally queued data will be removed.
 - For instructions on how to completely remove a user's data from Thunderhead ONE or Salesforce Interaction Studio - see our [api documentation](https://thunderheadone.github.io/one-api/#operation/delete).
 
-### Enable in-list Optimizations
+### Capture data from other SDKs
 
-In-list Optimizations are disabled by default. To enable in-list Optimizations, add the following to your app’s Info.plist file and set `DisableInListOptimization` to `false` (boolean value).
+To capture data from other SDKs, add the method signatures to `Method Overrides` under `Thunderhead Config`.
 
-![Thunderhead Config App's Info.plist file](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/ThunderheadConfigInfoPlistEntry.png)
+For example, given the class interface
+
+```objective-c
+@interface THAnalytics : NSObject
+
++ (void)trackEventWithName:(NSString *)eventName properties:(NSDictionary *)properties;
+
+- (void)logIdentityWithName:(NSString *)identityName parameters:(NSDictionary *)parameters;
+
+- (void)logIdentityWithName:(NSString *)identityName;
+
+@end
+```
+
+* To capture data from `class method` `trackEventWithName:properties:` 
+* To capture data from `instance method` `logIdentityWithName:parameters:` 
+* To capture data from `instance method` `logIdentityWithName:` 
+
+from `THAnalytics` class, add the following to your app's Info.plist file
+
+![Thunderhead Config Method Overrides App's Info.plist file](https://github.com/thunderheadone/one-sdk-ios/raw/master/images/ThunderheadConfigMethodOverridesInfoPlistEntry.png)
 
 ```xml
 <key>Thunderhead Config</key>
-<dict>
-  <key>Swizzling Options</key>
   <dict>
-    <key>DisableInListOptimization</key>
-    <false/>
+    <key>Method Overrides</key>
+    <array>
+      <string>THAnalytics+trackEventWithName:properties:</string>
+      <string>THAnalytics-logIdentityWithName:parameters:</string>
+      <string>THAnalytics-logIdentityWithName:</string>
+    </array>
   </dict>
-</dict>
-```
+  ``` 
+
+The SDK will capture the data when the configured methods are invoked.
+
+*Note:*
+- The SDK will only send Codeless Interactions when the first argument (String) matches a configured interaction in the Interaction Map. For additional information, please refer [Sending Interaction requests based on the Interaction map](https://github.com/thunderheadone/one-sdk-ios#sending-interaction-requests-based-on-the-interaction-map).
+- When capturing data from class methods, use `+` between `class name` and `method signature`.
+- When capturing data from instance methods, use `-` between `class name` and `method signature`.
+- Interaction paths with spaces are replaced with an underscore to ensure the Interaction path is valid in ONE.
+
+#### Capture data from other SDKs feature compatibility table
+
+The table below illustrates the compatibility of Capturing data from other SDKs based upon the programming language used.
+
+| App (Language) | Other SDK (Language) | Captures Data |
+| -------------- | -------------------- | ------------- |
+| Objective-C    | Objective-C          | YES           |
+| Objective-C    | Swift                | YES           |
+| Swift          | Objective-C          | YES           |
+| Swift          | Swift                | NO            |
 
 ### Disable `WKWebView` tracking
 
@@ -662,7 +703,7 @@ One.whitelistIdentityTransferLinks(["www.google.com","www.uber.com"])
 // This example shows how to whitelist the main domain name
 // wikipedia.org and any subdomains. For example,
 // https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-One.whitelistIdentityTransferLinks(["*.wikipedia.org"]
+One.whitelistIdentityTransferLinks(["*.wikipedia.org"])
 ```
 
 
@@ -698,7 +739,7 @@ One.blacklistIdentityTransferLinks(["www.google.com","www.uber.com"])
 // This example shows how to blacklist the main domain name
 // wikipedia.org and any subdomain. For example,
 // https://en.wikipedia.org, https://simple.wikipedia.org, etc.
-One.blacklistIdentityTransferLinks(["*.wikipedia.org"]
+One.blacklistIdentityTransferLinks(["*.wikipedia.org"])
 ```
 
 

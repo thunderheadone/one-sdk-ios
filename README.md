@@ -20,7 +20,7 @@
 - [Additional codeless integration considerations](#additional-codeless-integration-considerations)
   * [For Salesforce Interaction Studio integrations](#for-salesforce-interaction-studio-integrations)
   * [`ViewController`/`View` lifecycle overriding rules](#viewcontrollerview-lifecycle-overriding-rules)
-  * [Sending codeless Interactions based on the list of Interactions created under a Touchpoint](#sending-codeless-Interactions-based-on-the-list-of-Interactions-created-under-a-touchpoint)
+  * [Sending Interaction requests based on the Interaction map](#sending-interaction-requests-based-on-the-interaction-map)
 - [Additional features of Thunderhead SDK](docs/additional-features-guide.md)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Questions or need help](#questions-or-need-help)
@@ -194,7 +194,7 @@ The framework listens to a number of `UIViewController` and `UIView` methods to 
 
 If you use these methods in your code, please ensure to call super when implementing them.
 
-### Sending codeless Interactions based on the list of Interactions created under a Touchpoint
+### Sending Interaction requests based on the Interaction map
 
 In order to reduce the number of unnecessary Interaction requests sent automatically by the SDK, only codeless Interactions with explicit Interaction paths created under a Touchpoint and configured with at least one point are sent to Thunderhead ONE or Salesforce Interaction Studio. This configuration change has been introduced in version 5.3.0 of the iOS SDK.
 

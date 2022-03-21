@@ -1,3 +1,7 @@
+#### Version 9.1.0
+* [NEW] Added ability to dynamically capture data from other SDKs. For further details on this see [our readme](https://github.com/thunderheadone/one-sdk-ios/blob/master/docs/additional-features-guide.md#capture-data-from-other-sdks). 
+* [UPDATE] Xcode 13.2 compatible SDK.
+
 #### Version 9.0.0
 * [BREAKING] Removed the in-list optimization functionality from the SDK.
 * [NEW] Added ability to dynamically switch Workspace configuration while in Admin mode. You can now switch to other spaces easily by simply navigating to the Preview panel in Admin mode and pointing the SDK configuration to another space.

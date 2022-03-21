@@ -4,6 +4,7 @@ The Thunderhead SDK for iOS Troubleshooting Guide for common implementation issu
 
 - [Installation and archiving troubleshooting](#installation-and-archiving-troubleshooting)
   * [No such module 'Thunderhead' Xcode compile error](#no-such-module--thunderhead--xcode-compile-error)
+  * [CocoaPods could not find compatible versions for pod "Thunderhead" error](#cocoapods-could-not-find-compatible-versions-for-pod--thunderhead--error)
   * [Resolve `Undefined symbols for architecture arm64` compile time error](#resolve--undefined-symbols-for-architecture-arm64--compile-time-error)
   * [Archive Error SPM - Found an unexpected Mach-O header code: 0x72613c21](#archive-error-spm---found-an-unexpected-mach-o-header-code--0x72613c21)
 - [How to resolve `WKWebView` tracking issues](#how-to-resolve-wkwebview-tracking-issues)
@@ -21,6 +22,12 @@ The Thunderhead SDK for iOS Troubleshooting Guide for common implementation issu
 When integrating the Thunderhead SDK manually into your app, you may encounter this compile error.
 
 To resolve this, navigate to **Build Settings**, ensure the **Framework Search Paths** contains the framework filepath. If the framework is placed in your project directory, simply set the framework search path to `$(SRCROOT)` and set it to recursive.
+
+### CocoaPods could not find compatible versions for pod "Thunderhead" error
+
+After the Thunderhead SDK gets released to CocoaPods, there might be a delay of 2-4 hours or more before the Thunderhead pod actually goes live and becomes available to be installed through CocoaPods. Please, make sure the GitHub [SDK latest version](https://github.com/thunderheadone/one-sdk-ios/releases) matches the [CocoaPods version](https://cocoapods.org/pods/Thunderhead).
+
+If the latest Thunderhead SDK version is already available in [CocoaPods](https://cocoapods.org/pods/Thunderhead), but you still have issues integrating the latest Thunderhead pod into your project, please try running the [`pod update`](https://guides.cocoapods.org/using/pod-install-vs-update.html#pod-update) and `pod repo update` command in your project's directory in Terminal.
 
 ### Resolve `Undefined symbols for architecture arm64` compile time error
 

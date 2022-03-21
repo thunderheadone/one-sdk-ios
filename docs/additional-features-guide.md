@@ -220,7 +220,7 @@ For example, given the class interface
 ```objective-c
 @interface THAnalytics : NSObject
 
-+ (void)trackEventWithName:(NSString *)eventName properties:(NSDictionary *)properties;
+- (void)trackEventWithName:(NSString *)eventName properties:(NSDictionary *)properties;
 
 - (void)logIdentityWithName:(NSString *)identityName parameters:(NSDictionary *)parameters;
 

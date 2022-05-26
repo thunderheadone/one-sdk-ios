@@ -1,3 +1,6 @@
+#### Version 9.1.1
+* [BUGFIX] Fixed a crash related to Apple CarPlay `CPTemplateApplicationScene`.
+
 #### Version 9.1.0
 * [NEW] Added ability to dynamically capture data from other SDKs. For further details on this see [our readme](https://github.com/thunderheadone/one-sdk-ios/blob/master/docs/additional-features-guide.md#capture-data-from-other-sdks). 
 * [UPDATE] Xcode 13.2 compatible SDK.

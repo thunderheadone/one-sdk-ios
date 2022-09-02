@@ -1,3 +1,6 @@
+#### Version 9.1.2
+* [BUGFIX] Fixed a crash occurring on start in Xcode 14 Beta 4+ related to dealloc initiation for `UIViewController` object.
+
 #### Version 9.1.1
 * [BUGFIX] Fixed a crash related to Apple CarPlay `CPTemplateApplicationScene`.
 

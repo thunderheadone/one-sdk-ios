@@ -1,3 +1,6 @@
+#### Version 9.1.3
+* [BUGFIX] Fixed a crash that was occuring when Thunderhead SDK is integrated into a RxSwift app using `UIScrollViewDelegate` [RxSwift](https://github.com/ReactiveX/RxSwift).
+
 #### Version 9.1.2
 * [BUGFIX] Fixed a crash occurring on start in Xcode 14 Beta 4+ related to dealloc initiation for `UIViewController` object.
 

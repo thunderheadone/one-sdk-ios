@@ -33,13 +33,13 @@ For native integration, simply follow the steps outlined under the installation 
 
   - Install the following:
     
-    * Xcode 13.0 or later
+    * Xcode 14.0 or later
 
     * [CocoaPods](https://cocoapods.org) 1.10.0 or later
 
   - Make sure that your project meets these requirements:
 
-    * Your project must target iOS 9 or later.
+    * Your project must target iOS 11 or later.
 
   - Set up a physical iOS device or use the iOS simulator to run your app.
 

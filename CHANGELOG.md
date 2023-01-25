@@ -1,3 +1,7 @@
+#### Version 10.0.0
+* [BREAKING] Added support for using the Thunderhead SDK with Xcode 14.0. The Thunderhead SDK now requires Xcode 14+ . For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-ios#prerequisites).
+* [BREAKING] Updated minimum deployment target to iOS 11.0.
+
 #### Version 9.1.3
 * [BUGFIX] Fixed a crash that was occuring when Thunderhead SDK is integrated into a RxSwift app using `UIScrollViewDelegate` [RxSwift](https://github.com/ReactiveX/RxSwift).
 

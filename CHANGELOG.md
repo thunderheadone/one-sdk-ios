@@ -1,6 +1,3 @@
-#### Version 10.0.1
-* [BUGFIX] Fixed a crash related to `objc_setAssosciatedObject` in `OneUserModeManager` class.
-
 #### Version 10.0.0
 * [BREAKING] Added support for using the Thunderhead SDK with Xcode 14.0. The Thunderhead SDK now requires Xcode 14+ . For further details on this [see our readme](https://github.com/thunderheadone/one-sdk-ios#prerequisites).
 * [BREAKING] Updated minimum deployment target to iOS 11.0.
